@@ -1,6 +1,6 @@
-import { useCallback, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
-import Button from "../../components/button/button";
+import Panel from "../../components/panel/panel";
 import Word from "../../components/word/word";
 import { data, general } from "../../data/words";
 
@@ -13,16 +13,12 @@ function Test() {
     return general;
   }, [params.part]);
 
-  const onClick = useCallback((type) => {
-    const counter = type === 'next' ? count + 1 : count - 1;
-    if (counter < wordsData.words.length) setCount(counter);
-  }, [count, wordsData.words.length]);
+  
 
   return (
     <div className="test">
       <Word word={wordsData.words[count]} />
-      <Button onClick={() => onClick('prev')} className="button__prev">prev</Button>
-      <Button onClick={() => onClick('next')} className="button__next">next</Button>
+      <Panel count={count} onChangeCount={setCount} length={wordsData.words.length} />
     </div>
   );
 }
