@@ -7,8 +7,7 @@ function Panel(props) {
   const navigate = useNavigate();
   const onClick = useCallback((type) => {
     const counter = type === 'next' ? props.count + 1 : props.count - 1;
-    console.log(counter)
-    if (counter < props.length) props.onChangeCount(counter);
+    if (counter < props.length && counter >= 0) props.onChangeCount(counter);
   }, [props]);
 
   return(

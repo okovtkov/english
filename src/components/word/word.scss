@@ -6,12 +6,12 @@
   height: 90vh;
 }
 
-.word__english {
+.word__visible {
   font-size: 48px;
   margin-bottom: 20px;
 }
 
-.word__russian {
+.word__invisible {
   position: relative;
   font-size: 32px;
 
@@ -26,7 +26,7 @@
   }
 }
 
-.word__russian--invisible {
+.word__invisible--active {
   cursor: pointer;
   &::after {
     background-color: gray;
