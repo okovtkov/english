@@ -3,24 +3,31 @@ import './word.scss';
 
 function Word(props) {
   const ref = useRef();
+  const word = props.visibleWord === 'rus' ? {
+    visible: props.word.russian,
+    invisible: props.word.english,
+  } : {
+    visible: props.word.english,
+    invisible: props.word.russian,
+  }
 
   const onClick = useCallback(() => {
-    ref.current.classList.remove('word__russian--invisible');
+    ref.current.classList.remove('word__invisible--active');
   }, []);
 
   useEffect(() => {
-    ref.current.classList.add('word__russian--invisible');
+    ref.current.classList.add('word__invisible--active');
   }, [props.word]);
 
   return (
     <div className="word">
-      <div className="word__english">{props.word.english}</div>
+      <div className="word__visible">{word.visible}</div>
       <div
-        className="word__russian word__russian--invisible"
+        className="word__invisible word__invisible--active"
         ref={ref}
         onClick={onClick}
       >
-        {props.word.russian}
+        {word.invisible}
       </div>
     </div>
   );
