@@ -9,16 +9,16 @@ function Test() {
   const params = useParams();
   const wordsData = useMemo(() => {
     const result = data.find((item) => item.id.toString() === params.part);
-    if (result) return result;
+    const shuffeled = result ? result.words.sort(() => Math.random() - 0.5) : null;
+
+    if (shuffeled) return shuffeled;
     return general;
   }, [params.part]);
 
-  
-
   return (
     <div className="test">
-      <Word word={wordsData.words[count]} />
-      <Panel count={count} onChangeCount={setCount} length={wordsData.words.length} />
+      <Word word={wordsData[count]} />
+      <Panel count={count} onChangeCount={setCount} length={wordsData.length} />
     </div>
   );
 }
