@@ -4,8 +4,35 @@
   justify-content: center;
   align-items: center;
   height: 90vh;
+  text-align: center;
+}
+
+@media screen and (min-width: 1024px) {
+  .switch {
+    display: flex;
+  }
+}
+
+.switch__buttons {
+  text-align: center;
+}
+
+@media screen and (min-width: 1024px) {
+  .switch__buttons {
+    display: flex;
+    text-align: start;
+    max-width: 600px;
+  }
 }
 
 .switch__button {
   margin-right: 10px;
+  margin-bottom: 10px;
+  width: 80%;
+}
+
+@media screen and (min-width: 1024px) {
+  .switch__button {
+    width: 200px;
+  }
 }

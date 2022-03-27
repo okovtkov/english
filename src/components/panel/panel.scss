@@ -1,9 +1,15 @@
 .panel {
-  position: absolute;
-  bottom: 30%;
-  left: 39%;
+  display: flex;
+  justify-content: center;
 }
 
+.panel__prev,
+.panel__next,
+.panel__home {
+  width: 30%;
+  max-width: 100px;
+  padding: 20px 0;
+}
 
 .panel__home {
   margin-left: 10px;

@@ -1,0 +1,32 @@
+.parts {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 0 10px;
+
+  h1 {
+    margin-bottom: 50px;
+  }
+}
+
+.parts__general {
+  width: 100%;
+  max-width: 600px;
+  margin-bottom: 50px;
+
+  .ref {
+    width: 100%;
+    margin-right: auto;
+  }
+
+  .ref__children {
+    width: 100%;
+  }
+}
+
+.parts__another {
+  display: block;
+  text-align: center;
+  max-width: 600px;
+}

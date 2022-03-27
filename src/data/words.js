@@ -306,7 +306,7 @@ export const data = [
       },
       {
         english: 'pill',
-        russian: 'участник',
+        russian: 'таблетка',
       },
       {
         english: 'rehab',
@@ -711,7 +711,7 @@ export const data = [
       },
       {
         english: 'integrity',
-        russian: 'честностьы',
+        russian: 'честность',
       },
       {
         english: 'behavior',
@@ -771,12 +771,12 @@ export const data = [
         russian: 'подвергать опасности',
       },
       {
-        english: 'uncertainly',
-        russian: 'неуверенно',
+        english: 'uncertainty',
+        russian: 'неуверенность',
       },
       {
         english: 'conviction',
-        russian: 'убежденность',
+        russian: 'убежденность, уверенность',
       },
       {
         english: 'be aware',
@@ -845,7 +845,7 @@ export const data = [
       },
       {
         english: 'correlation',
-        russian: 'зависимость, соотношение',
+        russian: 'зависимость, взаимосвязь',
       },
       {
         english: 'by accident',
