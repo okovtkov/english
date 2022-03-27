@@ -5,7 +5,7 @@ import Test from './pages/test/[part]';
 
 function App() {
   return (
-    <Routes>
+    <Routes basename="/english">
       <Route path='/' element={<Index />} />
       <Route path='/test/:part' element={<Test />} />
     </Routes>
