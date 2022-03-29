@@ -1,0 +1,64 @@
+.edit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 0 10px;
+  margin-top: 15%;
+}
+
+.edit__parts {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  text-align: center;
+  max-width: 600px;
+}
+
+.edit__wrapper {
+  position: relative;
+  .edit__close {
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    width: 22px;
+    height: 22px;
+    transform: scale(0);
+    transition: transform 0.1s linear;
+    background-color: red;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+
+    &::after,
+    &::before {
+      position: absolute;
+      top: 10px;
+      left: 5px;
+      width: 12px;
+      height: 2px;
+      transform: rotate(45deg);
+      background-color: #fff;
+      content: '';
+    }
+
+    &::after {
+      transform: rotate(-45deg);
+    }
+  }
+}
+
+.edit__wrapper--editing {
+  .edit__close {
+    transform: scale(1);
+  }
+}
+
+.edit__button {
+  margin-top: 20px;
+}
+
+.edit__wrapper--deleted {
+  transform: scale(0);
+  transition: transform 0.1s linear;
+}

@@ -1,4 +1,4 @@
-import { collection, addDoc, getDocs, getDoc, doc, getFirestore } from 'firebase/firestore';
+import { collection, addDoc, getDocs, getDoc, doc, getFirestore, deleteDoc } from 'firebase/firestore';
 import { firestore } from './firestore';
 
 const wordCollection = collection(firestore, 'words');
@@ -23,5 +23,9 @@ export const words = {
       const words = document.data();
       return { id, words };
     });
+  },
+
+  deleteDoc(wordsId) {
+    deleteDoc(doc(wordCollection, wordsId));
   }
 }
