@@ -1,7 +1,7 @@
 import '../index.scss';
 import Parts from '../components/parts/parts';
 
-function Index() {
+function Index(props) {
   return (
     <Parts />
   );

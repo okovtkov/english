@@ -3,7 +3,7 @@ import './ref.scss';
 
 function Ref(props) {
   return (
-    <Link to={`/test/${props.part}`} data={props.data} className="ref">
+    <Link to={`/test/${props.id}`} className="ref">
       <div className="ref__children">
         {props.children}
       </div>

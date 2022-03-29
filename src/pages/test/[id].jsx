@@ -1,22 +1,31 @@
-import { useMemo, useState } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useEffect, useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
+import { words } from "../../api/words";
 import Panel from "../../components/panel/panel";
 import Switch from "../../components/switch/switch";
 import Word from "../../components/word/word";
-import { data, general } from "../../data/words";
 
 function Test() {
+  const [data, setData] = useState({});
   const [visibleWord, setVisibleWord] = useState('');
   const [count, setCount] = useState(0);
   const params = useParams();
-  const wordsData = useMemo(() => {
-    const result = data.find((item) => item.id.toString() === params.part);
-    const shuffeled = result ? 
-      result.words.sort(() => Math.random() - 0.5) :
-      general.words.sort(() => Math.random() - 0.5);
 
+  const wordsData = useMemo(() => {
+    if (!data.id) return;
+    if (params.part === 'general') {
+      return [].concat(...data.map((item) => [...item.words.words]))
+    }
+
+    const arr = data.words.words;
+    const shuffeled = arr.sort(() => Math.random() - 0.5);
     return shuffeled;
-  }, [params.part]);
+  }, [data]);
+
+  useEffect(() => {
+    words.getById(params.id).then(resp => setData(resp));
+  }, []);
 
   return (
     <div className="test">
