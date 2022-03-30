@@ -5,7 +5,8 @@ import Index from './pages';
 import Test from './pages/test/[id]';
 import './App.css';
 import Header from './components/header/header';
-import Edit from './components/edit/edit';
+import Edit from './pages/edit/edit';
+import Create from './pages/edit/create';
 
 function App() {
   const [data, setData] = useState([]);
@@ -30,6 +31,7 @@ function App() {
         <Route path='/' element={<Index data={data} />} />
         <Route path='/test/:id' element={<Test />} />
         <Route path='/edit' element={<Edit data={data} />} />
+        <Route path='/edit/create' element={<Create data={data} />} />
       </Routes>
     </>
   );

@@ -10,8 +10,8 @@ function Panel(props) {
 
   return(
     <div className="panel">
-      <Button onClick={() => onClick('prev')} className="panel__prev">prev</Button>
-      <Button onClick={() => onClick('next')} className="panel__next">next</Button>
+      <Button onClick={() => onClick('prev')} className="panel__prev">назад</Button>
+      <Button onClick={() => onClick('next')} className="panel__next">далее</Button>
     </div>
   )
 }

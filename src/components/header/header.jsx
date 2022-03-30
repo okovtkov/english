@@ -4,8 +4,8 @@ import './header.scss';
 function Header() {
   return(
     <header className="header">
-      <Link to={'/'} className="header__link">Home</Link>
-      <Link to={'/edit'} className="header__link">Edit words</Link>
+      <Link to={'/'} className="header__link">Главная</Link>
+      <Link to={'/edit'} className="header__link">Редактировать</Link>
     </header>
   )
 }

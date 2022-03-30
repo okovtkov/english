@@ -30,7 +30,6 @@
   transform: translate(-50%, -50%);
   background-color: $body;
   border-radius: 10px;
-  border: 1px solid $blue;
   font-size: 20px;
 }
 
@@ -55,7 +54,6 @@
   display: flex;
   justify-content: flex-end;
   padding: 10px;
-  border-top: 1px solid $blue;
 }
 
 .popup__ok,

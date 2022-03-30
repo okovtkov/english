@@ -6,7 +6,7 @@ function Parts(props) {
     <div className="parts">
       <h1>Выбери часть, которую желаешь повторить</h1>
       <div className="parts__general">
-        <Ref path="test" id="general">General</Ref>
+        <Ref path="test" id="general">Общее</Ref>
       </div>
       <div className="parts__another">
         {props.data.map((item) => (
