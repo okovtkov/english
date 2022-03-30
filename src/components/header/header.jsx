@@ -5,7 +5,7 @@ function Header() {
   return(
     <header className="header">
       <Link to={'/'} className="header__link">Home</Link>
-      <Link to={'/edit'} className="header__link">Add new words</Link>
+      <Link to={'/edit'} className="header__link">Edit words</Link>
     </header>
   )
 }

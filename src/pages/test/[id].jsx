@@ -19,6 +19,7 @@ function Test() {
       return arr.sort(() => Math.random() - 0.5);
     }
 
+    console.log(data)
     const arr = data.words.words;
     const shuffeled = arr.sort(() => Math.random() - 0.5);
     return shuffeled;
@@ -34,7 +35,7 @@ function Test() {
 
   return (
     <div className="test">
-      {visibleWord ? (
+      {visibleWord && data.length !== 0 ? (
         <>
           <Word word={wordsData[count]} visibleWord={visibleWord} />
           <Panel count={count} onChangeCount={setCount} length={wordsData.length} />

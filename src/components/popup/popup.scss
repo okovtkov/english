@@ -1,0 +1,75 @@
+@import "../../index.scss";
+
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+
+  &::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+    opacity: 0.3;
+    z-index: -1;
+    content: '';
+  }
+}
+
+.popup__wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 90vw;
+  max-width: 600px;
+  transform: translate(-50%, -50%);
+  background-color: $body;
+  border-radius: 10px;
+  border: 1px solid $blue;
+  font-size: 20px;
+}
+
+.popup__header {
+  display: flex;
+  align-items: center;
+  height: 50px;
+  margin-top: auto;
+  padding: 0 20px;
+  background-color: $blue;
+  vertical-align: bottom;
+  border-radius: 10px 10px 0 0;
+  color: white;
+}
+
+.popup__text {
+  padding: 20px;
+  font-size: 16px;
+}
+
+.popup__footer {
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px;
+  border-top: 1px solid $blue;
+}
+
+.popup__ok,
+.popup__cancel {
+  margin-left: 10px;
+  padding: 5px 10px;
+  background-color: $body;
+  border: 1px solid $blue;
+  border-radius: 2px;
+  font-size: 16px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $blue;
+    color: white;
+  }
+}

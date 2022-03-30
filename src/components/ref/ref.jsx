@@ -3,7 +3,7 @@ import './ref.scss';
 
 function Ref(props) {
   return (
-    <Link to={`/${props.path}/${props.id}`} className="ref">
+    <Link to={`/${props.path}/${props.id || ''}`} className="ref">
       <div className="ref__children">
         {props.children}
       </div>
