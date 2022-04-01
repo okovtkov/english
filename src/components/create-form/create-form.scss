@@ -1,0 +1,147 @@
+@import '../../index.scss';
+
+.create-form {
+  padding: 0 20px;
+}
+
+.create-form__heading {
+  text-align: center;
+}
+
+.create-form__heading--name {
+  margin-bottom: 5px;
+  font-size: 14px;
+  color: darken(gray, 10%);
+}
+
+.create-form__head-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 660px;
+  margin-top: 25px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
+}
+
+.create-form__wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+@media screen and (min-width: 768px) {
+  .create-form__wrapper {
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    flex-wrap: wrap;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.create-form__words-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 0;
+  border-top: 1px solid lighten($blue, 10%);
+
+  &:hover .create-form__close {
+    transform: scale(1);
+  }
+}
+
+.create-form__close {
+  top: 40%;
+  right: 20px;
+  transform: scale(0);
+}
+
+@media screen and (min-width: 768px) {
+  .create-form__close {
+    top: -10px;
+    right: -10px;
+    transform: scale(0);
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .create-form__words-wrapper {
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-bottom: 15px;
+    padding: 5px 10px 0px 10px;
+    border: 1px solid $blue;
+    border-radius: 10px;
+    background-color: lighten($blue, 10%);
+  }
+}
+
+.create-form__label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 10px;
+  text-align: center;
+  font-size: 13px;
+  color: gray;
+}
+
+.create-form__label--name {
+  align-items: flex-start;
+  width: auto;
+  margin: 0;
+  font-weight: bold;
+
+  input {
+    margin-top: 10px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .create-form__label--name {
+    font-size: 18px;
+    input {
+      max-width: 300px;
+    }
+  }
+}
+
+.create-form__button {
+  padding: 5px 15px;
+}
+
+.create-form__button--send {
+  height: 50px;
+}
+
+.create-form__button-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  height: 50px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
+}
+
+@media screen and (min-width: 768px) {
+  .create-form__button-wrapper {
+    height: 115px;
+    margin-left: 15px;
+    margin-right: 0px;
+  }
+}
+
+
+@media screen and (min-width: 768px) {
+  .create-form__words-wrapper {
+    border-top: none;
+  }
+}

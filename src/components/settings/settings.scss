@@ -17,35 +17,10 @@
 
 .settings__wrapper {
   position: relative;
-  .settings__close {
-    position: absolute;
-    top: -2px;
-    right: -2px;
-    width: 22px;
-    height: 22px;
-    transform: scale(0);
-    transition: transform 0.1s linear;
-    background-color: red;
-    border-radius: 50%;
-    border: none;
-    cursor: pointer;
+}
 
-    &::after,
-    &::before {
-      position: absolute;
-      top: 10px;
-      left: 5px;
-      width: 12px;
-      height: 2px;
-      transform: rotate(45deg);
-      background-color: #fff;
-      content: '';
-    }
-
-    &::after {
-      transform: rotate(-45deg);
-    }
-  }
+.settings__close {
+  transform: scale(0);
 }
 
 .settings__wrapper--editing {

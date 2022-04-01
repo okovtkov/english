@@ -9,7 +9,6 @@
 }
 
 .header__link {
-  margin-right: 40px;
   font-size: 18px;
   color: white;
   text-decoration: none;
@@ -17,5 +16,9 @@
 
   &:hover {
     color: black;
+  }
+
+  &:first-child {
+    margin-right: 40px;
   }
 }

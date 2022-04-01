@@ -10,7 +10,7 @@ function Parts(props) {
       </div>
       <div className="parts__another">
         {props.data.map((item) => (
-          <Ref path="test" key={item.id} id={item.id}>{item.words.id}</Ref>
+          <Ref path="test" key={item.id} id={item.id}>{item.words.name}</Ref>
         ))}
       </div>
     </div>

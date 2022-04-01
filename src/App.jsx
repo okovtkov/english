@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useCallback, useEffect } from 'react';
 import { words } from '../src/api/words';
 import { Routes, Route } from 'react-router-dom';
@@ -12,8 +13,13 @@ function App() {
   const [data, setData] = useState([]);
 
   const compare = useCallback((a, b) => {
-    if (a.words.id > b.words.id) return 1;
-    if (a.words.id < b.words.id) return -1;
+    const first = Number(a.words.name);
+    const second = Number(b.words.name);
+    if (typeof first === 'number' && typeof second === 'number') {
+      return first - second;
+    }
+    if (a.words.name > b.words.name) return 1;
+    if (a.words.name < b.words.name) return -1;
     return 0;
   }, []);
 
@@ -30,8 +36,8 @@ function App() {
       <Routes>
         <Route path='/' element={<Index data={data} />} />
         <Route path='/test/:id' element={<Test />} />
-        <Route path='/edit' element={<Edit data={data} />} />
-        <Route path='/edit/create' element={<Create data={data} />} />
+        <Route path='/edit' element={<Edit data={data} onChangeData={setData} />} />
+        <Route path='/edit/create' element={<Create data={data} onChangeData={setData} />} />
       </Routes>
     </>
   );

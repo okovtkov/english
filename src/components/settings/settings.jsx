@@ -1,5 +1,6 @@
 import { useCallback, useState } from 'react';
 import Button from '../button/button';
+import CloseButton from '../close-button/close-button';
 import Ref from '../ref/ref';
 import Popup from '../popup/popup';
 import classNames from 'classnames';
@@ -21,12 +22,19 @@ function Edit(props) {
   const deleteHandler = useCallback(() => {
     const wrapper = currentElement.closest('.settings__wrapper');
     wrapper.classList.add('settings__wrapper--deleted');
-    setTimeout(() => wrapper.remove(), 150);
     words.deleteDoc(currentId);
+
+    setTimeout(() => {
+      const index = props.data.findIndex(item => item.id === currentId);
+      const clone = [...props.data];
+      clone.splice(index, 1);
+      props.onChangeData(clone);
+    }, 150);
+
     setCurrentId('');
     setCurrentElement(null);
     setPopup(false);
-  }, [currentElement, currentId]);
+  }, [currentElement, currentId, props]);
 
   return (
     <>
@@ -36,8 +44,8 @@ function Edit(props) {
             <div key={item.id} className={classNames("settings__wrapper", {
               "settings__wrapper--editing": editing,
             })}>
-              <Ref path="edit" id={item.id}>{item.words.id}</Ref>
-              <button className="settings__close" onClick={(e) => onClick(item, e)} />
+              <Ref path="edit" id={item.id}>{item.words.name}</Ref>
+              <CloseButton className="settings__close" onClick={(e) => onClick(item, e)}/>
             </div>
           ))}
           <div className={classNames("settings__new", {
