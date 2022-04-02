@@ -19,7 +19,6 @@ function Test() {
       return arr.sort(() => Math.random() - 0.5);
     }
 
-    console.log(data)
     const arr = data.words.words;
     const shuffeled = arr.sort(() => Math.random() - 0.5);
     return shuffeled;

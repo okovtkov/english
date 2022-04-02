@@ -44,7 +44,12 @@ function Edit(props) {
             <div key={item.id} className={classNames("settings__wrapper", {
               "settings__wrapper--editing": editing,
             })}>
-              <Ref path="edit" id={item.id}>{item.words.name}</Ref>
+              <Ref
+                path="edit"
+                id={item.id}
+                className={!editing && "settings__ref settings__ref--disabled"}
+                onClick={!editing && ((e) => e.preventDefault())}
+              >{item.words.name}</Ref>
               <CloseButton className="settings__close" onClick={(e) => onClick(item, e)}/>
             </div>
           ))}

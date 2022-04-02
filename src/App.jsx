@@ -8,9 +8,38 @@ import './App.css';
 import Header from './components/header/header';
 import Edit from './pages/edit/edit';
 import Create from './pages/edit/create';
+import EditPart from './pages/edit/[id]';
 
 function App() {
   const [data, setData] = useState([]);
+  const [wordsData, setWordsData] = useState({
+    id: '',
+    words: {
+      name: '',
+      words: [
+        {
+          english: '',
+          russian: '',
+        },
+        {
+          english: '',
+          russian: '',
+        },
+        {
+          english: '',
+          russian: '',
+        },
+        {
+          english: '',
+          russian: '',
+        },
+        {
+          english: '',
+          russian: '',
+        },
+      ]
+    }
+  });
 
   const compare = useCallback((a, b) => {
     const first = Number(a.words.name);
@@ -28,7 +57,8 @@ function App() {
       const sorted = resp.sort(compare);
       setData(sorted);
     });
-  }, [compare]);
+    console.log('kekek')
+  }, []);
 
   return (
     <>
@@ -37,7 +67,22 @@ function App() {
         <Route path='/' element={<Index data={data} />} />
         <Route path='/test/:id' element={<Test />} />
         <Route path='/edit' element={<Edit data={data} onChangeData={setData} />} />
-        <Route path='/edit/create' element={<Create data={data} onChangeData={setData} />} />
+        <Route path='/edit/:id' element={
+          <EditPart
+            data={data}
+            onChangeData={setData}
+            wordsData={wordsData}
+            onChangeWordsData={setWordsData}
+          />
+        } />
+        <Route path='/edit/create' element={
+          <Create
+            data={data}
+            onChangeData={setData}
+            wordsData={wordsData}
+            onChangeWordsData={setWordsData}
+          />
+        } />
       </Routes>
     </>
   );

@@ -19,6 +19,16 @@
   position: relative;
 }
 
+.settings__ref--disabled .ref__children {
+  background-color: lightgray;
+  color: #000;
+
+  &:hover {
+    color: black;
+    cursor: auto;
+  }
+}
+
 .settings__close {
   transform: scale(0);
 }
