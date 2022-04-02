@@ -3,7 +3,7 @@ import Parts from '../components/parts/parts';
 
 function Index(props) {
   return (
-    <Parts />
+    <Parts data={props.data} />
   );
 }
 

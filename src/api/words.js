@@ -1,4 +1,4 @@
-import { collection, addDoc, getDocs, getDoc, doc, getFirestore } from 'firebase/firestore';
+import { collection, addDoc, getDocs, getDoc, doc, deleteDoc, setDoc } from 'firebase/firestore';
 import { firestore } from './firestore';
 
 const wordCollection = collection(firestore, 'words');
@@ -23,5 +23,18 @@ export const words = {
       const words = document.data();
       return { id, words };
     });
+  },
+
+  deleteDoc(wordsId) {
+    deleteDoc(doc(wordCollection, wordsId));
+  },
+
+  add(obj) {
+    return addDoc(wordCollection, obj).then((resp) => resp);
+  },
+
+  update(obj, id) {
+    const ref = doc(wordCollection, id);
+    return setDoc(ref, obj).then((resp) => resp);
   }
 }

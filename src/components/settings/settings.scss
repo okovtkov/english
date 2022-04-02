@@ -1,0 +1,61 @@
+.settings {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 0 10px;
+  margin-top: 15%;
+}
+
+.settings__parts {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  text-align: center;
+  max-width: 600px;
+}
+
+.settings__wrapper {
+  position: relative;
+}
+
+.settings__ref--disabled .ref__children {
+  background-color: lightgray;
+  color: #000;
+
+  &:hover {
+    color: black;
+    cursor: auto;
+  }
+}
+
+.settings__close {
+  transform: scale(0);
+}
+
+.settings__wrapper--editing {
+  .settings__close {
+    transform: scale(1);
+  }
+}
+
+.settings__button {
+  margin-top: 20px;
+  margin-bottom: 60px;
+}
+
+.settings__wrapper--deleted {
+  transform: scale(0);
+  transition: transform 0.1s linear;
+}
+
+.settings__new {
+  width: 0;
+  transform: scale(0);
+  transition: transform 0.1s linear;
+}
+
+.settings__new--active {
+  width: auto;
+  transform: scale(1);
+}

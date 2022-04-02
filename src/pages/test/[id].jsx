@@ -7,15 +7,16 @@ import Switch from "../../components/switch/switch";
 import Word from "../../components/word/word";
 
 function Test() {
-  const [data, setData] = useState({});
+  const [data, setData] = useState([]);
   const [visibleWord, setVisibleWord] = useState('');
   const [count, setCount] = useState(0);
   const params = useParams();
 
   const wordsData = useMemo(() => {
-    if (!data.id) return;
-    if (params.part === 'general') {
-      return [].concat(...data.map((item) => [...item.words.words]))
+    if (data.length === 0) return;
+    if (params.id === 'general') {
+      const arr = [].concat(...data.map((item) => [...item.words.words]));
+      return arr.sort(() => Math.random() - 0.5);
     }
 
     const arr = data.words.words;
@@ -24,12 +25,16 @@ function Test() {
   }, [data]);
 
   useEffect(() => {
-    words.getById(params.id).then(resp => setData(resp));
+    if (params.id === 'general') {
+      words.get().then((resp) => setData(resp));
+    } else {
+      words.getById(params.id).then(resp => setData(resp));
+    }
   }, []);
 
   return (
     <div className="test">
-      {visibleWord ? (
+      {visibleWord && data.length !== 0 ? (
         <>
           <Word word={wordsData[count]} visibleWord={visibleWord} />
           <Panel count={count} onChangeCount={setCount} length={wordsData.length} />

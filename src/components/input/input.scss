@@ -1,0 +1,15 @@
+@import '../../index.scss';
+
+.input {
+  height: 25px;
+  width: 100%;
+  max-width: 200px;
+  padding: 5px;
+  border-radius: 6px;
+  background-color: lighten($body, 2%);
+  border: 1px solid $blue;
+
+  &:focus {
+    outline: 2px solid $blue;
+  }
+}
