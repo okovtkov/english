@@ -20,6 +20,7 @@ function App() {
   const [wordsData, setWordsData] = useState({
     id: '',
     words: {
+      owner: '',
       name: '',
       words: [
         {
@@ -59,7 +60,7 @@ function App() {
 
   useEffect(() => {
     if (!authorised) return;
-    words.get().then(resp => {
+    words.get(user.uid).then(resp => {
       const sorted = resp.sort(compare);
       setData(sorted);
     });
@@ -104,6 +105,7 @@ function App() {
         <Route path='/edit' element={<Edit data={data} onChangeData={setData} />} />
         <Route path='/edit/:id' element={
           <EditPart
+            user={user}
             data={data}
             onChangeData={setData}
             wordsData={wordsData}
@@ -112,6 +114,7 @@ function App() {
         } />
         <Route path='/edit/create' element={
           <Create
+            user={user}
             data={data}
             onChangeData={setData}
             wordsData={wordsData}

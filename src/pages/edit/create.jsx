@@ -8,7 +8,11 @@ function Create(props) {
   const navigate = useNavigate();
   const onSubmit = useCallback((e) => {
     e.preventDefault();
-    words.add(props.wordsData.words).then((resp) => {
+    const clone = {...props.wordsData};
+    clone.words.owner = props.user.uid;
+    console.log(clone);
+
+    words.add(clone.words).then((resp) => {
       const { id } = resp;
       const { data } = props;
       const cloneData = [...data];
@@ -54,6 +58,7 @@ function Create(props) {
 
   return (
     <Form
+      user={props.user}
       data={props.data}
       onChangeData={props.onChangeData}
       onSubmit={onSubmit}

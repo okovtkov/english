@@ -7,7 +7,7 @@ import classNames from 'classnames';
 import { words } from '../../api/words';
 import './settings.scss';
 
-function Edit(props) {
+function Settings(props) {
   const [currentElement, setCurrentElement] = useState(null);
   const [currentId, setCurrentId] = useState('');
   const [editing, setEditing] = useState(false);
@@ -40,6 +40,7 @@ function Edit(props) {
     <>
       <div className="settings">
         <div className="settings__parts">
+          {console.log(props.data)}
           {props.data.map((item) => (
             <div key={item.id} className={classNames("settings__wrapper", {
               "settings__wrapper--editing": editing,
@@ -72,4 +73,4 @@ function Edit(props) {
   );
 }
 
-export default Edit;
+export default Settings;
