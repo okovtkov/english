@@ -1,5 +1,4 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback, useEffect, useLayoutEffect } from 'react';
 import { words } from '../src/api/words';
 import { Routes, Route } from 'react-router-dom';
 import Index from './pages';
@@ -9,8 +8,14 @@ import Header from './components/header/header';
 import Edit from './pages/edit/edit';
 import Create from './pages/edit/create';
 import EditPart from './pages/edit/[id]';
+import Auth from './components/auth/auth';
+import { authorisation } from './api/auth';
+import Loading from './components/loading/loading';
 
 function App() {
+  const [loaded, setLoaded] = useState(false);
+  const [user, setUser] = useState(null);
+  const [authorised, setAuthorised] = useState(false);
   const [data, setData] = useState([]);
   const [wordsData, setWordsData] = useState({
     id: '',
@@ -53,12 +58,42 @@ function App() {
   }, []);
 
   useEffect(() => {
+    if (!authorised) return;
     words.get().then(resp => {
       const sorted = resp.sort(compare);
       setData(sorted);
     });
-    console.log('kekek')
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [authorised]);
+
+  useLayoutEffect(() => {
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (user && !authorised) {
+      authorisation.signIn(user.email, user.password)
+        .then((resp) => {
+          setUser(resp);
+          setAuthorised(true);
+          setLoaded(true);
+        })
+        .catch((err) => {
+          console.log(err);
+          setLoaded(true);
+        })
+    } else {
+      setLoaded(true);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  if (!loaded) return (
+    <div className="App__loading">
+      <Loading />
+    </div>
+  )
+
+  if (!authorised) return (
+    <Auth user={user} onChangeUser={setUser} onChangeAuthorised={setAuthorised} />
+  )
 
   return (
     <>
