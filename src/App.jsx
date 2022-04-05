@@ -77,7 +77,6 @@ function App() {
           setLoaded(true);
         })
         .catch((err) => {
-          console.log(err);
           setLoaded(true);
         })
     } else {
@@ -98,7 +97,7 @@ function App() {
 
   return (
     <>
-      <Header />
+      <Header onChangeAuthorised={setAuthorised} onChangeUser={setUser} />
       <Routes>
         <Route path='/' element={<Index data={data} />} />
         <Route path='/test/:id' element={<Test />} />

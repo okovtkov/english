@@ -19,9 +19,19 @@ function SignIn(props) {
         localStorage.setItem('user', JSON.stringify(user));
       })
       .catch((err) => {
+        console.log(err.code)
         setError(err.code);
       });
   }, [email, password, props]);
+
+  const checkError = useCallback(() => {
+    switch (error) {
+      case 'auth/network-request-failed': return 'Проблемы соединения';
+      case 'auth/user-not-found': return 'Неверная почта';
+      case 'auth/wrong-password': return 'Неверный пароль';
+      default: return 'Проблемы соединения';
+    }
+  }, [error]);
 
   return (
     <form className="sign-in" onSubmit={onSubmit}>
@@ -30,21 +40,27 @@ function SignIn(props) {
         Почта
         <Input
           type="email"
-          className="sign-in__input"
           onChange={(e) => setEmail(e.target.value)}
+          className={classNames("sign-in__input", {
+            "sign-in__input--error":
+              error === 'auth/user-not-found',
+          })}
         />
       </label>
       <label className="sign-in__label">
         Пароль
         <Input
           type="password"
-          className="sign-in__input"
           onChange={(e) => setPassword(e.target.value)}
+          className={classNames("sign-in__input", {
+            "sign-in__input--error":
+              error === 'auth/wrong-password',
+          })}
         />
       </label>
       <p className={classNames("sign-in__error", {
         "sign-in__error--active": error,
-      })}>Неверный логин или пароль</p>
+      })}>{checkError()}</p>
       <Button
         type="submit"
         className="sign-in__button sign-in__button--sign-in"

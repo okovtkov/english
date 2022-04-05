@@ -18,6 +18,10 @@
   height: 30px;
 }
 
+.sign-in__input--error {
+  border: 2px solid red;
+}
+
 .sign-in__button {
   display: block;
   width: 100%;
