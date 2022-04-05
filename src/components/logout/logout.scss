@@ -1,0 +1,28 @@
+@import '../../index.scss';
+
+.logout {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  background-color: transparent;
+  border: 2px solid white;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+
+  &:hover {
+    background-color: white;
+    color: darken($blue, 20%);
+
+    svg {
+      fill: $blue;
+    }
+  }
+}
+
+.logout svg {
+  width: 200px;
+  height: 32px;
+  fill: white;
+}

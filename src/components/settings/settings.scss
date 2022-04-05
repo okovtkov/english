@@ -15,6 +15,21 @@
   max-width: 600px;
 }
 
+.settings__void {
+  width: 0;
+  height: 0;
+  opacity: 0;
+  transform: scale(0);
+  transition: transform 0.1s linear;
+}
+
+.settings__void--active {
+  height: auto;
+  width: auto;
+  opacity: 1;
+  transform: scale(1);
+}
+
 .settings__wrapper {
   position: relative;
 }
@@ -52,10 +67,10 @@
 .settings__new {
   width: 0;
   transform: scale(0);
-  transition: transform 0.1s linear;
 }
 
 .settings__new--active {
   width: auto;
   transform: scale(1);
+  transition: transform 0.1s linear;
 }

@@ -1,5 +1,4 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback, useEffect, useLayoutEffect } from 'react';
 import { words } from '../src/api/words';
 import { Routes, Route } from 'react-router-dom';
 import Index from './pages';
@@ -9,12 +8,19 @@ import Header from './components/header/header';
 import Edit from './pages/edit/edit';
 import Create from './pages/edit/create';
 import EditPart from './pages/edit/[id]';
+import Auth from './components/auth/auth';
+import { authorisation } from './api/auth';
+import Loading from './components/loading/loading';
 
 function App() {
+  const [loaded, setLoaded] = useState(false);
+  const [user, setUser] = useState(null);
+  const [authorised, setAuthorised] = useState(false);
   const [data, setData] = useState([]);
   const [wordsData, setWordsData] = useState({
     id: '',
     words: {
+      owner: '',
       name: '',
       words: [
         {
@@ -53,22 +59,52 @@ function App() {
   }, []);
 
   useEffect(() => {
-    words.get().then(resp => {
+    if (!authorised) return;
+    words.get(user.uid).then(resp => {
       const sorted = resp.sort(compare);
       setData(sorted);
     });
-    console.log('kekek')
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [authorised]);
+
+  useLayoutEffect(() => {
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (user && !authorised) {
+      authorisation.signIn(user.email, user.password)
+        .then((resp) => {
+          setUser(resp);
+          setAuthorised(true);
+          setLoaded(true);
+        })
+        .catch((err) => {
+          setLoaded(true);
+        })
+    } else {
+      setLoaded(true);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  if (!loaded) return (
+    <div className="App__loading">
+      <Loading />
+    </div>
+  )
+
+  if (!authorised) return (
+    <Auth user={user} onChangeUser={setUser} onChangeAuthorised={setAuthorised} />
+  )
 
   return (
     <>
-      <Header />
+      <Header onChangeAuthorised={setAuthorised} onChangeUser={setUser} />
       <Routes>
         <Route path='/' element={<Index data={data} />} />
         <Route path='/test/:id' element={<Test />} />
         <Route path='/edit' element={<Edit data={data} onChangeData={setData} />} />
         <Route path='/edit/:id' element={
           <EditPart
+            user={user}
             data={data}
             onChangeData={setData}
             wordsData={wordsData}
@@ -77,6 +113,7 @@ function App() {
         } />
         <Route path='/edit/create' element={
           <Create
+            user={user}
             data={data}
             onChangeData={setData}
             wordsData={wordsData}

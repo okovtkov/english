@@ -1,11 +1,12 @@
-import { collection, addDoc, getDocs, getDoc, doc, deleteDoc, setDoc } from 'firebase/firestore';
+import { collection, addDoc, getDocs, getDoc, doc, deleteDoc, setDoc, query, where } from 'firebase/firestore';
 import { firestore } from './firestore';
 
 const wordCollection = collection(firestore, 'words');
 
 export const words = {
-  get() {
-    return getDocs(wordCollection).then(resp => {
+  get(id) {
+    const q = query(wordCollection, where('owner', '==', id));
+    return getDocs(q).then(resp => {
       const arr = [];
       resp.forEach((document) => {
         const { id } = document;

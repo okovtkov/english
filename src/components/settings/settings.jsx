@@ -7,10 +7,10 @@ import classNames from 'classnames';
 import { words } from '../../api/words';
 import './settings.scss';
 
-function Edit(props) {
+function Settings(props) {
   const [currentElement, setCurrentElement] = useState(null);
   const [currentId, setCurrentId] = useState('');
-  const [editing, setEditing] = useState(false);
+  const [editing, setEditing] = useState(props.data.length === 0 ? true : false);
   const [popup, setPopup] = useState(false);
 
   const onClick = useCallback((item, e) => {
@@ -40,6 +40,9 @@ function Edit(props) {
     <>
       <div className="settings">
         <div className="settings__parts">
+          <p className={classNames("settings__void", {
+            "settings__void--active": props.data.length === 0 && editing === false,
+          })}>У вас пока что нет разделов со словами.</p>
           {props.data.map((item) => (
             <div key={item.id} className={classNames("settings__wrapper", {
               "settings__wrapper--editing": editing,
@@ -72,4 +75,4 @@ function Edit(props) {
   );
 }
 
-export default Edit;
+export default Settings;
