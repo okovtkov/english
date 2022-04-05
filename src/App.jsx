@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect, useLayoutEffect } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { words } from '../src/api/words';
 import { Routes, Route } from 'react-router-dom';
 import Index from './pages';
@@ -13,6 +13,7 @@ import { authorisation } from './api/auth';
 import Loading from './components/loading/loading';
 
 function App() {
+  const [checked, setChecked] = useState(false);
   const [loaded, setLoaded] = useState(false);
   const [user, setUser] = useState(null);
   const [authorised, setAuthorised] = useState(false);
@@ -63,11 +64,12 @@ function App() {
     words.get(user.uid).then(resp => {
       const sorted = resp.sort(compare);
       setData(sorted);
+      setChecked(true);
     });
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [authorised]);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const user = JSON.parse(localStorage.getItem('user'));
     if (user && !authorised) {
       authorisation.signIn(user.email, user.password)
@@ -97,9 +99,9 @@ function App() {
 
   return (
     <>
-      <Header onChangeAuthorised={setAuthorised} onChangeUser={setUser} />
+      <Header onChangeAuthorised={setAuthorised} onChangeUser={setUser} onChangeChecked={setChecked} />
       <Routes>
-        <Route path='/' element={<Index data={data} />} />
+        <Route path='/' element={<Index checked={checked} data={data} />} />
         <Route path='/test/:id' element={<Test />} />
         <Route path='/edit' element={<Edit data={data} onChangeData={setData} />} />
         <Route path='/edit/:id' element={

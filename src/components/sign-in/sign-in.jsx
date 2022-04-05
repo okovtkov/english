@@ -29,6 +29,8 @@ function SignIn(props) {
       case 'auth/network-request-failed': return 'Проблемы соединения';
       case 'auth/user-not-found': return 'Неверная почта';
       case 'auth/wrong-password': return 'Неверный пароль';
+      case 'auth/internal-error': return 'Некорректный пароль';
+      case 'auth/invalid-email': return 'Некорректная почта';
       default: return 'Проблемы соединения';
     }
   }, [error]);

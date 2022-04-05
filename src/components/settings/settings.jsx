@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import Button from '../button/button';
 import CloseButton from '../close-button/close-button';
 import Ref from '../ref/ref';
@@ -10,7 +10,7 @@ import './settings.scss';
 function Settings(props) {
   const [currentElement, setCurrentElement] = useState(null);
   const [currentId, setCurrentId] = useState('');
-  const [editing, setEditing] = useState(props.data.length === 0 ? true : false);
+  const [editing, setEditing] = useState(false);
   const [popup, setPopup] = useState(false);
 
   const onClick = useCallback((item, e) => {
@@ -35,6 +35,11 @@ function Settings(props) {
     setCurrentElement(null);
     setPopup(false);
   }, [currentElement, currentId, props]);
+
+  useEffect(() => {
+    if (props.data.length === 0) setEditing(true)
+    else setEditing(false);
+  }, [props.data.length]);
 
   return (
     <>

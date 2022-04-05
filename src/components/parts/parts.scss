@@ -1,5 +1,12 @@
 @import '../../index.scss';
 
+.parts-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+}
+
 .parts {
   display: flex;
   flex-direction: column;
@@ -12,6 +19,12 @@
   h1 {
     margin-bottom: 50px;
   }
+}
+
+.parts__wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .parts__general {

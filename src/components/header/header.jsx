@@ -11,6 +11,7 @@ function Header(props) {
         className="header__logout"
         onChangeAuthorised={props.onChangeAuthorised}
         onChangeUser={props.onChangeUser}
+        onChangeChecked={props.onChangeChecked}
       />
     </header>
   )
