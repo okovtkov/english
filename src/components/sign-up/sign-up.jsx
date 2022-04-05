@@ -11,7 +11,8 @@ function SignUp(props) {
   const [email, setEmail] = useState('');
   const [secondPassword, setSecondPassword] = useState('');
 
-  const onSubmit = useCallback(() => {
+  const onSubmit = useCallback((e) => {
+    e.preventDefault();
     if (password === secondPassword) {
       authorisation.signUp(email, password).then((resp) => {
         props.onChangeType('successed');

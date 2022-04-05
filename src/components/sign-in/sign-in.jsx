@@ -10,11 +10,10 @@ function SignIn(props) {
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
 
-  const onSubmit = useCallback(() => {
-    console.log('1')
+  const onSubmit = useCallback((e) => {
+    e.preventDefault();
     authorisation.signIn(email, password)
       .then((resp) => {
-        console.log(resp, 2)
         props.onChangeUser(resp);
         props.onChangeAuthorised(true);
         const user = { email, password };

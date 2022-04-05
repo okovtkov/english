@@ -60,7 +60,6 @@ function App() {
   }, []);
 
   useEffect(() => {
-    console.log(3, authorised)
     if (!authorised) return;
     words.get(user.uid).then(resp => {
       const sorted = resp.sort(compare);
