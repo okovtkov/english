@@ -6,7 +6,7 @@ import Panel from "../../components/panel/panel";
 import Switch from "../../components/switch/switch";
 import Word from "../../components/word/word";
 
-function Test() {
+function Test(props) {
   const [data, setData] = useState([]);
   const [visibleWord, setVisibleWord] = useState('');
   const [count, setCount] = useState(0);
@@ -26,7 +26,7 @@ function Test() {
 
   useEffect(() => {
     if (params.id === 'general') {
-      words.get().then((resp) => setData(resp));
+      words.get(props.user.uid).then((resp) => setData(resp));
     } else {
       words.getById(params.id).then(resp => setData(resp));
     }

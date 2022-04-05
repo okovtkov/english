@@ -79,6 +79,7 @@ function App() {
           setLoaded(true);
         })
         .catch((err) => {
+          console.log(err);
           setLoaded(true);
         })
     } else {
@@ -102,7 +103,7 @@ function App() {
       <Header onChangeAuthorised={setAuthorised} onChangeUser={setUser} onChangeChecked={setChecked} />
       <Routes>
         <Route path='/' element={<Index checked={checked} data={data} />} />
-        <Route path='/test/:id' element={<Test />} />
+        <Route path='/test/:id' element={<Test user={user} />} />
         <Route path='/edit' element={<Edit data={data} onChangeData={setData} />} />
         <Route path='/edit/:id' element={
           <EditPart
