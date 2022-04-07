@@ -9,7 +9,7 @@ function Header(props) {
       <Link to={'/edit'} className="header__link">Редактировать</Link>
       <Logout
         className="header__logout"
-        onChangeAuthorised={props.onChangeAuthorised}
+        onChangeAuthorized={props.onChangeAuthorized}
         onChangeUser={props.onChangeUser}
         onChangeChecked={props.onChangeChecked}
       />

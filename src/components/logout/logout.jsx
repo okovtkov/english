@@ -9,7 +9,7 @@ function Logout(props) {
   const navigate = useNavigate();
   const onAgree = useCallback(() => {
     props.onChangeUser(null);
-    props.onChangeAuthorised(null);
+    props.onChangeAuthorized(null);
     props.onChangeChecked(false);
     localStorage.removeItem('user');
     navigate('/');

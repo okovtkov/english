@@ -30,16 +30,6 @@
   font-size: 13px;
 }
 
-.sign-in__button--sign-up {
-  background-color: #fff;
-  color: darken($blue, 20%);
-
-  &:hover {
-    background-color: $blue;
-    color: white;
-  }
-}
-
 .sign-in__error {
   display: none;
   color: red;
@@ -48,4 +38,9 @@
 
 .sign-in__error--active {
   display: block;
+}
+
+.sign-in__forgot-password {
+  display: block;
+  margin-top: 15px;
 }

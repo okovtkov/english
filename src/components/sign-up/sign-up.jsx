@@ -82,10 +82,11 @@ function SignUp(props) {
         type="submit"
         className="sign-up__button"
       >Зарегистрироваться</Button>
-      <button
+      <Button
         className="sign-up__button sign-up__button--back"
         onClick={reset}
-      >У меня уже есть аккаунт</button>
+        mode="small"
+      >У меня уже есть аккаунт</Button>
     </form>
   );
 }
