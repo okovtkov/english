@@ -31,18 +31,7 @@
 }
 
 .sign-up__button--back {
-  width: auto;
-  margin-left: auto;
-  margin-right: auto;
-  background-color: $body;
-  color: darken($blue, 20%);
-  padding: 0;
-  border: none;
-  cursor: pointer;
-
-  &:hover {
-    color: $blue;
-  }
+  margin-top: 5px;
 }
 
 .sign-up__error {

@@ -18,3 +18,30 @@
     color: darken($blue, 10%);
   }
 }
+
+.button__small {
+  width: auto;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: $body;
+  color: darken($blue, 20%);
+  padding: 0;
+  border: none;
+  cursor: pointer;
+  font-size: 12px;
+
+  &:hover {
+    color: $blue;
+    background-color: transparent;
+  }
+}
+
+.button__reverse {
+  background-color: #fff;
+  color: darken($blue, 20%);
+
+  &:hover {
+    background-color: $blue;
+    color: white;
+  }
+}

@@ -15,7 +15,7 @@ function SignIn(props) {
     authorisation.signIn(email, password)
       .then((resp) => {
         props.onChangeUser(resp);
-        props.onChangeAuthorised(true);
+        props.onChangeAuthorized(true);
         const user = { email, password };
         localStorage.setItem('user', JSON.stringify(user));
       })
@@ -70,8 +70,14 @@ function SignIn(props) {
       >Войти</Button>
       <Button
         className="sign-in__button sign-in__button--sign-up"
+        mode="reverse"
         onClick={() => props.onChangeType('sign-up')}
       >Зарегистрироваться</Button>
+      <Button
+        mode="small"
+        className="sign-in__forgot-password"
+        onClick={() => props.onChangeType('reset')}
+      >Забыли пароль?</Button>
     </form>
   );
 }

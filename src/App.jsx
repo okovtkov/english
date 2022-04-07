@@ -16,7 +16,7 @@ function App() {
   const [checked, setChecked] = useState(false);
   const [loaded, setLoaded] = useState(false);
   const [user, setUser] = useState(null);
-  const [authorised, setAuthorised] = useState(false);
+  const [authorized, setAuthorized] = useState(false);
   const [data, setData] = useState([]);
   const [wordsData, setWordsData] = useState({
     id: '',
@@ -60,22 +60,22 @@ function App() {
   }, []);
 
   useEffect(() => {
-    if (!authorised) return;
+    if (!authorized) return;
     words.get(user.uid).then(resp => {
       const sorted = resp.sort(compare);
       setData(sorted);
       setChecked(true);
     });
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [authorised]);
+  }, [authorized]);
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem('user'));
-    if (user && !authorised) {
+    if (user && !authorized) {
       authorisation.signIn(user.email, user.password)
         .then((resp) => {
           setUser(resp);
-          setAuthorised(true);
+          setAuthorized(true);
           setLoaded(true);
         })
         .catch((err) => {
@@ -94,13 +94,17 @@ function App() {
     </div>
   )
 
-  if (!authorised) return (
-    <Auth user={user} onChangeUser={setUser} onChangeAuthorised={setAuthorised} />
+  if (!authorized) return (
+    <Auth user={user} onChangeUser={setUser} onChangeAuthorized={setAuthorized} />
   )
 
   return (
     <>
-      <Header onChangeAuthorised={setAuthorised} onChangeUser={setUser} onChangeChecked={setChecked} />
+      <Header
+        onChangeAuthorized={setAuthorized}
+        onChangeUser={setUser}
+        onChangeChecked={setChecked}
+      />
       <Routes>
         <Route path='/' element={<Index checked={checked} data={data} />} />
         <Route path='/test/:id' element={<Test user={user} />} />
