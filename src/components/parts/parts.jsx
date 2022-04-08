@@ -4,7 +4,6 @@ import Ref from '../ref/ref';
 import './parts.scss';
 
 function Parts(props) {
-
   if (!props.checked) return (
     <div className="parts-loading">
       <Loading />

@@ -1,11 +1,12 @@
+@import '../../index.scss';
+
 .header {
-  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
   height: 60px;
-  background-color: #99c7fc;
+  background-color: $blue;
   box-shadow: -2px -2px 7px 7px lightgray;
 }
 
@@ -16,7 +17,7 @@
   transition: 0.1s linear color;
 
   &:hover {
-    color: black;
+    color: darken($blue, 50%);
   }
 
   &:first-child {

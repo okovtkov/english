@@ -1,0 +1,86 @@
+@import '../../index.scss';
+
+.words-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+@media screen and (min-width: 768px) {
+  .words-list {
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 770px;
+    margin: 30px auto;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .words-list {
+    width: 950px;
+    justify-content: space-between;
+  }
+}
+
+.words-list__wrapper {
+  width: 300px;
+  margin-bottom: 15px;
+  border-radius: 10px;
+  border: 1px solid $blue;
+  box-shadow: 0 0 6px 4px lighten(lightblue, 10%);
+  background-color: darken($body, 2%);
+}
+
+@media screen and (min-width: 768px) {
+  .words-list__wrapper:nth-child(2n) {
+    margin-left: 15px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .words-list__wrapper:nth-child(2n) {
+    margin-left: 0;
+  }
+}
+
+.words-list__word {
+  position: relative;
+  font-weight: bold;
+
+  &::after {
+    position: absolute;
+    bottom: 3px;
+    right: 8px;
+    color: gray;
+    font-size: 8px;
+    font-weight: normal;
+    content: 'Англ.';
+  }
+}
+
+.words-list__translate,
+.words-list__word {
+  padding: 10px;
+}
+
+.words-list__translate {
+  position: relative;
+  margin: 0;
+  border-top: 1px solid $blue;
+  font-weight: normal;
+
+  &::after {
+    position: absolute;
+    bottom: 3px;
+    right: 8px;
+    color: gray;
+    font-size: 8px;
+    font-weight: normal;
+    content: 'Перевод';
+  }
+}
+
