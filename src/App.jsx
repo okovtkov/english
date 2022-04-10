@@ -12,6 +12,8 @@ import Auth from './components/auth/auth';
 import { authorisation } from './api/auth';
 import Loading from './components/loading/loading';
 
+import { recognition } from './api/audio';
+
 function App() {
   const [checked, setChecked] = useState(false);
   const [loaded, setLoaded] = useState(false);
