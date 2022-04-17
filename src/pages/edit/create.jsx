@@ -10,7 +10,6 @@ function Create(props) {
     e.preventDefault();
     const clone = {...props.wordsData};
     clone.words.owner = props.user.uid;
-    console.log(clone);
 
     words.add(clone.words).then((resp) => {
       const { id } = resp;
