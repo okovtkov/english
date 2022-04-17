@@ -3,6 +3,7 @@ import { audio } from '../../api/audio';
 import './words-list.scss';
 
 function WordsList(props) {
+  console.log(props)
   return (
     <dl className="words-list">
       {props.data.map((item) => (
