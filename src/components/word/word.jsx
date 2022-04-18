@@ -16,7 +16,12 @@ function Word(props) {
   }, []);
 
   useEffect(() => {
-    ref.current.classList.add('word__invisible--active');
+    // ref.current.classList.add('word__invisible--active');
+
+    return () => {
+      ref.current.classList.add('word__invisible--active');
+      console.log('kek')
+    }
   }, [props.word]);
 
   return (

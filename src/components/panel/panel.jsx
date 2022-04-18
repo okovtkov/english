@@ -10,8 +10,8 @@ function Panel(props) {
 
   return(
     <div className="panel">
-      <Button onClick={() => onClick('prev')} className="panel__prev">назад</Button>
-      <Button onClick={() => onClick('next')} className="panel__next">далее</Button>
+      <Button onClick={() => setTimeout(() => onClick('prev'), 0)} className="panel__prev">назад</Button>
+      <Button onClick={() => setTimeout(() => onClick('next'), 0)} className="panel__next">далее</Button>
     </div>
   )
 }
