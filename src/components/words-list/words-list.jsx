@@ -9,7 +9,7 @@ function WordsList(props) {
         <div key={item.english} className="words-list__wrapper">
           <dt className="words-list__word">
             {item.english}
-            <button className="words-list__sound" onClick={() => audio.get(item.english)}>
+            <button className="words-list__sound" onClick={() => audio.get(item.english, item.russian)}>
               <IconSound />
             </button>
           </dt>
