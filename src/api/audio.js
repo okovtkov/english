@@ -4,7 +4,7 @@ export const audio = {
     const voices = speechSynthesis.getVoices();
 
     const eng = new SpeechSynthesisUtterance(word);
-    eng.voice = voices[3];
+    eng.lang = 'en-US';
     eng.rate = 0.7;
     speechSynthesis.speak(eng);
 
