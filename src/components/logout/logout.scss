@@ -13,10 +13,10 @@
 
   &:hover {
     background-color: white;
-    color: darken($blue, 20%);
+    color: darken($main, 20%);
 
     svg {
-      fill: $blue;
+      fill: $main;
     }
   }
 }

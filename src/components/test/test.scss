@@ -1,0 +1,49 @@
+@import '../../index.scss';
+
+.test {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: calc(100vh - 60px);
+  margin: auto;
+}
+
+.test__wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 90vw;
+  height: 100%;
+  background-color: $body;
+  border: 3px solid $main;
+  background-repeat: repeat;
+  border-radius: 20px;
+  box-shadow: 0 0 15px 5px gray;
+}
+
+@media screen and (min-width: 425px) {
+  .test__wrapper {
+    width: 400px;
+    height: 500px;
+  }
+}
+
+.test__switcher {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.test__button {
+  background-color: $main;
+  border: 1px solid $main;
+  color: white;
+
+  &:hover {
+    color: brown;
+  }
+}

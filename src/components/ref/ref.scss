@@ -15,14 +15,14 @@
 .ref__children {
   min-width: 69px;
   padding: 15px 20px;
-  background-color: darken($body, 15%);
-  border: 1px solid darken($blue, 10%);
+  background-color: lighten($main, 10%);
+  border: 1px solid $main;
   border-radius: 10px;
   text-align: center;
   font-size: 30px;
   transition: background-color 0.1s linear;
 
   &:hover {
-    background-color: rgb(153, 199, 252);
+    background-color: lighten($main, 20%);
   }
 }

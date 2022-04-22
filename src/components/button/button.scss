@@ -4,8 +4,8 @@
   padding: 20px 30px;
   background-color: #fff;
   border-radius: 5px;
-  border: 1px solid darken($blue, 10%);
-  background-color: $blue;
+  border: 1px solid darken($main, 10%);
+  background-color: $main;
   text-align: center;
   vertical-align: middle;
   font-size: 20px;
@@ -15,7 +15,7 @@
 
   &:hover {
     background-color: #fff;
-    color: darken($blue, 10%);
+    color: darken($main, 10%);
   }
 }
 
@@ -24,24 +24,24 @@
   margin-left: auto;
   margin-right: auto;
   background-color: $body;
-  color: darken($blue, 20%);
+  color: darken($main, 20%);
   padding: 0;
   border: none;
   cursor: pointer;
   font-size: 12px;
 
   &:hover {
-    color: $blue;
+    color: $main;
     background-color: transparent;
   }
 }
 
 .button__reverse {
   background-color: #fff;
-  color: darken($blue, 20%);
+  color: darken($main, 20%);
 
   &:hover {
-    background-color: $blue;
+    background-color: $main;
     color: white;
   }
 }

@@ -1,4 +1,6 @@
 import { useCallback, useEffect, useRef } from 'react';
+import { audio } from '../../api/audio';
+import IconSound from '../svg-icon/icon-sound';
 import './word.scss';
 
 function Word(props) {
@@ -15,20 +17,35 @@ function Word(props) {
     ref.current.classList.remove('word__invisible--active');
   }, []);
 
+  const soundHandler = useCallback(() => {
+    audio.say(word.visible, props.visibleWord);
+  }, [props.visibleWord, word.visible]);
+
   useEffect(() => {
+    if (props.mode === 'sound') {
+      audio.say(word.visible, props.visibleWord);
+    };
     ref.current.classList.add('word__invisible--active');
-  }, [props.word]);
+
+    return audio.stop;
+  }, [props.mode, props.visibleWord, props.word, word.visible]);
 
   return (
     <div className="word">
-      <div className="word__visible">{word.visible}</div>
-      <div
+      {props.mode === 'text' ? (
+        <p className="word__visible">{word.visible}</p>
+      ) : (
+        <button className="word__sound" onClick={soundHandler}>
+          <IconSound />
+        </button>
+      )}
+      <p
         className="word__invisible word__invisible--active"
         ref={ref}
         onClick={onClick}
       >
         {word.invisible}
-      </div>
+      </p>
     </div>
   );
 }
