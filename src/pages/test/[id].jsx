@@ -2,16 +2,14 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
 import { words } from "../../api/words";
-import Panel from "../../components/panel/panel";
+import Test from "../../components/test/test";
 import Switch from "../../components/switch/switch";
-import Word from "../../components/word/word";
 import WordsList from "../../components/words-list/words-list";
 
-function Test(props) {
+function TestPage(props) {
   const [type, setType] = useState('');
   const [data, setData] = useState({});
   const [visibleWord, setVisibleWord] = useState('');
-  const [count, setCount] = useState(0);
   const params = useParams();
 
   const wordsData = useMemo(() => {
@@ -64,15 +62,10 @@ function Test(props) {
           onSelectSecondValue={() => selectLangHandler('eng')}
         >Выберите с какого языка хотите переводить</Switch>
       }
-      {type === 'repeating' && (
-        <>
-          <Word word={wordsData[count]} visibleWord={visibleWord} />
-          <Panel count={count} onChangeCount={setCount} length={wordsData.length} />
-        </>
-      )}
+      {type === 'repeating' && <Test data={wordsData} visibleWord={visibleWord} />}
       {type === 'reading' && <WordsList data={wordsData} />}
     </div>
   );
 }
 
-export default Test;
+export default TestPage;

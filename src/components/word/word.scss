@@ -8,12 +8,15 @@
 }
 
 .word__visible {
-  font-size: 48px;
+  font-size: 42px;
+  width: 90%;
   margin-bottom: 20px;
+  margin-top: -15px;
 }
 
 .word__invisible {
   position: relative;
+  margin: 0;
   font-size: 32px;
 
   &::after {

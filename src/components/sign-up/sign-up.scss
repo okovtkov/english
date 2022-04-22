@@ -31,7 +31,11 @@
 }
 
 .sign-up__button--back {
-  margin-top: 5px;
+  width: auto;
+  height: auto;
+  padding: 0;
+  background-color: inherit;
+  margin-top: 15px;
 }
 
 .sign-up__error {

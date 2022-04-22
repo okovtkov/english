@@ -1,20 +1,13 @@
-$body: aliceblue;
-$blue: #99c7fc;
+$body: rgba(254, 194, 138, 0.2);
+$main:  lighten(brown, 20%);
+$card: #f7f7f1;
 
 *, *::after, *::before {
   box-sizing: border-box;
 }
 
 body {
-  background-color: darken(aliceblue, 2%);
+  background-color: darken($body, 2%);
   margin: 0;
   font-family: 'Poppins', sans-serif;
-}
-
-.test {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  height: 100%;
-  min-height: 100vh;
 }

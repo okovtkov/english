@@ -1,53 +1,42 @@
 @import '../../index.scss';
 
 .words-list {
+  height: 100%;
+}
+
+.words-list__container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100%;
-  margin-top: 30px;
-  margin-bottom: 30px;
+  margin: 30px auto;
 }
 
 @media screen and (min-width: 768px) {
-  .words-list {
+  .words-list__container {
     flex-direction: row;
     flex-wrap: wrap;
-    width: 770px;
-    margin: 30px auto;
   }
 }
 
 @media screen and (min-width: 1024px) {
-  .words-list {
+  .words-list__container {
+    justify-content: flex-start;
     width: 950px;
-    justify-content: space-between;
   }
 }
 
 .words-list__wrapper {
   width: 300px;
-  margin-bottom: 15px;
   border-radius: 10px;
-  border: 1px solid $blue;
-  box-shadow: 0 0 6px 4px lighten(lightblue, 10%);
+  border: 1px solid $main;
+  margin-bottom: 15px;
+  margin-left: 15px;
+  box-shadow: 0 0 6px 4px lightgray;
   background-color: darken($body, 2%);
 
   &:hover .words-list__sound {
     opacity: 1;
-  }
-}
-
-@media screen and (min-width: 768px) {
-  .words-list__wrapper:nth-child(2n) {
-    margin-left: 15px;
-  }
-}
-
-@media screen and (min-width: 1024px) {
-  .words-list__wrapper:nth-child(2n) {
-    margin-left: 0;
   }
 }
 
@@ -76,7 +65,7 @@
 .words-list__translate {
   position: relative;
   margin: 0;
-  border-top: 1px solid $blue;
+  border-top: 1px solid $main;
   font-weight: normal;
 
   &::after {
@@ -97,7 +86,7 @@
   opacity: 0;
   width: 36px;
   height: 36px;
-  background-color: lighten($blue, 3%);
+  background-color: lighten($main, 3%);
   border-radius: 10px;
   border: none;
   z-index: 2;

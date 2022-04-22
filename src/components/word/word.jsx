@@ -21,14 +21,14 @@ function Word(props) {
 
   return (
     <div className="word">
-      <div className="word__visible">{word.visible}</div>
-      <div
+      <p className="word__visible">{word.visible}</p>
+      <p
         className="word__invisible word__invisible--active"
         ref={ref}
         onClick={onClick}
       >
         {word.invisible}
-      </div>
+      </p>
     </div>
   );
 }
