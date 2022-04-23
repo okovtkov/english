@@ -16,7 +16,7 @@
   flex-direction: column;
   justify-content: center;
   width: 90vw;
-  height: 100%;
+  height: 420px;
   background-color: $body;
   border: 3px solid $main;
   background-repeat: repeat;
@@ -26,8 +26,15 @@
 
 @media screen and (min-width: 425px) {
   .test__wrapper {
+    width: 360px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .test__wrapper {
     width: 400px;
-    height: 500px;
+    min-height: 70vh;
+    max-height: 100vh;
   }
 }
 

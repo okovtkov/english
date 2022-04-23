@@ -10,10 +10,16 @@
 }
 
 .word__visible {
-  font-size: 42px;
+  font-size: 32px;
   width: 90%;
   margin-bottom: 20px;
   margin-top: -15px;
+}
+
+@media screen and (min-width: 1024px) {
+  .word__visible {
+    font-size: 42px;
+  }
 }
 
 .word__sound {

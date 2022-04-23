@@ -7,14 +7,15 @@ import WordsList from "../../components/words-list/words-list";
 
 function TestPage(props) {
   const [type, setType] = useState('');
-  const [data, setData] = useState([]);
+  const [data, setData] = useState([] || props.data);
   const [visibleWord, setVisibleWord] = useState('');
   const params = useParams();
 
   const wordsData = useMemo(() => {
     if (params.id === 'general') {
       const arr = [].concat(...data.map((item) => [...item.words.words]));
-      return arr.sort(() => Math.random() - 0.5);
+      const sorted = arr.sort(() => Math.random() - 0.5);
+      return sorted.length !== 0 ? sorted : null;
     }
 
     if (data.length === 0) return;
@@ -51,7 +52,6 @@ function TestPage(props) {
           onSelectSecondValue={() => selectVariantHandler('translate-selecting')}
         >
           Выберите что вы хотите сделать с разделом
-          {console.log(type)}
         </Switch>
       }
       {type === 'translate-selecting' &&

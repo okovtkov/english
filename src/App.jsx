@@ -88,11 +88,7 @@ function App() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  if (!loaded) return (
-    <div className="App__loading">
-      <Loading />
-    </div>
-  )
+  if (!loaded) return <Loading />
 
   if (!authorized) return (
     <Auth user={user} onChangeUser={setUser} onChangeAuthorized={setAuthorized} />
