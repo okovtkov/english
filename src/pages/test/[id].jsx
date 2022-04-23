@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
 import { words } from "../../api/words";
@@ -8,26 +7,25 @@ import WordsList from "../../components/words-list/words-list";
 
 function TestPage(props) {
   const [type, setType] = useState('');
-  const [data, setData] = useState({});
+  const [data, setData] = useState([]);
   const [visibleWord, setVisibleWord] = useState('');
   const params = useParams();
 
   const wordsData = useMemo(() => {
-    if (!data.id) return;
     if (params.id === 'general') {
       const arr = [].concat(...data.map((item) => [...item.words.words]));
       return arr.sort(() => Math.random() - 0.5);
     }
 
+    if (data.length === 0) return;
     const arr = data.words.words;
     const shuffeled = arr.sort(() => Math.random() - 0.5);
     return shuffeled;
-  }, [data]);
+  }, [data, params.id]);
 
   const selectVariantHandler = useCallback((type) => {
-    if (!data.id) return;
     setType(type);
-  }, [data]);
+  }, []);
 
   const selectLangHandler = useCallback((lang) => {
     setVisibleWord(lang);
@@ -40,6 +38,7 @@ function TestPage(props) {
     } else {
       words.getById(params.id).then((resp) => setData(resp));
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -52,6 +51,7 @@ function TestPage(props) {
           onSelectSecondValue={() => selectVariantHandler('translate-selecting')}
         >
           Выберите что вы хотите сделать с разделом
+          {console.log(type)}
         </Switch>
       }
       {type === 'translate-selecting' &&
