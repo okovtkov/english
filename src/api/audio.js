@@ -9,6 +9,7 @@ export const audio = {
     speechSynthesis.speak(eng);
 
     const rus = new SpeechSynthesisUtterance(translate);
+    rus.lang = 'ru-RU';
     rus.voice = voices[17];
     speechSynthesis.speak(rus);
   },
