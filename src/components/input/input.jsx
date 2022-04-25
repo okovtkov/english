@@ -8,6 +8,7 @@ function Input(props) {
       className={`input ${props.className}`}
       onChange={props.onChange}
       required={props.required}
+      placeholder={props.placeholder}
     />
   )
 }

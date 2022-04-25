@@ -6,7 +6,7 @@
   max-width: 200px;
   padding: 5px;
   border-radius: 6px;
-  background-color: lighten($body, 100%);
+  background-color: $body;
   border: 1px solid $main;
 
   &:focus {
