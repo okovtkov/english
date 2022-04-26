@@ -9,11 +9,10 @@ function Search(props) {
   const [open, setOpen] = useState(false);
 
   const data = useMemo(() =>
-    [].concat(...props.data.map((item) => [...item.words.words]))
-  , [props.data]);
+    [].concat(...props.data.map((item) => [...item.words.words])), [props.data]);
 
   const founded = useMemo(() => {
-    if (value.length < 2) return;
+    if (value.length < 2) return [];
     const arr = data.filter((item) => {
       for (let prop in item) {
         const word = item[prop].toLowerCase();
@@ -43,12 +42,12 @@ function Search(props) {
         onChange={(e) => setValue(e.target.value)}
       />
       <ul className="search__list">
-        {Array.isArray(founded) && founded.length > 0 ? founded.map((item, i) => (
+        {founded.length > 0 ? founded.map((item, i) => (
           <li className="search__item" key={item.english + i}>
             <SmallCard word={item.english} translate={item.russian} className="search__card" />
           </li>
         )) : <p className="search__empty">
-          {Array.isArray(founded) && founded.length === 0 ? 'Ничего не найдено' : 'Введите слово'}
+          {value.length < 2 ? 'Введите слово' : 'Ничего не найдено'}
         </p>}
       </ul>
     </div>
