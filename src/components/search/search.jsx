@@ -8,18 +8,22 @@ function Search(props) {
   const [value, setValue] = useState('');
   const [open, setOpen] = useState(false);
 
+  const data = useMemo(() =>
+    [].concat(...props.data.map((item) => [...item.words.words]))
+  , [props.data]);
+
   const founded = useMemo(() => {
     if (value.length < 2) return;
-    const data = [].concat(...props.data.map((item) => [...item.words.words]));
-    const arr = data.map((item) => {
+    const arr = data.filter((item) => {
       for (let prop in item) {
-        const result = item[prop].match(value);
-        if (Array.isArray(result)) return item;
+        const word = item[prop].toLowerCase();
+        const result = word.match(value.toLowerCase());
+        if (Array.isArray(result)) return true;
       }
-      return null;
-    }).filter((item) => item !== null);
+      return false;
+    });
     return arr;
-  }, [props.data, value]);
+  }, [data, value]);
 
   useEffect(() => {
     document.addEventListener('click', (e) => {
