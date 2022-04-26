@@ -59,7 +59,7 @@ function App() {
     return 0;
   }, []);
 
-  useEffect(() => {
+  const getWords = useCallback(() => {
     if (!authorized) return;
     words.get(user.uid).then(resp => {
       const sorted = resp.sort(compare);
@@ -67,7 +67,9 @@ function App() {
       setChecked(true);
     });
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [authorized]);
+  }, [authorized, compare]);
+
+  useEffect(() => getWords(), [authorized, getWords]);
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem('user'));
@@ -103,8 +105,8 @@ function App() {
         data={data}
       />
       <Routes>
-        <Route path='/' element={<Index checked={checked} data={data} />} />
-        <Route path='/test/:id' element={<Test user={user} />} />
+        <Route path='/' element={<Index getWords={getWords} checked={checked} data={data} />} />
+        <Route path='/test/:id' element={<Test data={data} user={user} />} />
         <Route path='/edit' element={<Edit data={data} onChangeData={setData} />} />
         <Route path='/edit/:id' element={
           <EditPart
