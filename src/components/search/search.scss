@@ -1,0 +1,77 @@
+@import '../../index.scss';
+
+.search {
+  width: 250px;
+  max-width: 100% !important;
+}
+
+@media screen and (min-width: 375px) {
+  .search {
+    width: 300px;
+  }
+}
+
+.search--open {
+  .search__input {
+    border-radius:5px 5px 0 0;
+  }
+
+  .search__list {
+    display: inline-block;
+  }
+}
+
+.search__input {
+  height: 30px;
+  max-width: 350px !important;
+  caret-color: white;
+  color: white;
+  background-color: lighten($main, 10%);
+
+  &::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+  }
+
+  &::placeholder {
+    color: white;
+  }
+}
+
+.search__list {
+  position: absolute;
+  top: 13px;
+  left: 0;
+  display: none;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: scroll;
+  list-style-type: none;
+  background-color: rgba(255, 221, 227, 0.7);
+  padding: 15px 0;
+  z-index: 9;
+  border: 1px solid $main;
+  -ms-overflow-style: none;
+  overflow: -moz-scrollbars-none;
+
+  &:focus {
+    display: block;
+  }
+
+  &::-webkit-scrollbar {
+    width: 0;
+  }
+}
+
+.search__card {
+  width: 100%;
+  box-shadow: none;
+  background-color: white;
+  transform: scale(0.9);
+  background-color: rgb(255, 236, 236);
+}
+
+.search__empty {
+  text-align: center;
+  color: darken($main, 20%);
+  margin: 0;
+}
