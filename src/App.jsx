@@ -100,6 +100,7 @@ function App() {
         onChangeAuthorized={setAuthorized}
         onChangeUser={setUser}
         onChangeChecked={setChecked}
+        data={data}
       />
       <Routes>
         <Route path='/' element={<Index checked={checked} data={data} />} />

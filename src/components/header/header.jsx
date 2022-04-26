@@ -22,7 +22,7 @@ function Header(props) {
         <span />
         <span />
       </button>
-      <Search className="header__search" />
+      <Search className="header__search" data={props.data} />
       <nav className={classNames("header__container", {
         "header__container--open": open
       })}>
