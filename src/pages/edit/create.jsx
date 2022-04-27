@@ -33,22 +33,27 @@ function Create(props) {
           {
             english: '',
             russian: '',
+            id: Date.now(),
           },
           {
             english: '',
             russian: '',
+            id: Date.now() + 100,
           },
           {
             english: '',
             russian: '',
+            id: Date.now() + 101,
           },
           {
             english: '',
             russian: '',
+            id: Date.now() + 102,
           },
           {
             english: '',
             russian: '',
+            id: Date.now() + 103,
           },
         ]
       }

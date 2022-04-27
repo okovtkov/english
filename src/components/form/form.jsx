@@ -15,6 +15,7 @@ function Form(props) {
     const word = {
       english: '',
       russian: '',
+      id: Date.now() + Math.round(Math.random() * 10000),
     };
     const clone = {...props.wordsData};
     clone.words.words.push(word);

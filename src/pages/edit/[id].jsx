@@ -9,6 +9,7 @@ function EditPart(props) {
   const params = useParams();
   const onSubmit = useCallback((e) => {
     e.preventDefault();
+    console.log(props.wordsData.words)
     words.update(props.wordsData.words, params.id).then(() => {
       navigate('/edit/');
     });
