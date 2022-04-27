@@ -54,3 +54,20 @@
     color: brown;
   }
 }
+
+.test__to-favourite {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 160px;
+  color: brown;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  transition: color 0.1s linear;
+
+  &:hover {
+    color: $main;
+  }
+}

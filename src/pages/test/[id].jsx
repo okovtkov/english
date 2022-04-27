@@ -80,7 +80,7 @@ function TestPage(props) {
           onSelectSecondValue={() => selectLangHandler('eng')}
         >Выберите с какого языка хотите переводить</Switch>
       }
-      {type === 'repeating' && <Test data={wordsData} visibleWord={visibleWord} />}
+      {type === 'repeating' && <Test data={data} wordsData={wordsData} visibleWord={visibleWord} />}
       {type === 'reading' && <WordsList data={wordsData} />}
     </div>
   );
