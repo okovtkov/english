@@ -15,7 +15,7 @@ function Search(props) {
     if (value.length < 2) return [];
     const arr = data.filter((item) => {
       for (let prop in item) {
-        if (prop !== 'english' && props !=='russian') continue;
+        if (prop !== 'english' && prop !=='russian') continue;
         const word = item[prop].toLowerCase();
         const result = word.match(value.toLowerCase());
         if (Array.isArray(result)) return true;
@@ -23,7 +23,7 @@ function Search(props) {
       return false;
     });
     return arr;
-  }, [data, props, value]);
+  }, [data, value]);
 
   useEffect(() => {
     document.addEventListener('click', (e) => {
