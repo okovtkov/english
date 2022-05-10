@@ -4,6 +4,7 @@ import './panel.scss';
 
 function Panel(props) {
   const onClick = useCallback((type) => {
+    props.onChangeVisible(false);
     const counter = type === 'next' ? props.count + 1 : props.count - 1;
     if (counter < props.length && counter >= 0) props.onChangeCount(counter);
   }, [props]);

@@ -33,8 +33,20 @@
 @media screen and (min-width: 768px) {
   .test__wrapper {
     width: 400px;
-    min-height: 70vh;
+  }
+}
+
+@media screen and (max-height: 500px) {
+  .test__wrapper {
+    transform: scale(0.8);
+  }
+}
+
+@media screen and (max-height: 412px) {
+  .test__wrapper {
+    min-height: 110vh;
     max-height: 100vh;
+    transform: scale(0.7);
   }
 }
 

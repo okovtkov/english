@@ -11,6 +11,7 @@ import EditPart from './pages/edit/[id]';
 import Auth from './components/auth/auth';
 import { authorisation } from './api/auth';
 import Loading from './components/loading/loading';
+import { audio } from './api/audio';
 
 function App() {
   const [checked, setChecked] = useState(false);
@@ -87,6 +88,7 @@ function App() {
     } else {
       setLoaded(true);
     }
+    audio.initiate();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

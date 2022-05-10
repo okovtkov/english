@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import { useCallback, useEffect, useRef } from 'react';
 import { audio } from '../../api/audio';
 import IconSound from '../svg-icon/icon-sound';
@@ -12,10 +13,6 @@ function Word(props) {
     visible: props.word.english,
     invisible: props.word.russian,
   }
-
-  const onClick = useCallback(() => {
-    ref.current.classList.remove('word__invisible--active');
-  }, []);
 
   const soundHandler = useCallback(() => {
     audio.say(word.visible, props.visibleWord);
@@ -40,9 +37,11 @@ function Word(props) {
         </button>
       )}
       <p
-        className="word__invisible word__invisible--active"
+        className={classNames("word__invisible", {
+          "word__invisible--active": !props.visible,
+        })}
         ref={ref}
-        onClick={onClick}
+        onClick={() => props.onChangeVisible(true)}
       >
         {word.invisible}
       </p>

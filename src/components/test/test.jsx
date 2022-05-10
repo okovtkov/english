@@ -12,6 +12,7 @@ function Test(props) {
   const [count, setCount] = useState(0);
   const [mode, setMode] = useState('text');
   const [card, setCard] = useState(props.wordsData[count]);
+  const [visible, setVisible] = useState(false);
   const params = useParams();
 
   const onClick = useCallback(() => {
@@ -54,8 +55,20 @@ function Test(props) {
           onChangeMode={setMode}
           className="test__switcher"
         />
-        <Word word={props.wordsData[count]} visibleWord={props.visibleWord} mode={mode} />
-        <Panel count={count} onChangeCount={setCount} length={props.wordsData.length} className="test__button" />
+        <Word
+          visible={visible}
+          onChangeVisible={setVisible}
+          word={props.wordsData[count]}
+          visibleWord={props.visibleWord}
+          mode={mode}
+        />
+        <Panel
+          onChangeVisible={setVisible}
+          count={count}
+          onChangeCount={setCount}
+          length={props.wordsData.length}
+          className="test__button"
+        />
         <button className="test__to-favourite" onClick={onClick}>
           {card.isFavourite ? "Убрать из избранного" : "Добавить в избранное"}
         </button>

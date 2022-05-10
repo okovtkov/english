@@ -35,6 +35,10 @@
   &::placeholder {
     color: white;
   }
+
+  &:focus {
+    border-radius:5px 5px 0 0;
+  }
 }
 
 .search__list {
@@ -60,6 +64,10 @@
   &::-webkit-scrollbar {
     width: 0;
   }
+}
+
+.search__input:focus + .search__list {
+  display: block;
 }
 
 .search__card {

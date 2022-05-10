@@ -1,4 +1,12 @@
 export const audio = {
+  initiate() {
+    const voices = speechSynthesis.getVoices();
+    const rus = new SpeechSynthesisUtterance('');
+    rus.lang = 'ru-RU';
+    rus.voice = voices[17];
+    speechSynthesis.speak(rus);
+  },
+
   get(word, translate) {
     if (speechSynthesis.pending) return;
     const voices = speechSynthesis.getVoices();
