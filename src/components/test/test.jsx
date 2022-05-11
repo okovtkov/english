@@ -7,11 +7,12 @@ import './test.scss';
 import IconSound from "../svg-icon/icon-sound";
 import { words } from "../../api/words";
 import { useParams } from "react-router-dom";
+import Loading from "../loading/loading";
 
 function Test(props) {
   const [count, setCount] = useState(0);
   const [mode, setMode] = useState('text');
-  const [card, setCard] = useState(props.wordsData[count]);
+  const [card, setCard] = useState(props.wordsData ? props.wordsData[count] : null);
   const [visible, setVisible] = useState(false);
   const params = useParams();
 
@@ -43,8 +44,11 @@ function Test(props) {
   }, [card, props.data, params.id]);
 
   useEffect(() => {
+    if (!props.wordsData) return;
     setCard(props.wordsData[count]);
   }, [count, props.data, props.wordsData]);
+
+  if (!card) return <Loading />
 
   return (
     <div className="test">
@@ -69,6 +73,7 @@ function Test(props) {
           length={props.wordsData.length}
           className="test__button"
         />
+        {console.log(card)}
         <button className="test__to-favourite" onClick={onClick}>
           {card.isFavourite ? "Убрать из избранного" : "Добавить в избранное"}
         </button>
