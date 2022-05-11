@@ -8,6 +8,7 @@ import IconSound from "../svg-icon/icon-sound";
 import { words } from "../../api/words";
 import { useParams } from "react-router-dom";
 import Loading from "../loading/loading";
+import { audio } from "../../api/audio";
 
 function Test(props) {
   const [count, setCount] = useState(0);
@@ -43,6 +44,13 @@ function Test(props) {
     setCard(cardData);
   }, [card, props.data, params.id]);
 
+  const changeVisibleHandler = useCallback((word) => {
+    setVisible(true);
+    if (mode === 'text') return;
+    const lang = props.visibleWord === 'rus' ? 'eng' : 'rus';
+    audio.say(word, lang);
+  }, [mode, props.visibleWord]);
+
   useEffect(() => {
     if (!props.wordsData) return;
     setCard(props.wordsData[count]);
@@ -61,7 +69,7 @@ function Test(props) {
         />
         <Word
           visible={visible}
-          onChangeVisible={setVisible}
+          onChangeVisible={changeVisibleHandler}
           word={props.wordsData[count]}
           visibleWord={props.visibleWord}
           mode={mode}

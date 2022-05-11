@@ -15,6 +15,7 @@ function Word(props) {
   }
 
   const soundHandler = useCallback(() => {
+    audio.stop();
     audio.say(word.visible, props.visibleWord);
   }, [props.visibleWord, word.visible]);
 
@@ -41,7 +42,7 @@ function Word(props) {
           "word__invisible--active": !props.visible,
         })}
         ref={ref}
-        onClick={() => props.onChangeVisible(true)}
+        onClick={() => props.onChangeVisible(word.invisible)}
       >
         {word.invisible}
       </p>

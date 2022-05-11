@@ -5,6 +5,7 @@ export const audio = {
     rus.lang = 'ru-RU';
     rus.voice = voices[17];
     speechSynthesis.speak(rus);
+    speechSynthesis.cancel();
   },
 
   get(word, translate) {
@@ -15,16 +16,19 @@ export const audio = {
     eng.lang = 'en-US';
     eng.rate = 0.7;
     speechSynthesis.speak(eng);
-
-    const rus = new SpeechSynthesisUtterance(translate);
-    rus.lang = 'ru-RU';
-    rus.voice = voices[17];
-    speechSynthesis.speak(rus);
+    eng.onend = () => {
+      speechSynthesis.cancel();
+      const rus = new SpeechSynthesisUtterance(translate);
+      rus.lang = 'ru-RU';
+      rus.voice = voices[17];
+      speechSynthesis.speak(rus);
+    }
   },
 
   say(word, lang) {
     if (speechSynthesis.pending) return;
 
+    speechSynthesis.cancel();
     if (lang === 'rus') {
       const voices = speechSynthesis.getVoices();
       const rus = new SpeechSynthesisUtterance(word);
