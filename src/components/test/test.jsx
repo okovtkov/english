@@ -28,7 +28,7 @@ function Test(props) {
     }
 
     if (params.id === 'general' || params.id === 'favourite') {
-      part = props.data.find((item) => {
+      part = props.data.find((item, i) => {
         const card = item.words.words.find((item) => item.id === cardData.id);
         return card;
       });
@@ -42,7 +42,12 @@ function Test(props) {
     updateArray.splice(index, 1, cardData);
     words.update({ owner, name, words: updateArray }, part.id);
     setCard(cardData);
-  }, [card, props.data, params.id]);
+
+    if (params.id === 'general' || params.id === 'favourite') {
+      const index = props.wordsData.find((item) => item.id === cardData.id);
+      props.wordsData.splice(index, 1, cardData);
+    }
+  }, [card, params.id, props.data, props.wordsData]);
 
   const changeVisibleHandler = useCallback((word) => {
     setVisible(true);
@@ -81,7 +86,6 @@ function Test(props) {
           length={props.wordsData.length}
           className="test__button"
         />
-        {console.log(card)}
         <button className="test__to-favourite" onClick={onClick}>
           {card.isFavourite ? "Убрать из избранного" : "Добавить в избранное"}
         </button>
