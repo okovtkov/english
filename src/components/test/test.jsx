@@ -66,29 +66,34 @@ function Test(props) {
   return (
     <div className="test">
       <div className="test__wrapper">
-        <Switcher
-          firstOption={<IconEye />}
-          secondOption={<IconSound />}
-          onChangeMode={setMode}
-          className="test__switcher"
-        />
+        <header className="test__header">
+          <Switcher
+            firstOption={<IconEye />}
+            secondOption={<IconSound />}
+            onChangeMode={setMode}
+            className="test__switcher"
+          />
+        </header>
         <Word
           visible={visible}
           onChangeVisible={changeVisibleHandler}
           word={props.wordsData[count]}
           visibleWord={props.visibleWord}
           mode={mode}
+          className="test__words"
         />
         <Panel
           onChangeVisible={setVisible}
           count={count}
           onChangeCount={setCount}
           length={props.wordsData.length}
-          className="test__button"
+          className="test__panel"
         />
-        <button className="test__to-favourite" onClick={onClick}>
-          {card.isFavourite ? "Убрать из избранного" : "Добавить в избранное"}
-        </button>
+        <footer className="test__footer">
+          <button className="test__to-favourite" onClick={onClick}>
+            {card.isFavourite ? "Убрать из избранного" : "Добавить в избранное"}
+          </button>
+        </footer>
       </div>
     </div>
   )

@@ -16,7 +16,8 @@
   flex-direction: column;
   justify-content: center;
   width: 90vw;
-  height: 420px;
+  min-height: 420px;
+  max-height: 500px;
   background-color: $body;
   border: 3px solid $main;
   background-repeat: repeat;
@@ -46,32 +47,44 @@
   .test__wrapper {
     min-height: 110vh;
     max-height: 100vh;
-    transform: scale(0.7);
+    transform: scale(0.6);
   }
 }
 
-.test__switcher {
-  position: absolute;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
+.test__header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 60px;
 }
 
-.test__button {
-  background-color: $main;
-  border: 1px solid $main;
-  color: white;
+.test__words {
+  margin-top: auto;
+}
 
-  &:hover {
-    color: brown;
+@media screen and (max-height: 500px) {
+  .test__words p {
+    font-size: 32px;
   }
+}
+
+.test__panel {
+  margin-bottom: auto;
+}
+
+.test__footer {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 60px;
 }
 
 .test__to-favourite {
-  position: absolute;
-  bottom: 30px;
-  left: 50%;
-  transform: translateX(-50%);
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
   width: 160px;
   color: brown;
   background-color: transparent;

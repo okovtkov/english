@@ -29,7 +29,7 @@ function Word(props) {
   }, [props.mode, props.visibleWord, props.word, word.visible]);
 
   return (
-    <div className="word">
+    <div className={`word ${props.className}`}>
       {props.mode === 'text' ? (
         <p className="word__visible">{word.visible}</p>
       ) : (
