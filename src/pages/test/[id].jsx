@@ -17,7 +17,8 @@ function TestPage(props) {
     if (params.id === 'favourite') {
       const allWords = [].concat(...data.map((item) => [...item.words.words]));
       const favourite = allWords.filter((item) => item.isFavourite);
-      return favourite.length > 0 ? favourite : null;
+      const sorted = favourite.sort(() => Math.random() - 0.5);
+      return sorted.length > 0 ? sorted : null;
     }
 
     if (params.id === 'general') {
