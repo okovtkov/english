@@ -8,6 +8,7 @@ function Switcher(props) {
     const isChecked = ref.current.checked;
     if (isChecked) props.onChangeMode('sound');
     else props.onChangeMode('text');
+    props.onChangeVisible(false);
   }, [props]);
 
   return (
