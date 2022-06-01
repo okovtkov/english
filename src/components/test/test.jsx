@@ -28,7 +28,7 @@ function Test(props) {
     }
 
     if (params.id === 'general' || params.id === 'favourite') {
-      part = props.data.find((item, i) => {
+      part = props.data.find((item) => {
         const card = item.words.words.find((item) => item.id === cardData.id);
         return card;
       });
@@ -44,8 +44,9 @@ function Test(props) {
     setCard(cardData);
 
     if (params.id === 'general' || params.id === 'favourite') {
-      const index = props.wordsData.find((item) => item.id === cardData.id);
+      const index = props.wordsData.findIndex((item) => item.id === cardData.id);
       props.wordsData.splice(index, 1, cardData);
+      console.log(index, cardData)
     }
   }, [card, params.id, props.data, props.wordsData]);
 
@@ -72,6 +73,7 @@ function Test(props) {
             secondOption={<IconSound />}
             onChangeMode={setMode}
             className="test__switcher"
+            onChangeVisible={setVisible}
           />
         </header>
         <Word
