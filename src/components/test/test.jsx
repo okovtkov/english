@@ -46,7 +46,6 @@ function Test(props) {
     if (params.id === 'general' || params.id === 'favourite') {
       const index = props.wordsData.findIndex((item) => item.id === cardData.id);
       props.wordsData.splice(index, 1, cardData);
-      console.log(index, cardData)
     }
   }, [card, params.id, props.data, props.wordsData]);
 

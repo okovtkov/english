@@ -20,13 +20,11 @@ function Word(props) {
   }, [props.visibleWord, word.visible]);
 
   useEffect(() => {
-    if (props.mode === 'sound') {
-      audio.say(word.visible, props.visibleWord);
-    };
-    ref.current.classList.add('word__invisible--active');
+    if (props.mode === 'sound') audio.say(word.visible, props.visibleWord);
 
     return audio.stop;
-  }, [props.mode, props.visibleWord, props.word, word.visible]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [props.mode, props.visibleWord, word.visible]);
 
   return (
     <div className={`word ${props.className}`}>
