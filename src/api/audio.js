@@ -10,19 +10,16 @@ export const audio = {
 
   get(word, translate) {
     if (speechSynthesis.pending) return;
-    const voices = speechSynthesis.getVoices();
 
-    const eng = new SpeechSynthesisUtterance(word);
-    eng.lang = 'en-US';
-    eng.rate = 0.7;
-    speechSynthesis.speak(eng);
-    eng.onend = () => {
-      speechSynthesis.cancel();
-      const rus = new SpeechSynthesisUtterance(translate);
-      rus.lang = 'ru-RU';
-      rus.voice = voices[17];
-      speechSynthesis.speak(rus);
-    }
+    const eng = this.say(word, 'eng');
+    return new Promise((resolve) => {
+      eng.onend = () => {
+        const rus = this.say(translate, 'rus');
+        rus.onend = () => {
+          resolve();
+        }
+      }
+    });
   },
 
   say(word, lang) {
@@ -35,14 +32,14 @@ export const audio = {
       rus.lang = 'ru-RU';
       rus.voice = voices[17];
       speechSynthesis.speak(rus);
+      return rus;
     } else {
       const eng = new SpeechSynthesisUtterance(word);
       eng.lang = 'en-US';
       eng.rate = 0.7;
       speechSynthesis.speak(eng);
+      return eng;
     }
-
-    return true;
   },
 
   stop() {

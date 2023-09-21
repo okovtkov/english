@@ -62,7 +62,7 @@ function TestPage(props) {
   )
 
   return (
-    <div className="test">
+    <>
       {!type &&
         <Switch
           firstValue="просмотреть"
@@ -83,7 +83,7 @@ function TestPage(props) {
       }
       {type === 'repeating' && <Test data={data} wordsData={wordsData} visibleWord={visibleWord} />}
       {type === 'reading' && <WordsList data={wordsData} />}
-    </div>
+    </>
   );
 }
 

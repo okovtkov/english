@@ -21,8 +21,8 @@ function Parts(props) {
         <div className="parts__wrapper">
           <h1>Выбери часть, которую желаешь повторить</h1>
           <div className="parts__general">
-            <Ref path="test" id="general">Общее</Ref>
-            <Ref path="test" id="favourite">Избранное</Ref>
+            <Ref className="parts__ref" path="test" id="general">Общее</Ref>
+            <Ref className="parts__ref" path="test" id="favourite">Избранное</Ref>
           </div>
           <div className="parts__another">
             {props.data.map((item) => (
