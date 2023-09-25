@@ -1,3 +1,4 @@
+import classNames from "classnames";
 import Loading from '../loading/loading';
 import SmallCard from '../small-card/small-card';
 import Button from '../button/button';
@@ -40,7 +41,9 @@ function WordsList(props) {
             key={`${item.english}+${i}`}
             word={item.english}
             translate={item.russian}
-            className="words-list__card"
+            className={classNames("words-list__card", {
+              "words-list__card--current": i === currentIndex && isPlaying,
+            })}
           />
         )) : <Loading />}
       </div>
