@@ -2,20 +2,24 @@ import IconSound from '../svg-icon/icon-sound';
 import { audio } from '../../api/audio';
 import './small-card.scss';
 import { useCallback } from 'react';
+import classNames from 'classnames';
 
 function SmallCard(props) {
   const onClick = useCallback(() => {
+    if (props.disabled) return;
     audio.stop();
     audio.get(props.word, props.translate);
-  }, [props.translate, props.word]);
+  }, [props.disabled, props.translate, props.word]);
 
   return (
     <>
-      <div className={`small-card ${props.className}`}>
+      <div className={`small-card ${props.className}`} onClick={props.onClick}>
         <dt className="small-card__word">
-          {props.word}
+          <span>{props.word}</span>
           <button
-            className="small-card__sound"
+            className={classNames("small-card__sound", {
+              'small-card__sound--disabled': props.disabled
+            })}
             onClick={onClick}
           >
             <IconSound />

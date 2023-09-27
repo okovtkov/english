@@ -10,16 +10,50 @@ import { useCallback, useEffect, useState } from 'react';
 function WordsList(props) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [forbiddenWords, setForbiddenWords] = useState([]);
+
+  const getCorrectIndex = useCallback((index) => {
+    if (props.data.length === forbiddenWords.size) return -1;
+    if (forbiddenWords.includes(index)) {
+      return getCorrectIndex(index + 1);
+    } else {
+      return index;
+    }
+  }, [forbiddenWords, props.data.length]);
 
   const playWordsList = useCallback(() => {
-    const currentWord = props.data[currentIndex];
+    const index = getCorrectIndex(currentIndex);
+    if (index === -1) {
+      setIsPlaying(false);
+      return;
+    }
+    if (index >= props.data.length) {
+      setCurrentIndex(0);
+      return;
+    }
+    const currentWord = props.data[index];
 
     audio.get(currentWord.english, currentWord.russian).then(() => {
       setTimeout(() => {
-        setCurrentIndex(currentIndex + 1);
+        setCurrentIndex(index + 1);
       }, 1000);
     });
-  }, [currentIndex, props.data]);
+  }, [currentIndex, getCorrectIndex, props.data]);
+
+  const onClickCard = useCallback((e, index) => {
+    // если нажали на значек озвучивания слова, то ничего не делать
+    if (e.target.closest('.small-card__sound') || isPlaying) return;
+    const clone = [...forbiddenWords];
+
+    if (forbiddenWords.includes(index)) {
+      const i = clone.indexOf(index);
+      clone.splice(i, 1);
+      setForbiddenWords(clone);
+    } else { 
+      clone.push(index);
+      setForbiddenWords(clone);
+    }
+  }, [forbiddenWords, isPlaying]);
 
   useEffect(() => {
     if (currentIndex > props.data.length - 1) {
@@ -40,10 +74,14 @@ function WordsList(props) {
           <SmallCard
             key={`${item.english}+${i}`}
             word={item.english}
+            disabled={isPlaying}
             translate={item.russian}
             className={classNames("words-list__card", {
-              "words-list__card--current": i === currentIndex && isPlaying,
+              "words-list__card--current": i === getCorrectIndex(currentIndex) && isPlaying,
+              "words-list__card--hidden": forbiddenWords.includes(i),
+              "words-list__card--disabled": isPlaying,
             })}
+            onClick={(e) => onClickCard(e, i)}
           />
         )) : <Loading />}
       </div>
