@@ -49,26 +49,15 @@ function App() {
     }
   });
 
-  const compare = useCallback((a, b) => {
-    const first = Number(a.words.name);
-    const second = Number(b.words.name);
-    if (typeof first === 'number' && typeof second === 'number') {
-      return first - second;
-    }
-    if (a.words.name > b.words.name) return 1;
-    if (a.words.name < b.words.name) return -1;
-    return 0;
-  }, []);
-
   const getWords = useCallback(() => {
     if (!authorized) return;
     words.get(user.uid).then(resp => {
-      const sorted = resp.sort(compare);
+      const sorted = resp.sort((a, b) => a.words.createdAt - b.words.createdAt);
       setData(sorted);
       setChecked(true);
     });
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [authorized, compare]);
+  }, [authorized]);
 
   useEffect(() => getWords(), [authorized, getWords]);
 

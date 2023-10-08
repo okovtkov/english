@@ -9,6 +9,7 @@ function Create(props) {
   const onSubmit = useCallback((e) => {
     e.preventDefault();
     const clone = {...props.wordsData};
+    clone.words.createdAt = Date.now();
     clone.words.owner = props.user.uid;
 
     words.add(clone.words).then((resp) => {
