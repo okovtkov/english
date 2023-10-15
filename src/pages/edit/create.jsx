@@ -26,6 +26,7 @@ function Create(props) {
   }, [navigate, props]);
 
   useEffect(() => {
+    const dateNow = Date.now();
     props.onChangeWordsData({
       id: '',
       words: {
@@ -34,27 +35,27 @@ function Create(props) {
           {
             english: '',
             russian: '',
-            id: Date.now(),
+            id: dateNow,
           },
           {
             english: '',
             russian: '',
-            id: Date.now() + 100,
+            id: dateNow + 100,
           },
           {
             english: '',
             russian: '',
-            id: Date.now() + 101,
+            id: dateNow + 101,
           },
           {
             english: '',
             russian: '',
-            id: Date.now() + 102,
+            id: dateNow + 102,
           },
           {
             english: '',
             russian: '',
-            id: Date.now() + 103,
+            id: dateNow + 103,
           },
         ]
       }
