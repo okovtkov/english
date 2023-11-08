@@ -40,9 +40,8 @@ function WordsList(props) {
     });
   }, [currentIndex, getCorrectIndex, props.data]);
 
-  const onClickCard = useCallback((e, index) => {
+  const onClickCard = useCallback((_, index) => {
     // если нажали на значек озвучивания слова, то ничего не делать
-    if (e.target.closest('.small-card__sound') || isPlaying) return;
     const clone = [...forbiddenWords];
 
     if (forbiddenWords.includes(index)) {
@@ -53,7 +52,7 @@ function WordsList(props) {
       clone.push(index);
       setForbiddenWords(clone);
     }
-  }, [forbiddenWords, isPlaying]);
+  }, [forbiddenWords]);
 
   useEffect(() => {
     if (currentIndex > props.data.length - 1) {
