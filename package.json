@@ -2,7 +2,7 @@
   "name": "english",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://vasilich99.github.io/english",
+  "homepage": "https://okovtkov.github.io/english",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.2",
     "@testing-library/react": "^12.1.4",
