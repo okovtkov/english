@@ -26,7 +26,8 @@
   },
   "devDependencies": {
     "eslint": "^8.56.0",
-    "gh-pages": "^3.2.3"
+    "gh-pages": "^3.2.3",
+    "prettier": "3.2.5"
   },
   "browserslist": {
     "production": [
