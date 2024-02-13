@@ -12,7 +12,7 @@ export const words = {
         const { id } = document;
         const words = document.data();
         arr.push({ id, words });
-      })
+      });
       return arr;
     });
   },
@@ -38,4 +38,4 @@ export const words = {
     const ref = doc(wordCollection, id);
     return setDoc(ref, obj).then((resp) => resp);
   }
-}
+};

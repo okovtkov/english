@@ -8,6 +8,7 @@
     "no-console": "warn",
     "prefer-const": "error",
     "indent": ["warn", 2],
-    "semi": ["warn", "always"]
+    "semi": ["warn", "always"],
+    "promise/no-nesting": 0
   }
 }

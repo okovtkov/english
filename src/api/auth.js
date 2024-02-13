@@ -1,12 +1,17 @@
 import { app } from "./firestore";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPasswordResetEmail } from "firebase/auth";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  sendPasswordResetEmail
+} from "firebase/auth";
 
 const auth = getAuth(app);
 
 export const authorisation = {
   signUp(email, password) {
     return createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => userCredential.user)
+      .then((userCredential) => userCredential.user);
   },
 
   signIn(email, password) {
@@ -15,6 +20,6 @@ export const authorisation = {
   },
 
   reset(email) {
-    return sendPasswordResetEmail(auth, email)
+    return sendPasswordResetEmail(auth, email);
   }
-}
+};
