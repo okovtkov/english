@@ -11,10 +11,13 @@ function SmallCard(props) {
     audio.get(props.word, props.translate);
   }, [props.disabled, props.translate, props.word]);
 
-  const onClickOnCard = useCallback((e) => {
-    if (e.target.closest('.small-card__sound') || props.disabled) return;
-    props.onClick();
-  }, [props]);
+  const onClickOnCard = useCallback(
+    (e) => {
+      if (e.target.closest('.small-card__sound') || props.disabled) return;
+      props.onClick();
+    },
+    [props],
+  );
 
   return (
     <>
@@ -22,8 +25,8 @@ function SmallCard(props) {
         <dt className="small-card__word">
           <span>{props.word}</span>
           <button
-            className={classNames("small-card__sound", {
-              'small-card__sound--disabled': props.disabled
+            className={classNames('small-card__sound', {
+              'small-card__sound--disabled': props.disabled,
             })}
             onClick={onClick}
           >

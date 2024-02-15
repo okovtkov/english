@@ -11,19 +11,21 @@ function Auth(props) {
   return (
     <div className="auth">
       <div className="auth__wrapper">
-        {type === 'sign-in' &&
+        {type === 'sign-in' && (
           <SignIn
             onChangeType={setType}
             onChangeAuthorized={props.onChangeAuthorized}
             onChangeUser={props.onChangeUser}
           />
-        }
+        )}
         {type === 'sign-up' && <SignUp onChangeType={setType} />}
         {type === 'successed' && (
           <>
             <h1 className="auth__heading">Добро пожаловать!</h1>
             <p className="auth__text">Теперь войдите, используя свой email и пароль</p>
-            <Button className="auth__button" onClick={() => setType('sign-in')}>Войти</Button>
+            <Button className="auth__button" onClick={() => setType('sign-in')}>
+              Войти
+            </Button>
           </>
         )}
         {type === 'reset' && <Reset onChangeType={setType} />}
@@ -31,10 +33,11 @@ function Auth(props) {
           <>
             <h1 className="auth__heading">Отправлено!</h1>
             <p className="auth__text">
-              На Вашу почту отослано сообщение с дальнейшими инструкциями.
-              Проверьте его.
+              На Вашу почту отослано сообщение с дальнейшими инструкциями. Проверьте его.
             </p>
-            <Button className="auth__button" onClick={() => setType('sign-in')}>Ок</Button>
+            <Button className="auth__button" onClick={() => setType('sign-in')}>
+              Ок
+            </Button>
           </>
         )}
       </div>

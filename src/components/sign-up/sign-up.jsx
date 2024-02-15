@@ -11,26 +11,36 @@ function SignUp(props) {
   const [email, setEmail] = useState('');
   const [secondPassword, setSecondPassword] = useState('');
 
-  const onSubmit = useCallback((e) => {
-    e.preventDefault();
-    if (password === secondPassword) {
-      authorisation.signUp(email, password).then((resp) => {
-        props.onChangeType('successed');
-        setError('');
-      })
-      .catch((err) => setError(err.code));
-    } else {
-      setError('auth/passwords-do-not-match');
-    }
-  }, [email, password, props, secondPassword]);
+  const onSubmit = useCallback(
+    (e) => {
+      e.preventDefault();
+      if (password === secondPassword) {
+        authorisation
+          .signUp(email, password)
+          .then((resp) => {
+            props.onChangeType('successed');
+            setError('');
+          })
+          .catch((err) => setError(err.code));
+      } else {
+        setError('auth/passwords-do-not-match');
+      }
+    },
+    [email, password, props, secondPassword],
+  );
 
   const checkError = useCallback(() => {
     switch (error) {
-      case 'auth/weak-password': return 'Пароль должен быть не менее 6 символов';
-      case 'auth/invalid-email': return 'Некорректная почта';
-      case 'auth/email-already-in-use': return 'Данная почта уже используется';
-      case 'auth/passwords-do-not-match': return 'Пароли не совпадают';
-      default: return null;
+      case 'auth/weak-password':
+        return 'Пароль должен быть не менее 6 символов';
+      case 'auth/invalid-email':
+        return 'Некорректная почта';
+      case 'auth/email-already-in-use':
+        return 'Данная почта уже используется';
+      case 'auth/passwords-do-not-match':
+        return 'Пароли не совпадают';
+      default:
+        return null;
     }
   }, [error]);
 
@@ -46,8 +56,8 @@ function SignUp(props) {
         Введите вашу почту
         <Input
           type="email"
-          className={classNames("sign-up__input", {
-            "sign-up__input--error":
+          className={classNames('sign-up__input', {
+            'sign-up__input--error':
               error === 'auth/invalid-email' || error === 'auth/email-already-in-use',
           })}
           onChange={(e) => setEmail(e.target.value)}
@@ -57,8 +67,8 @@ function SignUp(props) {
         Придумайте пароль
         <Input
           type="password"
-          className={classNames("sign-up__input", {
-            "sign-up__input--error":
+          className={classNames('sign-up__input', {
+            'sign-up__input--error':
               error === 'auth/weak-password' || error === 'auth/passwords-do-not-match',
           })}
           onChange={(e) => setPassword(e.target.value)}
@@ -68,25 +78,26 @@ function SignUp(props) {
         Повторите пароль
         <Input
           type="password"
-          className={classNames("sign-up__input", {
-            "sign-up__input--error":
+          className={classNames('sign-up__input', {
+            'sign-up__input--error':
               error === 'auth/weak-password' || error === 'auth/passwords-do-not-match',
           })}
           onChange={(e) => setSecondPassword(e.target.value)}
         />
       </label>
-      <p className={classNames("sign-up__error", {
-        "sign-up__error--active": error,
-      })}>{checkError()}</p>
-      <Button
-        type="submit"
-        className="sign-up__button"
-      >Зарегистрироваться</Button>
-      <Button
-        className="sign-up__button sign-up__button--back"
-        onClick={reset}
-        mode="small"
-      >У меня уже есть аккаунт</Button>
+      <p
+        className={classNames('sign-up__error', {
+          'sign-up__error--active': error,
+        })}
+      >
+        {checkError()}
+      </p>
+      <Button type="submit" className="sign-up__button">
+        Зарегистрироваться
+      </Button>
+      <Button className="sign-up__button sign-up__button--back" onClick={reset} mode="small">
+        У меня уже есть аккаунт
+      </Button>
     </form>
   );
 }

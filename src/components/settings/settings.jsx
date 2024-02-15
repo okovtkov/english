@@ -25,7 +25,7 @@ function Settings(props) {
     words.deleteDoc(currentId);
 
     setTimeout(() => {
-      const index = props.data.findIndex(item => item.id === currentId);
+      const index = props.data.findIndex((item) => item.id === currentId);
       const clone = [...props.data];
       clone.splice(index, 1);
       props.onChangeData(clone);
@@ -37,7 +37,7 @@ function Settings(props) {
   }, [currentElement, currentId, props]);
 
   useEffect(() => {
-    if (props.data.length === 0) setEditing(true)
+    if (props.data.length === 0) setEditing(true);
     else setEditing(false);
   }, [props.data.length]);
 
@@ -45,25 +45,36 @@ function Settings(props) {
     <>
       <div className="settings">
         <div className="settings__parts">
-          <p className={classNames("settings__void", {
-            "settings__void--active": props.data.length === 0 && editing === false,
-          })}>У вас пока что нет разделов со словами.</p>
+          <p
+            className={classNames('settings__void', {
+              'settings__void--active': props.data.length === 0 && editing === false,
+            })}
+          >
+            У вас пока что нет разделов со словами.
+          </p>
           {props.data.map((item) => (
-            <div key={item.id} className={classNames("settings__wrapper", {
-              "settings__wrapper--editing": editing,
-            })}>
+            <div
+              key={item.id}
+              className={classNames('settings__wrapper', {
+                'settings__wrapper--editing': editing,
+              })}
+            >
               <Ref
                 path="edit"
                 id={item.id}
-                className={!editing && "settings__ref settings__ref--disabled"}
+                className={!editing && 'settings__ref settings__ref--disabled'}
                 onClick={!editing && ((e) => e.preventDefault())}
-              >{item.words.name}</Ref>
-              <CloseButton className="settings__close" onClick={(e) => onClick(item, e)}/>
+              >
+                {item.words.name}
+              </Ref>
+              <CloseButton className="settings__close" onClick={(e) => onClick(item, e)} />
             </div>
           ))}
-          <div className={classNames("settings__new", {
-            "settings__new--active": editing,
-          })}>
+          <div
+            className={classNames('settings__new', {
+              'settings__new--active': editing,
+            })}
+          >
             <Ref path="edit/create">+</Ref>
           </div>
         </div>

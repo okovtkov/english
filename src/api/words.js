@@ -8,14 +8,14 @@ import {
   setDoc,
   query,
   where,
-} from "firebase/firestore";
-import { firestore } from "./firestore";
+} from 'firebase/firestore';
+import { firestore } from './firestore';
 
-const wordCollection = collection(firestore, "words");
+const wordCollection = collection(firestore, 'words');
 
 export const words = {
   get(id) {
-    const q = query(wordCollection, where("owner", "==", id));
+    const q = query(wordCollection, where('owner', '==', id));
     return getDocs(q).then((resp) => {
       const arr = [];
       resp.forEach((document) => {

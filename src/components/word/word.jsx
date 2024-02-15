@@ -6,13 +6,16 @@ import './word.scss';
 
 function Word(props) {
   const ref = useRef();
-  const word = props.visibleWord === 'rus' ? {
-    visible: props.word.russian,
-    invisible: props.word.english,
-  } : {
-    visible: props.word.english,
-    invisible: props.word.russian,
-  }
+  const word =
+    props.visibleWord === 'rus'
+      ? {
+          visible: props.word.russian,
+          invisible: props.word.english,
+        }
+      : {
+          visible: props.word.english,
+          invisible: props.word.russian,
+        };
 
   const soundHandler = useCallback(() => {
     audio.stop();
@@ -23,7 +26,7 @@ function Word(props) {
     if (props.mode === 'sound') audio.say(word.visible, props.visibleWord);
 
     return audio.stop;
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.mode, props.visibleWord, word.visible]);
 
   return (
@@ -36,8 +39,8 @@ function Word(props) {
         </button>
       )}
       <p
-        className={classNames("word__invisible", {
-          "word__invisible--active": !props.visible,
+        className={classNames('word__invisible', {
+          'word__invisible--active': !props.visible,
         })}
         ref={ref}
         onClick={() => props.onChangeVisible(word.invisible)}

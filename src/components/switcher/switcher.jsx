@@ -13,14 +13,10 @@ function Switcher(props) {
 
   return (
     <label className={`switcher ${props.className}`}>
-      <div className="switcher__icon">
-        {props.firstOption}
-      </div>
+      <div className="switcher__icon">{props.firstOption}</div>
       <input ref={ref} type="checkbox" className="switcher__checkbox" onChange={onChangeHandler} />
       <div className="switcher__switch" />
-      <div className="switcher__icon">
-        {props.secondOption}
-      </div>
+      <div className="switcher__icon">{props.secondOption}</div>
     </label>
   );
 }

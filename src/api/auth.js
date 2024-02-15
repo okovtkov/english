@@ -1,10 +1,10 @@
-import { app } from "./firestore";
+import { app } from './firestore';
 import {
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   sendPasswordResetEmail,
-} from "firebase/auth";
+} from 'firebase/auth';
 
 const auth = getAuth(app);
 
