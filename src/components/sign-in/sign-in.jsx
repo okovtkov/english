@@ -22,7 +22,8 @@ function SignIn(props) {
           localStorage.setItem('user', JSON.stringify(user));
         })
         .catch((err) => {
-          console.log(err.code);
+          // eslint-disable-next-line no-console
+          console.error(err.code);
           setError(err.code);
         });
     },

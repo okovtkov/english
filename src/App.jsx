@@ -72,7 +72,8 @@ function App() {
           setLoaded(true);
         })
         .catch((err) => {
-          console.log(err);
+          // eslint-disable-next-line no-console
+          console.error(err);
           setLoaded(true);
         });
     } else {

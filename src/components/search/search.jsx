@@ -16,7 +16,7 @@ function Search(props) {
   const founded = useMemo(() => {
     if (value.length < 2) return [];
     const arr = data.filter((item) => {
-      for (let prop in item) {
+      for (const prop in item) {
         if (prop !== 'english' && prop !== 'russian') continue;
         const word = item[prop].toLowerCase();
         const result = word.match(value.toLowerCase());
