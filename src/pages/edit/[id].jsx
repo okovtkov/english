@@ -1,18 +1,21 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useCallback, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import Form from "../../components/form/form";
-import { words } from "../../api/words";
+import { useCallback, useEffect } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import Form from '../../components/form/form';
+import { words } from '../../api/words';
 
 function EditPart(props) {
   const navigate = useNavigate();
   const params = useParams();
-  const onSubmit = useCallback((e) => {
-    e.preventDefault();
-    words.update(props.wordsData.words, params.id).then(() => {
-      navigate('/edit/');
-    });
-  }, [navigate, params.id, props]);
+  const onSubmit = useCallback(
+    (e) => {
+      e.preventDefault();
+      words.update(props.wordsData.words, params.id).then(() => {
+        navigate('/edit/');
+      });
+    },
+    [navigate, params.id, props],
+  );
 
   useEffect(() => {
     words.getById(params.id).then((resp) => {

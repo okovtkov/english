@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 import './ref.scss';
 
 function Ref(props) {
@@ -8,9 +8,7 @@ function Ref(props) {
       className={`ref ${props.className}`}
       onClick={props.onClick}
     >
-      <div className="ref__children">
-        {props.children}
-      </div>
+      <div className="ref__children">{props.children}</div>
     </Link>
   );
 }

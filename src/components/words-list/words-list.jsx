@@ -1,4 +1,4 @@
-import classNames from "classnames";
+import classNames from 'classnames';
 import Loading from '../loading/loading';
 import SmallCard from '../small-card/small-card';
 import Button from '../button/button';
@@ -12,14 +12,17 @@ function WordsList(props) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [forbiddenWords, setForbiddenWords] = useState([]);
 
-  const getCorrectIndex = useCallback((index) => {
-    if (props.data.length === forbiddenWords.size) return -1;
-    if (forbiddenWords.includes(index)) {
-      return getCorrectIndex(index + 1);
-    } else {
-      return index;
-    }
-  }, [forbiddenWords, props.data.length]);
+  const getCorrectIndex = useCallback(
+    (index) => {
+      if (props.data.length === forbiddenWords.size) return -1;
+      if (forbiddenWords.includes(index)) {
+        return getCorrectIndex(index + 1);
+      } else {
+        return index;
+      }
+    },
+    [forbiddenWords, props.data.length],
+  );
 
   const playWordsList = useCallback(() => {
     const index = getCorrectIndex(currentIndex);
@@ -40,19 +43,22 @@ function WordsList(props) {
     });
   }, [currentIndex, getCorrectIndex, props.data]);
 
-  const onClickCard = useCallback((_, index) => {
-    // если нажали на значек озвучивания слова, то ничего не делать
-    const clone = [...forbiddenWords];
+  const onClickCard = useCallback(
+    (_, index) => {
+      // если нажали на значек озвучивания слова, то ничего не делать
+      const clone = [...forbiddenWords];
 
-    if (forbiddenWords.includes(index)) {
-      const i = clone.indexOf(index);
-      clone.splice(i, 1);
-      setForbiddenWords(clone);
-    } else { 
-      clone.push(index);
-      setForbiddenWords(clone);
-    }
-  }, [forbiddenWords]);
+      if (forbiddenWords.includes(index)) {
+        const i = clone.indexOf(index);
+        clone.splice(i, 1);
+        setForbiddenWords(clone);
+      } else {
+        clone.push(index);
+        setForbiddenWords(clone);
+      }
+    },
+    [forbiddenWords],
+  );
 
   useEffect(() => {
     if (currentIndex > props.data.length - 1) {
@@ -69,20 +75,24 @@ function WordsList(props) {
         {isPlaying ? 'Пауза' : 'Слушать всё'}
       </Button>
       <div className="words-list__container">
-        {props.data ? props.data.map((item, i) => (
-          <SmallCard
-            key={`${item.english}+${i}`}
-            word={item.english}
-            disabled={isPlaying}
-            translate={item.russian}
-            className={classNames("words-list__card", {
-              "words-list__card--current": i === getCorrectIndex(currentIndex) && isPlaying,
-              "words-list__card--hidden": forbiddenWords.includes(i),
-              "words-list__card--disabled": isPlaying,
-            })}
-            onClick={(e) => onClickCard(e, i)}
-          />
-        )) : <Loading />}
+        {props.data ? (
+          props.data.map((item, i) => (
+            <SmallCard
+              key={`${item.english}+${i}`}
+              word={item.english}
+              disabled={isPlaying}
+              translate={item.russian}
+              className={classNames('words-list__card', {
+                'words-list__card--current': i === getCorrectIndex(currentIndex) && isPlaying,
+                'words-list__card--hidden': forbiddenWords.includes(i),
+                'words-list__card--disabled': isPlaying,
+              })}
+              onClick={(e) => onClickCard(e, i)}
+            />
+          ))
+        ) : (
+          <Loading />
+        )}
       </div>
     </dl>
   );

@@ -7,7 +7,9 @@ function Button(props) {
       onClick={props.onClick}
       onSubmit={props.onSubmit}
       type={props.type || 'button'}
-    >{props.children}</button>
+    >
+      {props.children}
+    </button>
   );
 }
 

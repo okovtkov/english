@@ -17,8 +17,8 @@ export const audio = {
         const rus = this.say(translate, 'rus');
         rus.onend = () => {
           resolve();
-        }
-      }
+        };
+      };
     });
   },
 
@@ -44,5 +44,5 @@ export const audio = {
 
   stop() {
     speechSynthesis.cancel();
-  }
-}
+  },
+};

@@ -1,0 +1,19 @@
+{
+  "extends": [
+    "react-app",
+    "react-app/jest",
+    "prettier"
+  ],
+  "plugins": ["prettier"],
+  "rules": {
+    "no-console": "warn",
+    "prefer-const": "error",
+    "prettier/prettier": "error",
+    "semi": ["warn", "always"],
+    "promise/no-nesting": 0
+  },
+  "ignorePatterns": [
+    "node_modules/",
+    "build/"
+  ]
+}

@@ -1,9 +1,9 @@
 import './close-button.scss';
 
 function CloseButton(props) {
-  return(
+  return (
     <button type="button" className={`close-button ${props.className}`} onClick={props.onClick} />
-  )
+  );
 }
 
 export default CloseButton;

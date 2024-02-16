@@ -7,8 +7,12 @@ function Popup(props) {
         <header className="popup__header">Подтвердите действие</header>
         <p className="popup__text">{props.children}</p>
         <footer className="popup__footer">
-          <button onClick={props.onAgree} className="popup__ok">Ок</button>
-          <button onClick={props.onCancel} className="popup__cancel">Отмена</button>
+          <button onClick={props.onAgree} className="popup__ok">
+            Ок
+          </button>
+          <button onClick={props.onCancel} className="popup__cancel">
+            Отмена
+          </button>
         </footer>
       </div>
     </div>

@@ -45,18 +45,18 @@ function App() {
           english: '',
           russian: '',
         },
-      ]
-    }
+      ],
+    },
   });
 
   const getWords = useCallback(() => {
     if (!authorized) return;
-    words.get(user.uid).then(resp => {
+    words.get(user.uid).then((resp) => {
       const sorted = resp.sort((a, b) => a.words.createdAt - b.words.createdAt);
       setData(sorted);
       setChecked(true);
     });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [authorized]);
 
   useEffect(() => getWords(), [authorized, getWords]);
@@ -64,28 +64,29 @@ function App() {
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem('user'));
     if (user && !authorized) {
-      authorisation.signIn(user.email, user.password)
+      authorisation
+        .signIn(user.email, user.password)
         .then((resp) => {
           setUser(resp);
           setAuthorized(true);
           setLoaded(true);
         })
         .catch((err) => {
-          console.log(err);
+          // eslint-disable-next-line no-console
+          console.error(err);
           setLoaded(true);
-        })
+        });
     } else {
       setLoaded(true);
     }
     audio.initiate();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  if (!loaded) return <Loading />
+  if (!loaded) return <Loading />;
 
-  if (!authorized) return (
-    <Auth user={user} onChangeUser={setUser} onChangeAuthorized={setAuthorized} />
-  )
+  if (!authorized)
+    return <Auth user={user} onChangeUser={setUser} onChangeAuthorized={setAuthorized} />;
 
   return (
     <>
@@ -96,27 +97,33 @@ function App() {
         data={data}
       />
       <Routes>
-        <Route path='/' element={<Index getWords={getWords} checked={checked} data={data} />} />
-        <Route path='/test/:id' element={<Test data={data} user={user} />} />
-        <Route path='/edit' element={<Edit data={data} onChangeData={setData} />} />
-        <Route path='/edit/:id' element={
-          <EditPart
-            user={user}
-            data={data}
-            onChangeData={setData}
-            wordsData={wordsData}
-            onChangeWordsData={setWordsData}
-          />
-        } />
-        <Route path='/edit/create' element={
-          <Create
-            user={user}
-            data={data}
-            onChangeData={setData}
-            wordsData={wordsData}
-            onChangeWordsData={setWordsData}
-          />
-        } />
+        <Route path="/" element={<Index getWords={getWords} checked={checked} data={data} />} />
+        <Route path="/test/:id" element={<Test data={data} user={user} />} />
+        <Route path="/edit" element={<Edit data={data} onChangeData={setData} />} />
+        <Route
+          path="/edit/:id"
+          element={
+            <EditPart
+              user={user}
+              data={data}
+              onChangeData={setData}
+              wordsData={wordsData}
+              onChangeWordsData={setWordsData}
+            />
+          }
+        />
+        <Route
+          path="/edit/create"
+          element={
+            <Create
+              user={user}
+              data={data}
+              onChangeData={setData}
+              wordsData={wordsData}
+              onChangeWordsData={setWordsData}
+            />
+          }
+        />
       </Routes>
     </>
   );

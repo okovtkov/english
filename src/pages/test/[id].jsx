@@ -1,9 +1,9 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
-import { useParams } from "react-router-dom";
-import { words } from "../../api/words";
-import Test from "../../components/test/test";
-import Switch from "../../components/switch/switch";
-import WordsList from "../../components/words-list/words-list";
+import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { words } from '../../api/words';
+import Test from '../../components/test/test';
+import Switch from '../../components/switch/switch';
+import WordsList from '../../components/words-list/words-list';
 
 function TestPage(props) {
   const [type, setType] = useState('');
@@ -52,18 +52,19 @@ function TestPage(props) {
     } else {
       words.getById(params.id).then((resp) => setData(resp));
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  if (!wordsData && (params.id === 'favourite' || params.id === 'general')) return (
-    <div className="test">
-      <p>У Вас пока что нет слов в данном разделе.</p>
-    </div>
-  )
+  if (!wordsData && (params.id === 'favourite' || params.id === 'general'))
+    return (
+      <div className="test">
+        <p>У Вас пока что нет слов в данном разделе.</p>
+      </div>
+    );
 
   return (
     <>
-      {!type &&
+      {!type && (
         <Switch
           firstValue="просмотреть"
           secondValue="повторить"
@@ -72,15 +73,17 @@ function TestPage(props) {
         >
           Выберите что вы хотите сделать с разделом
         </Switch>
-      }
-      {type === 'translate-selecting' &&
+      )}
+      {type === 'translate-selecting' && (
         <Switch
           firstValue="с русского"
           secondValue="с английского"
           onSelectFirstValue={() => selectLangHandler('rus')}
           onSelectSecondValue={() => selectLangHandler('eng')}
-        >Выберите с какого языка хотите переводить</Switch>
-      }
+        >
+          Выберите с какого языка хотите переводить
+        </Switch>
+      )}
       {type === 'repeating' && <Test data={data} wordsData={wordsData} visibleWord={visibleWord} />}
       {type === 'reading' && <WordsList data={wordsData} />}
     </>

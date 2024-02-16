@@ -1,8 +1,8 @@
-import classNames from "classnames";
-import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import Logout from "../logout/logout";
-import Search from "../search/search";
+import classNames from 'classnames';
+import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import Logout from '../logout/logout';
+import Search from '../search/search';
 import './header.scss';
 
 function Header(props) {
@@ -11,24 +11,31 @@ function Header(props) {
   useEffect(() => {
     if (open) document.body.style.overflow = 'hidden';
     else document.body.style.overflow = 'auto';
-  }, [open])
+  }, [open]);
 
-  return(
+  return (
     <header className="header">
-      <button className={classNames("header__burger",
-        {"header__burger--active": open}
-      )} onClick={() => setOpen(!open)}>
+      <button
+        className={classNames('header__burger', { 'header__burger--active': open })}
+        onClick={() => setOpen(!open)}
+      >
         <span />
         <span />
         <span />
       </button>
       <Search className="header__search" data={props.data} />
-      <nav className={classNames("header__container", {
-        "header__container--open": open
-      })}>
+      <nav
+        className={classNames('header__container', {
+          'header__container--open': open,
+        })}
+      >
         <h2 className="header__heading">Меню</h2>
-        <Link to={'/'} className="header__link" onClick={() => setOpen(false)}>Главная</Link>
-        <Link to={'/edit'} className="header__link" onClick={() => setOpen(false)}>Редактировать</Link>
+        <Link to={'/'} className="header__link" onClick={() => setOpen(false)}>
+          Главная
+        </Link>
+        <Link to={'/edit'} className="header__link" onClick={() => setOpen(false)}>
+          Редактировать
+        </Link>
         <Logout
           className="header__logout"
           onChangeAuthorized={props.onChangeAuthorized}
@@ -37,7 +44,7 @@ function Header(props) {
         />
       </nav>
     </header>
-  )
+  );
 }
 
 export default Header;

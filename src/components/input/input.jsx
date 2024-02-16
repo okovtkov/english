@@ -10,7 +10,7 @@ function Input(props) {
       required={props.required}
       placeholder={props.placeholder}
     />
-  )
+  );
 }
 
 export default Input;
