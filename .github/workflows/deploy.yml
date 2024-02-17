@@ -29,6 +29,8 @@ jobs:
         run: npm ci
       - name: Run lint
         run: npm run lint
+      - name: Run unit tests
+        run: npm run test
       - name: Set url # рассказываем гиту с каким репозиторием работаем
         run: |
           git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
