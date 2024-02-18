@@ -1,6 +1,6 @@
 @import '../../index.scss';
 
-.test {
+.words-test {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -11,7 +11,7 @@
   margin: auto;
 }
 
-.test__wrapper {
+.words-test__wrapper {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -30,32 +30,32 @@
 }
 
 @media screen and (min-width: 425px) {
-  .test__wrapper {
+  .words-test__wrapper {
     width: 360px;
   }
 }
 
 @media screen and (min-width: 768px) {
-  .test__wrapper {
+  .words-test__wrapper {
     width: 400px;
   }
 }
 
 @media screen and (max-height: 500px) {
-  .test__wrapper {
+  .words-test__wrapper {
     transform: scale(0.8);
   }
 }
 
 @media screen and (max-height: 412px) {
-  .test__wrapper {
+  .words-test__wrapper {
     min-height: 110vh;
     max-height: 100vh;
     transform: scale(0.6);
   }
 }
 
-.test__header {
+.words-test__header {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -63,28 +63,28 @@
   height: 60px;
 }
 
-.test__words {
+.words-test__words {
   margin-top: auto;
 }
 
 @media screen and (max-height: 500px) {
-  .test__words p {
+  .words-test__words p {
     font-size: 32px;
   }
 }
 
-.test__panel {
+.words-test__panel {
   margin-bottom: auto;
 }
 
-.test__footer {
+.words-test__footer {
   display: flex;
   justify-content: center;
   width: 100%;
   height: 60px;
 }
 
-.test__to-favourite {
+.words-test__to-favourite {
   margin-top: 20px;
   margin-left: auto;
   margin-right: auto;

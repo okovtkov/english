@@ -3,14 +3,14 @@ import Word from '../word/word';
 import Panel from '../panel/panel';
 import IconEye from '../svg-icon/icon-eye';
 import Switcher from '../switcher/switcher';
-import './test.scss';
+import './words-test.scss';
 import IconSound from '../svg-icon/icon-sound';
 import { words } from '../../api/words';
 import { useParams } from 'react-router-dom';
 import Loading from '../loading/loading';
 import { audio } from '../../api/audio';
 
-function Test(props) {
+function WordsTest(props) {
   const [count, setCount] = useState(0);
   const [mode, setMode] = useState('text');
   const [card, setCard] = useState(props.wordsData ? props.wordsData[count] : null);
@@ -72,9 +72,9 @@ function Test(props) {
   if (!card) return <Loading />;
 
   return (
-    <div className="test">
-      <div className="test__wrapper">
-        <header className="test__header">
+    <div className="words-test">
+      <div className="words-test__wrapper">
+        <header className="words-test__header">
           <Switcher
             theme="primary"
             firstOption={<IconEye />}
@@ -89,17 +89,17 @@ function Test(props) {
           word={props.wordsData[count]}
           visibleWord={props.visibleWord}
           mode={mode}
-          className="test__words"
+          className="words-test__words"
         />
         <Panel
           onChangeVisible={setVisible}
           count={count}
           onChangeCount={setCount}
           length={props.wordsData.length}
-          className="test__panel"
+          className="words-test__panel"
         />
-        <footer className="test__footer">
-          <button className="test__to-favourite" onClick={onClick}>
+        <footer className="words-test__footer">
+          <button className="words-test__to-favourite" onClick={onClick}>
             {card.isFavourite ? 'Убрать из избранного' : 'Добавить в избранное'}
           </button>
         </footer>
@@ -108,4 +108,4 @@ function Test(props) {
   );
 }
 
-export default Test;
+export default WordsTest;
