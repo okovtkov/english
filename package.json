@@ -23,7 +23,7 @@
     "build": "react-scripts build",
     "lint": "npx eslint .",
     "prettier:fix": "npx prettier --write .",
-    "test": "react-scripts test",
+    "test": "npx jest",
     "eject": "react-scripts eject"
   },
   "devDependencies": {
