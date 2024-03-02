@@ -6,9 +6,7 @@ function Switcher(props) {
 
   const onChangeHandler = useCallback(() => {
     const isChecked = ref.current.checked;
-    if (isChecked) props.onChangeMode('sound');
-    else props.onChangeMode('text');
-    props.onChangeVisible(false);
+    props.onChange(isChecked);
   }, [props]);
 
   return (

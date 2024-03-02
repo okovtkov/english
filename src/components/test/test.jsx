@@ -49,6 +49,11 @@ function Test(props) {
     }
   }, [card, params.id, props.data, props.wordsData]);
 
+  const onChangeMode = useCallback((isChecked) => {
+    setMode(isChecked ? 'sound' : 'text');
+    setVisible(false);
+  }, []);
+
   const changeVisibleHandler = useCallback(
     (word) => {
       setVisible(true);
@@ -73,9 +78,8 @@ function Test(props) {
           <Switcher
             firstOption={<IconEye />}
             secondOption={<IconSound />}
-            onChangeMode={setMode}
+            onChange={onChangeMode}
             className="test__switcher"
-            onChangeVisible={setVisible}
           />
         </header>
         <Word
