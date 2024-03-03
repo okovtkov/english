@@ -24,28 +24,10 @@ function App() {
     words: {
       owner: '',
       name: '',
-      words: [
-        {
-          english: '',
-          russian: '',
-        },
-        {
-          english: '',
-          russian: '',
-        },
-        {
-          english: '',
-          russian: '',
-        },
-        {
-          english: '',
-          russian: '',
-        },
-        {
-          english: '',
-          russian: '',
-        },
-      ],
+      words: [1, 2, 3, 4].map(() => ({
+        english: '',
+        russian: '',
+      })),
     },
   });
 

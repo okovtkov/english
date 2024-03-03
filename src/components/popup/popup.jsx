@@ -1,7 +1,10 @@
+import ReactDOM from 'react-dom';
 import './popup.scss';
 
 function Popup(props) {
-  return (
+  const portal = document.getElementById('portal');
+
+  return ReactDOM.createPortal(
     <div className="popup">
       <div className="popup__wrapper">
         <header className="popup__header">Подтвердите действие</header>
@@ -15,7 +18,8 @@ function Popup(props) {
           </button>
         </footer>
       </div>
-    </div>
+    </div>,
+    portal,
   );
 }
 
