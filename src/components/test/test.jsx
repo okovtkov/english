@@ -76,6 +76,7 @@ function Test(props) {
       <div className="test__wrapper">
         <header className="test__header">
           <Switcher
+            theme="primary"
             firstOption={<IconEye />}
             secondOption={<IconSound />}
             onChange={onChangeMode}

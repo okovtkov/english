@@ -1,17 +1,24 @@
 import classNames from 'classnames';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Logout from '../logout/logout';
+import Switcher from '../switcher/switcher';
+import IconSun from '../svg-icon/icon-sun/icon-sun';
+import IconMoon from '../svg-icon/icon-moon/icon-moon';
 import Search from '../search/search';
 import './header.scss';
 
 function Header(props) {
   const [open, setOpen] = useState(false);
+  const [mode, setMode] = useState('light');
 
   useEffect(() => {
-    if (open) document.body.style.overflow = 'hidden';
-    else document.body.style.overflow = 'auto';
+    document.body.style.overflow = open ? 'hidden' : 'auto';
   }, [open]);
+
+  const onChangeMode = useCallback((isChecked) => {
+    setMode(isChecked ? 'dark' : 'light');
+  }, []);
 
   return (
     <header className="header">
@@ -42,7 +49,23 @@ function Header(props) {
           onChangeUser={props.onChangeUser}
           onChangeChecked={props.onChangeChecked}
         />
+        <Switcher
+          checked={mode === 'dark'}
+          theme="primary"
+          firstOption={<IconSun theme="primary" />}
+          secondOption={<IconMoon theme="primary" />}
+          onChange={onChangeMode}
+          className="header__switcher-mobile"
+        />
       </nav>
+      <Switcher
+        checked={mode === 'dark'}
+        theme="secondary"
+        firstOption={<IconSun theme="secondary" />}
+        secondOption={<IconMoon theme="secondary" />}
+        onChange={onChangeMode}
+        className="header__switcher-desktop"
+      />
     </header>
   );
 }

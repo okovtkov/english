@@ -67,6 +67,9 @@
   flex-direction: column;
   width: 300px;
   height: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  transform: translateX(-15%);
   max-height: 200vh;
   background-color: $body;
   transition: left 0.2s linear;
@@ -76,6 +79,7 @@
   &--open {
     position: fixed;
     left: 0;
+    transform: translateX(0);
   }
 }
 
@@ -103,15 +107,13 @@
 }
 
 .header__search {
-  position: absolute;
-  top: 15px;
-  right: 15px;
+  position: relative;
   max-width: 250px;
+  margin: 0 15px;
 }
 
 @media screen and (min-width: 1024px) {
   .header__search {
-    left: 15px;
     max-width: 300px;
   }
 }
@@ -176,5 +178,27 @@
     svg {
       display: none;
     }
+  }
+}
+
+.header__switcher-desktop {
+  display: none;
+  margin-left: 0;
+  margin-right: 15px;
+}
+
+.header__switcher-mobile {
+  position: absolute;
+  bottom: 22px;
+  right: 30px;
+}
+
+@media screen and (min-width: 1024px) {
+  .header__switcher-desktop {
+    display: flex;
+  }
+
+  .header__switcher-mobile {
+    display: none;
   }
 }

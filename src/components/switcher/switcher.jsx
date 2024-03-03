@@ -10,9 +10,15 @@ function Switcher(props) {
   }, [props]);
 
   return (
-    <label className={`switcher ${props.className}`}>
+    <label className={`switcher ${props.className} switcher--${props.theme}`}>
       <div className="switcher__icon">{props.firstOption}</div>
-      <input ref={ref} type="checkbox" className="switcher__checkbox" onChange={onChangeHandler} />
+      <input
+        checked={props.checked}
+        ref={ref}
+        type="checkbox"
+        className="switcher__checkbox"
+        onChange={onChangeHandler}
+      />
       <div className="switcher__switch" />
       <div className="switcher__icon">{props.secondOption}</div>
     </label>

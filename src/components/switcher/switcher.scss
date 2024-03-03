@@ -19,8 +19,12 @@
     margin-left: 10px;
   }
 
-  svg {
+  .switcher--primary & svg {
     fill: $main;
+  }
+
+  .switcher--secondary & svg {
+    fill: #fff;
   }
 }
 
@@ -35,7 +39,6 @@
 .switcher__switch {
   position: relative;
   width: 30px;
-  border: 1px solid $main;
   border-radius: 15px;
 
   &::after {
@@ -45,8 +48,22 @@
     width: 10px;
     height: 10px;
     border-radius: 50%;
-    background-color: $main;
     transition: left 0.1s linear;
     content: '';
   }
+
+  .switcher--primary & {
+    border: 1px solid $main;
+    &::after {
+      background-color: $main;
+    }
+  }
+
+  .switcher--secondary & {
+    border: 1px solid #fff;
+    &::after {
+      background-color: #fff;
+    }
+  }
+  
 }
