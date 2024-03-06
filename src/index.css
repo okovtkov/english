@@ -1,0 +1,33 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+body {
+  --body: #ffeede;
+  --main: #d65f5f;
+  --card: #f7f7f1;
+
+  --bgc-primary: #e18787;
+  --bgc-secondary: #fff3e8;
+  --bgc-tertiary: #ffe6cf;
+
+  --text-primary: #000;
+  --text-secondary: brown;
+
+  --color-primary: #fff;
+  --color-secondary: #000;
+  --color-secondary-2: gray;
+  --color-secondary-3: lightgray;
+
+  background-color: var(--body);
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+}
+
+body[data-theme="dark"] {
+  --body: rgb(123, 122, 122);
+  --main: rgb(70, 33, 33);
+  --card: #707070;
+}

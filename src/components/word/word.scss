@@ -1,4 +1,4 @@
-@import '../../index.scss';
+@import '../../index.css';
 
 .word {
   display: flex;
@@ -32,7 +32,7 @@
   cursor: pointer;
 
   &:hover svg {
-    fill: $main;
+    fill: var(--main);
   }
 }
 
@@ -55,6 +55,6 @@
 .word__invisible--active {
   cursor: pointer;
   &::after {
-    background-color: gray;
+    background-color: var(--color-secondary-2);
   }
 }

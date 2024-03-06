@@ -1,28 +1,28 @@
-@import '../../index.scss';
+@import '../../index.css';
 
 .ref {
   display: inline-block;
-  color: white;
+  color: var(--color-primary);
   text-decoration: none;
   transition: color 0.1s linear;
   margin: 5px;
 
   &:hover {
-    color: white;
+    color: var(--color-primary);
   }
 }
 
 .ref__children {
   min-width: 69px;
   padding: 15px 20px;
-  background-color: lighten($main, 10%);
-  border: 1px solid $main;
+  background-color: var(--bgc-primary);
+  border: 1px solid var(--main);
   border-radius: 10px;
   text-align: center;
   font-size: 30px;
   transition: background-color 0.1s linear;
 
   &:hover {
-    background-color: darken($main, 5%);
+    background-color: var(--main);
   }
 }

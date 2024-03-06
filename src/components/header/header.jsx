@@ -17,7 +17,10 @@ function Header(props) {
   }, [open]);
 
   const onChangeMode = useCallback((isChecked) => {
-    setMode(isChecked ? 'dark' : 'light');
+    const newMode = isChecked ? 'dark' : 'light';
+    setMode(newMode);
+    document.body.dataset.theme = newMode;
+    localStorage.setItem('theme', newMode);
   }, []);
 
   return (

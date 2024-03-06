@@ -1,4 +1,4 @@
-@import '../../index.scss';
+@import '../../index.css';
 
 .form {
   padding: 0 20px;
@@ -11,7 +11,7 @@
 .form__heading--name {
   margin-bottom: 5px;
   font-size: 14px;
-  color: darken(gray, 10%);
+  color: var(--color-secondary-2);
 }
 
 .form__head-wrapper {
@@ -60,7 +60,7 @@
   flex-direction: column;
   align-items: center;
   padding: 10px 0;
-  border-top: 1px solid lighten($main, 10%);
+  border-top: 1px solid var(--main);
 
   &:hover .form__close {
     transform: scale(1);
@@ -73,9 +73,9 @@
     margin-right: 15px;
     margin-bottom: 15px;
     padding: 5px 10px 0px 10px;
-    border: 1px solid $main;
+    border: 1px solid var(--main);
     border-radius: 10px;
-    background-color: darken($body, 10%);
+    background-color: var(--body);
   }
 }
 
@@ -101,7 +101,7 @@
   margin-bottom: 10px;
   text-align: center;
   font-size: 13px;
-  color: gray;
+  color: var(--color-secondary-2);
 }
 
 .form__label--name {

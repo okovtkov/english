@@ -1,14 +1,14 @@
-@import '../../../index.scss';
+@import '../../../index.css';
 
 
 .icon-moon {
   path {
-    fill: $main;
+    fill: var(--main);
   }
 
   &--secondary {
     path {
-      fill: #fff;
+      fill: var(--color-primary);
     }
   }
 }

@@ -1,4 +1,4 @@
-@import '../../index.scss';
+@import '../../index.css';
 
 .loading {
   display: flex;
@@ -19,7 +19,7 @@
   position: absolute;
   width: 18px;
   height: 18px;
-  background: $main;
+  background: var(--main);
   border-radius: 50%;
   animation: loading 1.2s linear infinite;
 }

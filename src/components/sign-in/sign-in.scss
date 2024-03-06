@@ -1,4 +1,4 @@
-@import '../../index.scss';
+@import '../../index.css';
 
 .sign-in__heading {
   text-align: center;
@@ -10,7 +10,7 @@
   flex-direction: column;
   margin-bottom: 8px;
   font-size: 10px;
-  color: gray;
+  color: var(--color-secondary-2);
 }
 
 .sign-in__input {
@@ -44,4 +44,5 @@
   display: block;
   margin-top: 15px;
   background-color: inherit;
+  color: var(--text-secondary);
 }
