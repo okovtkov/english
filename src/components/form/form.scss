@@ -16,6 +16,8 @@
 
 .form__head-wrapper {
   display: flex;
+  flex-direction: column;
+  gap: 10px;
   justify-content: space-between;
   align-items: center;
   max-width: 660px;
@@ -23,6 +25,13 @@
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 20px;
+}
+
+@media screen and (min-width: 768px) {
+  .form__head-wrapper {
+    flex-direction: row;
+    gap: 0;
+  }
 }
 
 @media screen and (min-width: 1024px) {
@@ -75,7 +84,7 @@
     padding: 5px 10px 0px 10px;
     border: 1px solid var(--main);
     border-radius: 10px;
-    background-color: var(--body);
+    background-color: var(--card);
   }
 }
 
@@ -101,7 +110,7 @@
   margin-bottom: 10px;
   text-align: center;
   font-size: 13px;
-  color: var(--color-secondary-2);
+  color: var(--text-tertiary);
 }
 
 .form__label--name {

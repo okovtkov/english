@@ -50,7 +50,7 @@
   max-height: 90vh;
   overflow-y: scroll;
   list-style-type: none;
-  background-color: rgba(255, 221, 227, 0.7);
+  background-color: var(--body-transparent);
   padding: 15px 0;
   z-index: 9;
   border: 1px solid var(--main);
@@ -73,9 +73,8 @@
 .search__card {
   width: 100%;
   box-shadow: none;
-  background-color: var(--color-primary);
   transform: scale(0.9);
-  background-color: rgb(255, 236, 236);
+  background-color: var(--card-secondary);
 }
 
 .search__empty {

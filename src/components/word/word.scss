@@ -30,6 +30,7 @@
   background-color: transparent;
   border: none;
   cursor: pointer;
+  fill: var(--color-secondary);
 
   &:hover svg {
     fill: var(--main);

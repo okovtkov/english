@@ -6,8 +6,10 @@
 
 body {
   --body: #ffeede;
+  --body-transparent: rgba(255, 221, 227, 0.7);
+  --card: #ffe5cc;
+  --card-secondary: #ffecec;
   --main: #d65f5f;
-  --card: #f7f7f1;
 
   --bgc-primary: #e18787;
   --bgc-secondary: #fff3e8;
@@ -15,11 +17,14 @@ body {
 
   --text-primary: #000;
   --text-secondary: brown;
+  --text-tertiary: gray;
 
   --color-primary: #fff;
   --color-secondary: #000;
   --color-secondary-2: gray;
   --color-secondary-3: lightgray;
+
+  --box-shadow-nav: rgba(0, 0, 0, 0.1);
 
   background-color: var(--body);
   margin: 0;
@@ -28,6 +33,23 @@ body {
 
 body[data-theme="dark"] {
   --body: rgb(123, 122, 122);
-  --main: rgb(70, 33, 33);
-  --card: #707070;
+  --body-transparent: rgba(123, 122, 122, 0.7);
+  --card: rgb(79, 79, 79);
+  --card-secondary: rgb(72, 72, 72);
+  --main: rgb(39, 38, 38);
+
+  --bgc-primary: #393939;
+  --bgc-secondary: #b6b6b6;
+  --bgc-tertiary: #4c4c4c;
+
+  --text-primary: #e3e3e3;
+  --text-secondary: #efefef;
+  --text-tertiary: #fff;
+
+  --color-primary: #ededed;
+  --color-secondary: #dcdcdc;
+  --color-secondary-2: #a2a2a2;
+  --color-secondary-3: rgb(170, 170, 170);
+
+  --box-shadow-nav: rgba(179, 179, 179, 0.1);
 }

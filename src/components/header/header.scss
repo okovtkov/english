@@ -130,6 +130,13 @@
     color: var(--body);
     background-color: var(--main);
   }
+
+  body[data-theme="dark"] & {
+    &:hover {
+      color: var(--text-secondary);
+      background-color: var(--main);
+    }
+  }
 }
 
 @media screen and (min-width: 1024px) {
@@ -139,7 +146,15 @@
     transition: box-shadow 0.1s linear;
 
     &:hover {
-      box-shadow: inset 0 0 10px 10px var(--color-secondary-3);
+      color: var(--color-primary);
+      box-shadow: inset 0 0 10px 10px var(--box-shadow-nav);
+    }
+
+    body[data-theme="dark"] & {
+      &:hover {
+        color: var(--color-primary);
+        box-shadow: inset 0 0 5px 5px var(--box-shadow-nav);
+      }
     }
   }
 }
@@ -151,6 +166,15 @@
   width: 50px;
   font-size: 0;
   z-index: -1;
+
+  body[data-theme="dark"] & {
+    &:hover {
+      color: var(--color-primary);
+      path {
+        fill: var(--color-primary);
+      }
+    }
+  }
 }
 
 @media screen and (min-width: 768px) {
@@ -172,7 +196,14 @@
     background-color: var(--main);
 
     &:hover {
-      box-shadow: inset 0 0 10px 10px var(--color-secondary-3);
+      color: var(--color-primary);
+      box-shadow: inset 0 0 10px 10px var(--box-shadow-nav);
+    }
+
+    body[data-theme="dark"] & {
+      &:hover {
+        box-shadow: inset 0 0 5px 5px var(--box-shadow-nav);
+      }
     }
 
     svg {
