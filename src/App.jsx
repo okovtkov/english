@@ -12,6 +12,7 @@ import Auth from './components/auth/auth';
 import { authorisation } from './api/auth';
 import Loading from './components/loading/loading';
 import { audio } from './api/audio';
+import { ThemeStateProvider } from './components/theme-switcher/theme-context';
 
 function App() {
   const [checked, setChecked] = useState(false);
@@ -65,13 +66,22 @@ function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  if (!loaded) return <Loading />;
+  if (!loaded)
+    return (
+      <ThemeStateProvider>
+        <Loading />
+      </ThemeStateProvider>
+    );
 
   if (!authorized)
-    return <Auth user={user} onChangeUser={setUser} onChangeAuthorized={setAuthorized} />;
+    return (
+      <ThemeStateProvider>
+        <Auth user={user} onChangeUser={setUser} onChangeAuthorized={setAuthorized} />
+      </ThemeStateProvider>
+    );
 
   return (
-    <>
+    <ThemeStateProvider>
       <Header
         onChangeAuthorized={setAuthorized}
         onChangeUser={setUser}
@@ -107,7 +117,7 @@ function App() {
           }
         />
       </Routes>
-    </>
+    </ThemeStateProvider>
   );
 }
 
