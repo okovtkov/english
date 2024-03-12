@@ -1,18 +1,29 @@
-import { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, useContext, useState } from 'react';
 
 const ThemeStateContext = createContext();
 
 export const ThemeStateProvider = ({ children }) => {
-  const defaultTheme = localStorage.getItem('theme') || 'light';
+  const defaultTheme = getDefaultTheme();
   const [theme, setTheme] = useState(defaultTheme);
 
-  useEffect(() => {
-    document.body.dataset.theme = theme;
-    localStorage.setItem('theme', theme);
-  }, [theme]);
+  function getDefaultTheme() {
+    const localTheme = localStorage.getItem('theme');
+    if (localTheme) return localTheme;
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)
+      return 'dark';
+    return 'light';
+  }
+
+  const updateTheme = (value) => {
+    setTheme(value);
+    document.body.dataset.theme = value;
+    localStorage.setItem('theme', value);
+  };
 
   return (
-    <ThemeStateContext.Provider value={{ theme, setTheme }}>{children}</ThemeStateContext.Provider>
+    <ThemeStateContext.Provider value={{ theme, setTheme: updateTheme }}>
+      {children}
+    </ThemeStateContext.Provider>
   );
 };
 

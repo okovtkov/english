@@ -46,6 +46,11 @@ function App() {
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem('user'));
+    const theme = localStorage.getItem('theme');
+    if (theme) {
+      document.body.dataset.theme = theme;
+      localStorage.setItem('theme', theme);
+    }
     if (user && !authorized) {
       authorisation
         .signIn(user.email, user.password)

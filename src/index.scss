@@ -4,7 +4,7 @@
   box-sizing: border-box;
 }
 
-body {
+@mixin light-color-vars {
   --body: #ffeede;
   --body-transparent: rgba(255, 221, 227, 0.7);
   --card: #ffe5cc;
@@ -25,13 +25,9 @@ body {
   --color-secondary-3: lightgray;
 
   --box-shadow-nav: rgba(0, 0, 0, 0.1);
-
-  background-color: var(--body);
-  margin: 0;
-  font-family: 'Poppins', sans-serif;
 }
 
-body[data-theme="dark"] {
+@mixin dark-color-vars {
   --body: rgb(123, 122, 122);
   --body-transparent: rgba(123, 122, 122, 0.7);
   --card: rgb(79, 79, 79);
@@ -52,4 +48,30 @@ body[data-theme="dark"] {
   --color-secondary-3: rgb(170, 170, 170);
 
   --box-shadow-nav: rgba(179, 179, 179, 0.1);
+}
+
+body {
+  background-color: var(--body);
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    @include dark-color-vars;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  body {
+    @include light-color-vars;
+  }
+}
+
+body[data-theme="dark"] {
+  @include dark-color-vars;
+}
+
+body[data-theme="light"] {
+  @include light-color-vars;
 }
