@@ -21,11 +21,12 @@
   max-height: 500px;
   margin-top: auto;
   margin-bottom: auto;
-  background-color: $body;
-  border: 3px solid $main;
+  background-color: var(--card-primary);
+  border: 3px solid var(--main);
+  color: var(--text-primary);
   background-repeat: repeat;
   border-radius: 20px;
-  box-shadow: 0 0 15px 5px gray;
+  box-shadow: 0 0 15px 5px var(--color-secondary-100);
 }
 
 @media screen and (min-width: 425px) {
@@ -89,13 +90,13 @@
   margin-right: auto;
   margin-bottom: 20px;
   width: 160px;
-  color: brown;
+  color: var(--text-secondary);
   background-color: transparent;
   border: none;
   cursor: pointer;
   transition: color 0.1s linear;
 
   &:hover {
-    color: $main;
+    color: var(--main);
   }
 }

@@ -30,9 +30,10 @@
   background-color: transparent;
   border: none;
   cursor: pointer;
+  fill: var(--color-secondary);
 
   &:hover svg {
-    fill: $main;
+    fill: var(--main);
   }
 }
 
@@ -55,6 +56,6 @@
 .word__invisible--active {
   cursor: pointer;
   &::after {
-    background-color: gray;
+    background-color: var(--color-secondary-100);
   }
 }

@@ -3,14 +3,14 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Logout from '../logout/logout';
 import Search from '../search/search';
+import ThemeSwitcher from '../theme-switcher/theme-switcher';
 import './header.scss';
 
 function Header(props) {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    if (open) document.body.style.overflow = 'hidden';
-    else document.body.style.overflow = 'auto';
+    document.body.style.overflow = open ? 'hidden' : 'auto';
   }, [open]);
 
   return (
@@ -42,7 +42,9 @@ function Header(props) {
           onChangeUser={props.onChangeUser}
           onChangeChecked={props.onChangeChecked}
         />
+        <ThemeSwitcher iconTheme="primary" className="header__switcher-mobile" />
       </nav>
+      <ThemeSwitcher iconTheme="secondary" className="header__switcher-desktop" />
     </header>
   );
 }

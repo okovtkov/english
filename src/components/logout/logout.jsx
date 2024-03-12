@@ -5,7 +5,7 @@ import IconLogout from '../svg-icon/icon-logout';
 import './logout.scss';
 
 function Logout(props) {
-  const [popup, setPopup] = useState(false);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
   const navigate = useNavigate();
   const onAgree = useCallback(() => {
     props.onChangeUser(null);
@@ -17,12 +17,12 @@ function Logout(props) {
 
   return (
     <>
-      <button onClick={() => setPopup(true)} className={`logout ${props.className}`}>
+      <button onClick={() => setIsPopupOpen(true)} className={`logout ${props.className}`}>
         Выйти
         <IconLogout />
       </button>
-      {popup && (
-        <Popup onAgree={onAgree} onCancel={() => setPopup(false)}>
+      {isPopupOpen && (
+        <Popup onAgree={onAgree} onCancel={() => setIsPopupOpen(false)}>
           Вы уверены, что хотите выйти?
         </Popup>
       )}

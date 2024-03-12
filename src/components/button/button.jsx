@@ -3,7 +3,7 @@ import './button.scss';
 function Button(props) {
   return (
     <button
-      className={`button ${props.className} ${props.mode && `button__${props.mode}`}`}
+      className={`button ${props.className} ${props.mode && `button--${props.mode}`}`}
       onClick={props.onClick}
       onSubmit={props.onSubmit}
       type={props.type || 'button'}

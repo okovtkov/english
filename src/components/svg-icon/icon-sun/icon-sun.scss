@@ -1,0 +1,14 @@
+@import '../../../index.scss';
+
+
+.icon-sun {
+  path {
+    fill: var(--main);
+  }
+
+  &--secondary {
+    path {
+      fill: var(--color-primary);
+    }
+  }
+}

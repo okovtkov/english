@@ -2,46 +2,45 @@
 
 .button {
   padding: 20px 30px;
-  background-color: #fff;
   border-radius: 5px;
-  border: 1px solid darken($main, 10%);
-  background-color: $main;
+  border: 1px solid var(--main);
+  background-color: var(--main);
   text-align: center;
   vertical-align: middle;
   font-size: 20px;
-  color: white;
+  color: var(--color-primary);
   transition: 0.1s linear color;
   cursor: pointer;
 
   &:hover {
-    background-color: #fff;
-    color: darken($main, 10%);
+    background-color: var(--color-primary);
+    color: var(--main);
   }
 }
 
-.button__small {
+.button--small {
   width: auto;
   margin-left: auto;
   margin-right: auto;
-  background-color: $body;
-  color: darken($main, 20%);
+  background-color: var(--body);
+  color: var(--main);
   padding: 0;
   border: none;
   cursor: pointer;
   font-size: 12px;
 
   &:hover {
-    color: $main;
+    color: var(--main);
     background-color: transparent;
   }
 }
 
-.button__reverse {
-  background-color: #fff;
-  color: darken($main, 20%);
+.button--reverse {
+  background-color: var(--color-primary);
+  color: var(--main);
 
   &:hover {
-    background-color: $main;
-    color: white;
+    background-color: var(--main);
+    color: var(--color-primary);
   }
 }

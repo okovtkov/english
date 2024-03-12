@@ -3,6 +3,7 @@ import SignIn from '../sign-in/sign-in';
 import SignUp from '../sign-up/sign-up';
 import Reset from '../reset/reset';
 import Button from '../button/button';
+import ThemeSwitcher from '../theme-switcher/theme-switcher';
 import './auth.scss';
 
 function Auth(props) {
@@ -11,6 +12,7 @@ function Auth(props) {
   return (
     <div className="auth">
       <div className="auth__wrapper">
+        <ThemeSwitcher className="auth__theme-switcher" iconTheme="primary" />
         {type === 'sign-in' && (
           <SignIn
             onChangeType={setType}

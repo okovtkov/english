@@ -24,16 +24,16 @@
 .search__input {
   height: 30px;
   max-width: 350px !important;
-  caret-color: white;
-  color: white;
-  background-color: lighten($main, 10%);
+  caret-color: var(--color-primary);
+  color: var(--color-primary);
+  background-color: var(--bgc-primary);
 
   &::-webkit-search-cancel-button {
     -webkit-appearance: none;
   }
 
   &::placeholder {
-    color: white;
+    color: var(--color-primary);
   }
 
   &:focus {
@@ -50,10 +50,10 @@
   max-height: 90vh;
   overflow-y: scroll;
   list-style-type: none;
-  background-color: rgba(255, 221, 227, 0.7);
+  background-color: var(--body-transparent);
   padding: 15px 0;
   z-index: 9;
-  border: 1px solid $main;
+  border: 1px solid var(--main);
   -ms-overflow-style: none;
   overflow: -moz-scrollbars-none;
 
@@ -73,13 +73,12 @@
 .search__card {
   width: 100%;
   box-shadow: none;
-  background-color: white;
   transform: scale(0.9);
-  background-color: rgb(255, 236, 236);
+  background-color: var(--card-secondary);
 }
 
 .search__empty {
   text-align: center;
-  color: darken($main, 20%);
+  color: var(--main);
   margin: 0;
 }
