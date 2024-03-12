@@ -56,6 +56,6 @@
 .word__invisible--active {
   cursor: pointer;
   &::after {
-    background-color: var(--color-secondary-2);
+    background-color: var(--color-secondary-100);
   }
 }

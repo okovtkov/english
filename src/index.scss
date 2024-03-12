@@ -7,7 +7,7 @@
 @mixin light-color-vars {
   --body: #ffeede;
   --body-transparent: rgba(255, 221, 227, 0.7);
-  --card: #ffe5cc;
+  --card-primary: #ffe5cc;
   --card-secondary: #ffecec;
   --main: #d65f5f;
 
@@ -21,8 +21,8 @@
 
   --color-primary: #fff;
   --color-secondary: #000;
-  --color-secondary-2: gray;
-  --color-secondary-3: lightgray;
+  --color-secondary-100: gray;
+  --color-secondary-200: lightgray;
 
   --box-shadow-nav: rgba(0, 0, 0, 0.1);
 }
@@ -30,7 +30,7 @@
 @mixin dark-color-vars {
   --body: rgb(123, 122, 122);
   --body-transparent: rgba(123, 122, 122, 0.7);
-  --card: rgb(79, 79, 79);
+  --card-primary: rgb(79, 79, 79);
   --card-secondary: rgb(72, 72, 72);
   --main: rgb(39, 38, 38);
 
@@ -44,8 +44,8 @@
 
   --color-primary: #ededed;
   --color-secondary: #dcdcdc;
-  --color-secondary-2: #a2a2a2;
-  --color-secondary-3: rgb(170, 170, 170);
+  --color-secondary-100: #a2a2a2;
+  --color-secondary-200: rgb(170, 170, 170);
 
   --box-shadow-nav: rgba(179, 179, 179, 0.1);
 }

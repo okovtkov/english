@@ -6,8 +6,8 @@
   border: 1px solid var(--main);
   color: var(--text-primary);
 
-  box-shadow: 0 0 6px 4px var(--color-secondary-3);
-  background-color: var(--card);
+  box-shadow: 0 0 6px 4px var(--color-secondary-200);
+  background-color: var(--card-primary);
 
   &:hover .small-card__sound {
     opacity: 1;
@@ -24,7 +24,7 @@
     position: absolute;
     bottom: 3px;
     right: 8px;
-    color: var(--color-secondary-2);
+    color: var(--color-secondary-100);
     font-size: 8px;
     font-weight: normal;
     content: 'Англ.';
@@ -46,7 +46,7 @@
     position: absolute;
     bottom: 3px;
     right: 8px;
-    color: var(--color-secondary-2);
+    color: var(--color-secondary-100);
     font-size: 8px;
     font-weight: normal;
     content: 'Перевод';
