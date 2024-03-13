@@ -37,6 +37,7 @@ jobs:
       - name: Build project
         run: npm run build
       - name: Run deploy
+        if: env.BRANCH_NAME == 'main'
         # --branch - переходим на ветку build,
         # --remove - удаляем прошлую директорию с названием текущей ветки
         # --dist - добавляем содержимое папки ./build в папку с именем ветки которую указываем с флагом --dest
@@ -48,6 +49,9 @@ jobs:
           --dist ./build \
           --dest ./${{ env.BRANCH_NAME }} \
           --user "olek <oleg@gmail.kek>"
+      - name: Run main deploy
+        if: env.BRANCH_NAME != 'main'
+        run: npx gh-pages -b build -d build -u \"github-actions-bot <support+actions@github.com>\"
       - name: Send comment to pull request
         if: github.event_name == 'pull_request'
         uses: thollander/actions-comment-pull-request@v2
