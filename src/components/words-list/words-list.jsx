@@ -2,6 +2,7 @@ import classNames from 'classnames';
 import Loading from '../loading/loading';
 import SmallCard from '../small-card/small-card';
 import Button from '../button/button';
+import ModalWindow from '../modal-window/modal-window';
 import { audio } from '../../api/audio';
 
 import './words-list.scss';
@@ -9,6 +10,7 @@ import { useCallback, useEffect, useState } from 'react';
 
 function WordsList(props) {
   const [isPlaying, setIsPlaying] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [forbiddenWords, setForbiddenWords] = useState([]);
 
@@ -71,9 +73,15 @@ function WordsList(props) {
 
   return (
     <dl className="words-list">
-      <Button className="words-list__play" onClick={() => setIsPlaying(!isPlaying)}>
-        {isPlaying ? 'Пауза' : 'Слушать всё'}
-      </Button>
+      <ModalWindow isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+      <div className="words-list__buttons">
+        <Button className="words-list__play" onClick={() => setIsPlaying(!isPlaying)}>
+          {isPlaying ? 'Пауза' : 'Слушать всё'}
+        </Button>
+        <Button className="words-list__params" onClick={() => setIsModalOpen(true)}>
+          Параметры
+        </Button>
+      </div>
       <div className="words-list__container">
         {props.data ? (
           props.data.map((item, i) => (

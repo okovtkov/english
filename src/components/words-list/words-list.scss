@@ -2,12 +2,47 @@
 
 .words-list {
   height: 100%;
+  padding: 0 30px;
+}
+
+.words-list__buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 20px;
+}
+
+@media screen and (min-width: 768px) {
+  .words-list__buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    max-width: 620px;
+    margin: 0 auto;
+    padding: 0;
+  }
+}
+
+@media screen and (min-width: 1014px) {
+  .words-list__buttons {
+    max-width: 950px;
+  }
+}
+
+.words-list__play,
+.words-list__params {
+  display: block;
+  width: 200px;
 }
 
 .words-list__play {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
+  margin-bottom: 10px;
+}
+
+@media screen and (min-width: 768px) {
+  .words-list__play {
+    margin-bottom: 0;
+  }
 }
 
 .words-list__container {
@@ -15,6 +50,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 25px;
   margin: 30px auto;
 }
 
@@ -33,8 +69,6 @@
 }
 
 .words-list__card {
-  margin-bottom: 15px;
-  margin-left: 15px;
   cursor: pointer;
 
   &--current {
