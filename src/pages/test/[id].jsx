@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { words } from '../../api/words';
-import Test from '../../components/test/test';
+import WordsTest from '../../components/words-test/words-test';
 import Switch from '../../components/switch/switch';
 import WordsList from '../../components/words-list/words-list';
 
@@ -84,7 +84,9 @@ function TestPage(props) {
           Выберите с какого языка хотите переводить
         </Switch>
       )}
-      {type === 'repeating' && <Test data={data} wordsData={wordsData} visibleWord={visibleWord} />}
+      {type === 'repeating' && (
+        <WordsTest data={data} wordsData={wordsData} visibleWord={visibleWord} />
+      )}
       {type === 'reading' && <WordsList data={wordsData} />}
     </>
   );
