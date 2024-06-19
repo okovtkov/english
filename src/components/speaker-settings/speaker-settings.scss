@@ -1,0 +1,33 @@
+.speaker-settings {
+  max-width: 330px;
+  overflow-y: auto;
+}
+
+.speaker-settings__label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  font-size: 14px;
+  padding: 10px 0;
+  color: var(--text-secondary);
+  gap: 20px;
+  border-bottom: 1px solid var(--bgc-primary);
+
+  &:last-of-type {
+    border-bottom: none;
+  }
+}
+
+.speaker-settings__input {
+  max-width: 50px;
+  text-align: center;
+}
+
+.speaker-settings__submit {
+  display: block;
+  padding: 10px;
+  margin-top: 10px;
+  margin-left: auto;
+  margin-right: auto;
+}
