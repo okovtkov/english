@@ -2,6 +2,7 @@ import classNames from 'classnames';
 import Loading from '../loading/loading';
 import SmallCard from '../small-card/small-card';
 import Button from '../button/button';
+import SpeakerSettings from '../speaker-settings/speaker-settings';
 import { audio } from '../../api/audio';
 
 import './words-list.scss';
@@ -9,8 +10,13 @@ import { useCallback, useEffect, useState } from 'react';
 
 function WordsList(props) {
   const [isPlaying, setIsPlaying] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [forbiddenWords, setForbiddenWords] = useState([]);
+  const [wordsPause, setWordsPause] = useState(1);
+  const [translatePause, setTranslateTime] = useState(0);
+  const [repeatCount, setRepeatCount] = useState(1);
+  const [repeatPause, setRepeatPause] = useState(0);
 
   const getCorrectIndex = useCallback(
     (index) => {
@@ -24,6 +30,27 @@ function WordsList(props) {
     [forbiddenWords, props.data.length],
   );
 
+  const sayWord = useCallback(
+    (currentWord, index, repeatTime) => {
+      if (!isPlaying) return;
+      const delayBetweenTranslates = translatePause * 1000;
+      const delayBetweenWords = wordsPause * 1000;
+      audio.get(currentWord.english, currentWord.russian, delayBetweenTranslates).then(() => {
+        const delayBetweenRepeating = repeatPause * 1000;
+        if (repeatTime !== repeatCount) {
+          setTimeout(() => {
+            sayWord(currentWord, index, repeatTime + 1);
+          }, delayBetweenRepeating);
+          return;
+        }
+        setTimeout(() => {
+          setCurrentIndex(index + 1);
+        }, delayBetweenWords);
+      });
+    },
+    [isPlaying, translatePause, wordsPause, repeatPause, repeatCount],
+  );
+
   const playWordsList = useCallback(() => {
     const index = getCorrectIndex(currentIndex);
     if (index === -1) {
@@ -35,13 +62,8 @@ function WordsList(props) {
       return;
     }
     const currentWord = props.data[index];
-
-    audio.get(currentWord.english, currentWord.russian).then(() => {
-      setTimeout(() => {
-        setCurrentIndex(index + 1);
-      }, 1000);
-    });
-  }, [currentIndex, getCorrectIndex, props.data]);
+    sayWord(currentWord, index, 1);
+  }, [currentIndex, getCorrectIndex, props.data, sayWord]);
 
   const onClickCard = useCallback(
     (_, index) => {
@@ -60,6 +82,14 @@ function WordsList(props) {
     [forbiddenWords],
   );
 
+  const onChangeSettings = useCallback((data) => {
+    setRepeatPause(data.repeatPause);
+    setWordsPause(data.wordsPause);
+    setTranslateTime(data.translatePause);
+    setRepeatCount(data.repeatCount);
+    setIsModalOpen(false);
+  }, []);
+
   useEffect(() => {
     if (currentIndex > props.data.length - 1) {
       setCurrentIndex(0);
@@ -71,9 +101,19 @@ function WordsList(props) {
 
   return (
     <dl className="words-list">
-      <Button className="words-list__play" onClick={() => setIsPlaying(!isPlaying)}>
-        {isPlaying ? 'Пауза' : 'Слушать всё'}
-      </Button>
+      <SpeakerSettings
+        isOpen={isModalOpen}
+        onSubmit={onChangeSettings}
+        onClose={() => setIsModalOpen(false)}
+      />
+      <div className="words-list__buttons">
+        <Button className="words-list__play" onClick={() => setIsPlaying(!isPlaying)}>
+          {isPlaying ? 'Пауза' : 'Слушать всё'}
+        </Button>
+        <Button className="words-list__params" onClick={() => setIsModalOpen(true)}>
+          Параметры
+        </Button>
+      </div>
       <div className="words-list__container">
         {props.data ? (
           props.data.map((item, i) => (

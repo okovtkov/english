@@ -8,16 +8,18 @@ export const audio = {
     speechSynthesis.cancel();
   },
 
-  get(word, translate) {
+  get(word, translate, delay = 0) {
     if (speechSynthesis.pending) return;
 
     const eng = this.say(word, 'eng');
     return new Promise((resolve) => {
       eng.onend = () => {
-        const rus = this.say(translate, 'rus');
-        rus.onend = () => {
-          resolve();
-        };
+        setTimeout(() => {
+          const rus = this.say(translate, 'rus');
+          rus.onend = () => {
+            resolve();
+          };
+        }, delay);
       };
     });
   },
