@@ -36,11 +36,11 @@ function Test(props) {
       part = { ...props.data };
     }
 
-    const { owner, name } = part.words;
+    const { owner, name, createdAt } = part.words;
     const updateArray = part.words.words;
     const index = updateArray.findIndex((item) => item.id === cardData.id);
     updateArray.splice(index, 1, cardData);
-    words.update({ owner, name, words: updateArray }, part.id);
+    words.update({ owner, name, words: updateArray, createdAt }, part.id);
     setCard(cardData);
 
     if (params.id === 'general' || params.id === 'favourite') {
