@@ -37,7 +37,7 @@ function App() {
     words.get(user.uid).then((resp) => {
       const sorted = resp.sort((a, b) => a.words.createdAt - b.words.createdAt);
       setData(sorted);
-      setChecked(true);
+      setChecked(true); //
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [authorized]);
