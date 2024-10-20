@@ -12,6 +12,8 @@
 .word__visible {
   font-size: 32px;
   width: 90%;
+  overflow: hidden;
+  text-overflow: ellipsis;
   margin-bottom: 20px;
   margin-top: -15px;
 }
