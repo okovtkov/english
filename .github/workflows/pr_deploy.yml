@@ -1,9 +1,6 @@
 name: Deploy
 
 on:
-  push:
-    branches:
-      - main
   pull_request:
     types:
       - opened
@@ -12,7 +9,7 @@ on:
       - closed
 
 env:
-  BRANCH_NAME: ${{ github.event_name == 'pull_request' && github.head_ref || 'main' }}
+  BRANCH_NAME: ${{ github.head_ref || 'main' }}
 
 jobs:
   deploy:
@@ -58,7 +55,7 @@ jobs:
 
   remove-deploy:
     runs-on: ubuntu-latest
-    if: github.event_name == 'pull_request' && github.event.action == 'closed'
+    if: github.event.action == 'closed'
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
