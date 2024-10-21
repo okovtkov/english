@@ -1,11 +1,11 @@
 import { useCallback } from 'react';
 import Button from '../button/button';
-import CloseButton from '../close-button/close-button';
 import Input from '../input/input';
+import WordEditor from '../word-editor/word-editor';
 import './form.scss';
 
 function Form(props) {
-  const closeHandler = useCallback(
+  const removeHandler = useCallback(
     (i) => {
       const clone = { ...props.wordsData };
       clone.words.words.splice(i, 1);
@@ -35,21 +35,10 @@ function Form(props) {
     [props],
   );
 
-  const changeEnglishHandler = useCallback(
-    (e, i) => {
-      const english = e.target.value;
+  const changeHandler = useCallback(
+    ({ type, word, index }) => {
       const clone = { ...props.wordsData };
-      clone.words.words[i].english = english;
-      props.onChangeWordsData(clone);
-    },
-    [props],
-  );
-
-  const changeTranslateHandler = useCallback(
-    (e, i) => {
-      const russian = e.target.value;
-      const clone = { ...props.wordsData };
-      clone.words.words[i].russian = russian;
+      clone.words.words[index][type] = word;
       props.onChangeWordsData(clone);
     },
     [props],
@@ -58,7 +47,7 @@ function Form(props) {
   return (
     <form className="form" onSubmit={props.onSubmit}>
       <div className="form__head-wrapper">
-        <label className="form__label form__label--name">
+        <label className="form__label-name">
           Придумайте название раздела
           <Input
             type="text"
@@ -73,28 +62,14 @@ function Form(props) {
         </Button>
       </div>
       <div className="form__wrapper">
-        {props.wordsData.words.words.map((item, i) => (
-          <div key={i} className="form__words-wrapper">
-            <CloseButton className="form__close" onClick={() => closeHandler(i)} />
-            <label className="form__label">
-              Введите слово на английском
-              <Input
-                type="text"
-                onChange={(e) => changeEnglishHandler(e, i)}
-                value={item.english}
-                required={true}
-              />
-            </label>
-            <label className="form__label">
-              Введите перевод
-              <Input
-                type="text"
-                onChange={(e) => changeTranslateHandler(e, i)}
-                value={item.russian}
-                required={true}
-              />
-            </label>
-          </div>
+        {props.wordsData.words.words.map((item, index) => (
+          <li className="form__item" key={index}>
+            <WordEditor
+              wordData={item}
+              onChange={(data) => changeHandler({ ...data, index })}
+              onRemove={() => removeHandler(index)}
+            />
+          </li>
         ))}
         <div className="form__button-wrapper">
           <Button onClick={addHandler} className="form__button">
