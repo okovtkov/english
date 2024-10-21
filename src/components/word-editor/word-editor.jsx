@@ -3,7 +3,7 @@ import Input from '../input/input';
 import './word-editor.scss';
 
 function WordEditor({ wordData, onChange, onRemove }) {
-  console.log('kek');
+  console.log('kek 2');
   return (
     <div className="word-editor">
       <CloseButton className="word-editor__remove" onClick={onRemove} />
