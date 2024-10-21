@@ -1,6 +1,8 @@
+import classNames from 'classnames';
 import Button from '../button/button';
 import Input from '../input/input';
 import ModalWindow from '../modal-window/modal-window';
+import Switcher from '../switcher/switcher';
 
 import './speaker-settings.scss';
 import { useCallback, useState } from 'react';
@@ -10,6 +12,7 @@ function WordsList(props) {
   const [translatePause, setTranslateTime] = useState(0);
   const [repeatPause, setRepeatPause] = useState(0);
   const [repeatCount, setRepeatCount] = useState(1);
+  const [isUseExamples, setIsUseExamples] = useState(true);
 
   const onChangeTranslatePause = useCallback((event) => {
     const time = Number(event.target.value);
@@ -34,9 +37,9 @@ function WordsList(props) {
   const onSubmit = useCallback(
     (event) => {
       event.preventDefault();
-      props.onSubmit({ translatePause, repeatCount, wordsPause, repeatPause });
+      props.onSubmit({ translatePause, repeatCount, wordsPause, repeatPause, isUseExamples });
     },
-    [props, translatePause, repeatCount, wordsPause, repeatPause],
+    [props, translatePause, repeatCount, wordsPause, repeatPause, isUseExamples],
   );
 
   const inputs = [
@@ -69,6 +72,19 @@ function WordsList(props) {
   return (
     <ModalWindow containerClass="speaker-settings" isOpen={props.isOpen} onClose={props.onClose}>
       <form className="speaker-settings__wrapper" onSubmit={onSubmit}>
+        <label
+          className={classNames(['speaker-settings__label', 'speaker-settings__examples'], {
+            'speaker-settings__examples--on': isUseExamples,
+          })}
+        >
+          <span className="speaker-settings__name">Использовать примеры</span>
+          <Switcher
+            theme="secondary"
+            className="speaker-settings__switcher"
+            checked={isUseExamples}
+            onChange={() => setIsUseExamples(!isUseExamples)}
+          />
+        </label>
         {inputs.map((input, i) => (
           <label className="speaker-settings__label" key={i}>
             <span className="speaker-settings__name">{input.text}</span>

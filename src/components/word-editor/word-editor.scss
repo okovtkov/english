@@ -1,6 +1,6 @@
 @import '../../index.scss';
 
-.word-editor__words-wrapper {
+.word-editor {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -14,9 +14,9 @@
 }
 
 @media screen and (min-width: 768px) {
-  .word-editor__words-wrapper {
-    margin-left: 15px;
-    margin-right: 15px;
+  .word-editor {
+    margin-left: 10px;
+    margin-right: 10px;
     margin-bottom: 15px;
     padding: 5px 10px 0px 10px;
     border: 1px solid var(--main);

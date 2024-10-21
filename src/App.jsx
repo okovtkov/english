@@ -28,6 +28,8 @@ function App() {
       words: [1, 2, 3, 4].map(() => ({
         english: '',
         russian: '',
+        example: '',
+        exampleTranslation: '',
       })),
     },
   });

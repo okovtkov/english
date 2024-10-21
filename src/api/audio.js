@@ -8,7 +8,7 @@ export const audio = {
     speechSynthesis.cancel();
   },
 
-  get(word, translate, delay = 0) {
+  voice(word, translate, delay = 0) {
     if (speechSynthesis.pending) return;
 
     const eng = this.say(word, 'eng');

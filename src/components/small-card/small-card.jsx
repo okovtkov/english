@@ -4,38 +4,31 @@ import './small-card.scss';
 import { useCallback } from 'react';
 import classNames from 'classnames';
 
-function SmallCard(props) {
-  const onClick = useCallback(() => {
-    if (props.disabled) return;
+function SmallCard({ word, translate, disabled, className, onClick }) {
+  const voiceTheWord = useCallback(() => {
+    if (disabled) return;
     audio.stop();
-    audio.get(props.word, props.translate);
-  }, [props.disabled, props.translate, props.word]);
-
-  const onClickOnCard = useCallback(
-    (e) => {
-      if (e.target.closest('.small-card__sound') || props.disabled) return;
-      props.onClick();
-    },
-    [props],
-  );
+    audio.voice(word, translate);
+  }, [disabled, translate, word]);
 
   return (
-    <>
-      <div className={`small-card ${props.className}`} onClick={onClickOnCard}>
+    <div className={`small-card ${className}`}>
+      <button className="small-card__hide" onClick={onClick} />
+      <dl className="small-card__dl">
         <dt className="small-card__word">
-          <span>{props.word}</span>
+          <span>{word}</span>
           <button
             className={classNames('small-card__sound', {
-              'small-card__sound--disabled': props.disabled,
+              'small-card__sound--disabled': disabled,
             })}
-            onClick={onClick}
+            onClick={voiceTheWord}
           >
             <IconSound />
           </button>
         </dt>
-        <dd className="small-card__translate">{props.translate}</dd>
-      </div>
-    </>
+        <dd className="small-card__translate">{translate}</dd>
+      </dl>
+    </div>
   );
 }
 

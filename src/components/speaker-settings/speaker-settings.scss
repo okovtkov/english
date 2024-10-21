@@ -19,6 +19,18 @@
   }
 }
 
+.speaker-settings__examples {
+  opacity: 0.5;
+
+  &--on {
+    opacity: 1;
+  }
+}
+
+.speaker-settings__switcher {
+  margin-right: 10px;
+}
+
 .speaker-settings__input {
   max-width: 50px;
   text-align: center;

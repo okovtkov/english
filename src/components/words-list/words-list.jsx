@@ -17,6 +17,7 @@ function WordsList(props) {
   const [translatePause, setTranslateTime] = useState(0);
   const [repeatCount, setRepeatCount] = useState(1);
   const [repeatPause, setRepeatPause] = useState(0);
+  const [isUseExamples, setIsUseExamples] = useState(true);
 
   const getCorrectIndex = useCallback(
     (index) => {
@@ -30,25 +31,36 @@ function WordsList(props) {
     [forbiddenWords, props.data.length],
   );
 
+  const sayExamples = useCallback(async (currentWord) => {
+    await new Promise((resolve) => {
+      setTimeout(async () => {
+        await audio.voice(currentWord.example, currentWord.exampleTranslation);
+        resolve();
+      }, 300);
+    });
+  }, []);
+
   const sayWord = useCallback(
-    (currentWord, index, repeatTime) => {
+    async (currentWord, index, repeatTime) => {
       if (!isPlaying) return;
       const delayBetweenTranslates = translatePause * 1000;
       const delayBetweenWords = wordsPause * 1000;
-      audio.get(currentWord.english, currentWord.russian, delayBetweenTranslates).then(() => {
+
+      await audio.voice(currentWord.english, currentWord.russian, delayBetweenTranslates);
+      if (isUseExamples) await sayExamples(currentWord);
+
+      if (repeatTime !== repeatCount) {
         const delayBetweenRepeating = repeatPause * 1000;
-        if (repeatTime !== repeatCount) {
-          setTimeout(() => {
-            sayWord(currentWord, index, repeatTime + 1);
-          }, delayBetweenRepeating);
-          return;
-        }
         setTimeout(() => {
-          setCurrentIndex(index + 1);
-        }, delayBetweenWords);
-      });
+          sayWord(currentWord, index, repeatTime + 1);
+        }, delayBetweenRepeating);
+        return;
+      }
+      setTimeout(() => {
+        setCurrentIndex(index + 1);
+      }, delayBetweenWords);
     },
-    [isPlaying, translatePause, wordsPause, repeatPause, repeatCount],
+    [isPlaying, translatePause, wordsPause, isUseExamples, sayExamples, repeatCount, repeatPause],
   );
 
   const playWordsList = useCallback(() => {
@@ -67,7 +79,6 @@ function WordsList(props) {
 
   const onClickCard = useCallback(
     (_, index) => {
-      // если нажали на значек озвучивания слова, то ничего не делать
       const clone = [...forbiddenWords];
 
       if (forbiddenWords.includes(index)) {
@@ -88,6 +99,7 @@ function WordsList(props) {
     setTranslateTime(data.translatePause);
     setRepeatCount(data.repeatCount);
     setIsModalOpen(false);
+    setIsUseExamples(data.isUseExamples);
   }, []);
 
   useEffect(() => {
