@@ -131,9 +131,8 @@ function WordsList(props) {
           props.data.map((item, i) => (
             <SmallCard
               key={`${item.english}+${i}`}
-              word={item.english}
+              wordData={item}
               disabled={isPlaying}
-              translate={item.russian}
               className={classNames('words-list__card', {
                 'words-list__card--current': i === getCorrectIndex(currentIndex) && isPlaying,
                 'words-list__card--hidden': forbiddenWords.includes(i),

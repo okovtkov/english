@@ -6,8 +6,10 @@ import Switcher from '../switcher/switcher';
 
 import './speaker-settings.scss';
 import { useCallback, useState } from 'react';
+import { useThemeState } from '../theme-switcher/theme-context';
 
 function WordsList(props) {
+  const { theme } = useThemeState();
   const [wordsPause, setWordsPause] = useState(1);
   const [translatePause, setTranslateTime] = useState(0);
   const [repeatPause, setRepeatPause] = useState(0);
@@ -79,7 +81,7 @@ function WordsList(props) {
         >
           <span className="speaker-settings__name">Использовать примеры</span>
           <Switcher
-            theme="secondary"
+            theme={theme === 'light' ? 'primary' : 'secondary'}
             className="speaker-settings__switcher"
             checked={isUseExamples}
             onChange={() => setIsUseExamples(!isUseExamples)}
