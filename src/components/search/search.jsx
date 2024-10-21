@@ -51,7 +51,7 @@ function Search(props) {
         {founded.length > 0 ? (
           founded.map((item, i) => (
             <li className="search__item" key={item.english + i}>
-              <SmallCard word={item.english} translate={item.russian} className="search__card" />
+              <SmallCard wordData={item} className="search__card" />
             </li>
           ))
         ) : (
