@@ -1,0 +1,36 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository # получаем весь код
+        uses: actions/checkout@v3
+      - name: Setup node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.x
+      - name: Install dependencies
+        run: npm ci
+      - name: Set url # рассказываем гиту с каким репозиторием работаем
+        run: |
+          git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build project
+        run: npm run build
+      - name: Run deploy
+        # --branch - переходим на ветку build,
+        # --remove - удаляем прошлую директорию с названием текущей ветки
+        # --dist - добавляем содержимое папки ./build в папку с именем ветки которую указываем с флагом --dest
+        # --user - указываем кодера, из-за которого навернется прод
+        run: |
+          npx gh-pages \
+          --branch build \
+          --dist ./build \
+          --user "olek <oleg@gmail.kek>"
