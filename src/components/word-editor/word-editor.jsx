@@ -29,7 +29,7 @@ function WordEditor({ wordData, onChange, onRemove }) {
         <Input
           type="text"
           onChange={(e) => onChange({ type: 'example', word: e.target.value })}
-          value={wordData.example}
+          value={wordData.example || ''}
           required={!!wordData.exampleTranslation}
         />
       </label>
@@ -38,7 +38,7 @@ function WordEditor({ wordData, onChange, onRemove }) {
         <Input
           type="text"
           onChange={(e) => onChange({ type: 'exampleTranslation', word: e.target.value })}
-          value={wordData.exampleTranslation}
+          value={wordData.exampleTranslation || ''}
           required={!!wordData.example}
         />
       </label>
