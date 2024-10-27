@@ -31,7 +31,10 @@ function SmallCard({ wordData, disabled, className, onClick }) {
 
   return (
     <div
-      className={classNames(['small-card', className], { 'small-card--changing': isModeChanging })}
+      className={classNames(['small-card', className], {
+        'small-card--changing': isModeChanging,
+        'small-card--favourite': wordData.isFavourite,
+      })}
     >
       <button className="small-card__hide" onClick={onClick} />
       <dl className="small-card__dl">

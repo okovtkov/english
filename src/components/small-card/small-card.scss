@@ -33,6 +33,10 @@
   &--changing {
     animation: rotate 0.3s linear;
   }
+
+  &--favourite {
+    box-shadow: 0 0 4px 4px orange;
+  }
 }
 
 .small-card__hide {
