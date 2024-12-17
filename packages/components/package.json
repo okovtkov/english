@@ -1,0 +1,12 @@
+{
+  "name": "@english/components",
+  "version": "0.0.0-stub",
+  "type": "module",
+  "private": true,
+  "main": "./index.js",
+  "dependencies": {
+    "@english/api": "0.0.0-stub",
+    "classnames": "^2.3.1",
+    "sass": "*"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "name": "@english/api",
+  "version": "0.0.0-stub",
+  "type": "module",
+  "private": true,
+  "main": "./src/index.js",
+  "dependencies": {
+    "firebase": "^9.6.10"
+  }
+}

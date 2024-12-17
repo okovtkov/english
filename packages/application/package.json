@@ -1,0 +1,24 @@
+{
+  "name": "@english/application",
+  "version": "0.0.0-stub",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "predeploy": "react-scripts build",
+    "dev": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.22.0",
+    "react-scripts": "5.0.0",
+    "@english/api": "0.0.0-stub",
+    "@english/components": "0.0.0-stub"
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
+  }
+}
