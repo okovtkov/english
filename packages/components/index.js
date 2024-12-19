@@ -23,7 +23,7 @@ export { default as ThemeSwitcher } from './src/theme-switcher/theme-switcher.js
 export { default as Test } from './src/test/test.jsx';
 export { default as Switcher } from './src/switcher/switcher.jsx';
 export { default as Switch } from './src/switch/switch.jsx';
-export * from './src/svg-icon.jsx';
+export * from './src/svg-icon/index.js';
 export { default as SpeakerSettings } from './src/speaker-settings/speaker-settings.jsx';
 export { default as SmallCard } from './src/small-card/small-card.jsx';
 export { default as SignUp } from './src/sign-up/sign-up.jsx';

@@ -1,4 +1,4 @@
-import '../index.scss';
+// import '../index.scss';
 import { Parts } from '@english/components';
 import { useEffect } from 'react';
 
