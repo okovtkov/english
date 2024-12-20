@@ -42,7 +42,7 @@ jobs:
           npx gh-pages \
           --branch build \
           --remove ./${{ env.BRANCH_NAME }} \
-          --dist ./build \
+          --dist ./packages/application/build \
           --dest ./${{ env.BRANCH_NAME }} \
           --user "olek <oleg@gmail.kek>"
       - name: Send comment to pull request
