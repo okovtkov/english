@@ -10,6 +10,7 @@ on:
 
 env:
   BRANCH_NAME: ${{ github.head_ref || 'main' }}
+  PUBLIC_URL: /english/${{ github.head_ref }}
 
 jobs:
   deploy:
@@ -36,13 +37,13 @@ jobs:
       - name: Run deploy
         # --branch - переходим на ветку build,
         # --remove - удаляем прошлую директорию с названием текущей ветки
-        # --dist - добавляем содержимое папки ./build в папку с именем ветки которую указываем с флагом --dest
+        # --dist - добавляем содержимое папки build в папку с именем ветки которую указываем с флагом --dest
         # --user - указываем кодера, из-за которого навернется прод
         run: |
           npx gh-pages \
           --branch build \
           --remove ./${{ env.BRANCH_NAME }} \
-          --dist ./build \
+          --dist ./packages/application/build \
           --dest ./${{ env.BRANCH_NAME }} \
           --user "olek <oleg@gmail.kek>"
       - name: Send comment to pull request

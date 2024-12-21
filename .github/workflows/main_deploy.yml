@@ -27,10 +27,10 @@ jobs:
       - name: Run deploy
         # --branch - переходим на ветку build,
         # --remove - удаляем прошлую директорию с названием текущей ветки
-        # --dist - добавляем содержимое папки ./build в папку с именем ветки которую указываем с флагом --dest
+        # --dist - добавляем содержимое папки ./packages/application/build в корень проджекта
         # --user - указываем кодера, из-за которого навернется прод
         run: |
           npx gh-pages \
           --branch build \
-          --dist ./build \
+          --dist ./packages/application/build \
           --user "olek <oleg@gmail.kek>"
