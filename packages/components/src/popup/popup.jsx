@@ -1,3 +1,4 @@
+'use client';
 import ReactDOM from 'react-dom';
 import './popup.scss';
 
@@ -19,7 +20,7 @@ function Popup(props) {
         </footer>
       </div>
     </div>,
-    portal,
+    portal
   );
 }
 

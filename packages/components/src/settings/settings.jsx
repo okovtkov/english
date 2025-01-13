@@ -1,8 +1,10 @@
+'use client';
 import { useCallback, useEffect, useState } from 'react';
 import Button from '../button/button';
 import CloseButton from '../close-button/close-button';
 import Ref from '../ref/ref';
 import Popup from '../popup/popup';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import classNames from 'classnames';
 import { api } from '@english/api';
 import './settings.scss';
@@ -13,6 +15,12 @@ function Settings(props) {
   const [editing, setEditing] = useState(false);
   const [popup, setPopup] = useState(false);
 
+  const client = useQueryClient();
+  const { mutate: deletePart } = useMutation({
+    mutationFn: (currentId) => api.words.deleteDoc(currentId),
+    onSuccess: () => client.invalidateQueries('words'),
+  });
+
   const onClick = useCallback((item, e) => {
     setCurrentElement(e.target);
     setPopup(true);
@@ -22,19 +30,12 @@ function Settings(props) {
   const deleteHandler = useCallback(() => {
     const wrapper = currentElement.closest('.settings__wrapper');
     wrapper.classList.add('settings__wrapper--deleted');
-    api.words.deleteDoc(currentId);
-
-    setTimeout(() => {
-      const index = props.data.findIndex((item) => item.id === currentId);
-      const clone = [...props.data];
-      clone.splice(index, 1);
-      props.onChangeData(clone);
-    }, 150);
+    deletePart(currentId);
 
     setCurrentId('');
     setCurrentElement(null);
     setPopup(false);
-  }, [currentElement, currentId, props]);
+  }, [currentElement, currentId, deletePart]);
 
   useEffect(() => {
     if (props.data.length === 0) setEditing(true);

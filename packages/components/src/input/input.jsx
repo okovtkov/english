@@ -1,3 +1,4 @@
+'use client';
 import './input.scss';
 
 function Input(props) {

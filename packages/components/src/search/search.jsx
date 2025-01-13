@@ -1,31 +1,37 @@
+'use client';
 import classNames from 'classnames';
 import { useEffect, useMemo, useState } from 'react';
 import Input from '../input/input';
 import SmallCard from '../small-card/small-card';
 import './search.scss';
+import { api } from '@english/api';
+import { useQuery } from '@tanstack/react-query';
 
 function Search(props) {
-  const [value, setValue] = useState('');
+  const [searchValue, setSearchValue] = useState('');
   const [open, setOpen] = useState(false);
-
-  const data = useMemo(
-    () => [].concat(...props.data.map((item) => [...item.words.words])),
-    [props.data],
-  );
+  const { data = [] } = useQuery({
+    queryFn: () => api.words.get(props.uid),
+    queryKey: ['words'],
+    staleTime: 1000 * 60 * 60,
+    cacheTime: 1000 * 60 * 60,
+  });
 
   const founded = useMemo(() => {
-    if (value.length < 2) return [];
-    const arr = data.filter((item) => {
-      for (const prop in item) {
+    if (searchValue.length < 2 || !data.length) return [];
+
+    const allWords = [].concat(...data.map((item) => [...item.words.words]));
+    const arr = allWords.filter((word) => {
+      for (const prop in word) {
         if (prop !== 'english' && prop !== 'russian') continue;
-        const word = item[prop].toLowerCase();
-        const result = word.match(value.toLowerCase());
+        const kek = word[prop].toLowerCase();
+        const result = kek.match(searchValue.toLowerCase());
         if (Array.isArray(result)) return true;
       }
       return false;
     });
     return arr;
-  }, [data, value]);
+  }, [data, searchValue]);
 
   useEffect(() => {
     document.addEventListener('click', (e) => {
@@ -45,7 +51,7 @@ function Search(props) {
         type="search"
         placeholder="Поиск..."
         className="search__input"
-        onChange={(e) => setValue(e.target.value)}
+        onChange={(e) => setSearchValue(e.target.value)}
       />
       <ul className="search__list">
         {founded.length > 0 ? (
@@ -56,7 +62,7 @@ function Search(props) {
           ))
         ) : (
           <p className="search__empty">
-            {value.length < 2 ? 'Введите слово' : 'Ничего не найдено'}
+            {searchValue.length < 2 ? 'Введите слово' : 'Ничего не найдено'}
           </p>
         )}
       </ul>

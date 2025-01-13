@@ -1,14 +1,17 @@
+'use client';
 import classNames from 'classnames';
 import { useCallback, useState } from 'react';
 import { api } from '@english/api';
 import Button from '../button/button';
 import Input from '../input/input';
 import './sign-in.scss';
+import { useRouter } from 'next/navigation';
 
 function SignIn(props) {
   const [error, setError] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
+  const router = useRouter();
 
   const onSubmit = useCallback(
     (e) => {
@@ -17,9 +20,9 @@ function SignIn(props) {
         .signIn(email, password)
         .then((resp) => {
           props.onChangeUser(resp);
-          props.onChangeAuthorized(true);
           const user = { email, password };
           localStorage.setItem('user', JSON.stringify(user));
+          router.push('/');
         })
         .catch((err) => {
           // eslint-disable-next-line no-console
@@ -27,7 +30,7 @@ function SignIn(props) {
           setError(err.code);
         });
     },
-    [email, password, props],
+    [email, password, props, router]
   );
 
   const checkError = useCallback(() => {

@@ -1,3 +1,4 @@
+'use client';
 import { useState } from 'react';
 import SignIn from '../sign-in/sign-in';
 import SignUp from '../sign-up/sign-up';

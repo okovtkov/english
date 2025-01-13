@@ -5,6 +5,7 @@
   "private": true,
   "main": "./index.js",
   "dependencies": {
+    "@tanstack/react-query": "^5.62.7",
     "@english/api": "0.0.0-stub",
     "classnames": "^2.3.1",
     "sass": "*"

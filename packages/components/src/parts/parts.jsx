@@ -1,22 +1,15 @@
-import { Link } from 'react-router-dom';
-import Loading from '../loading/loading';
+'use client';
+import Link from 'next/link';
 import Ref from '../ref/ref';
 import './parts.scss';
 
-function Parts(props) {
-  if (!props.checked)
-    return (
-      <div className="parts-loading">
-        <Loading />
-      </div>
-    );
-
+function Parts({ data }) {
   return (
     <div className="parts">
-      {props.data.length === 0 && props.checked ? (
+      {data.length === 0 ? (
         <p className="parts__void">
           У вас пока что нет разделов со словами.
-          <Link className="parts__link" to={'/edit/create'}>
+          <Link className="parts__link" href={'/edit/create'}>
             Создать
           </Link>
         </p>
@@ -32,7 +25,7 @@ function Parts(props) {
             </Ref>
           </div>
           <div className="parts__another">
-            {props.data.map((item) => (
+            {data.map((item) => (
               <Ref path="test" key={item.id} id={item.id}>
                 {item.words.name}
               </Ref>

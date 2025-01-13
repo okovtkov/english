@@ -1,3 +1,4 @@
+'use client';
 import classNames from 'classnames';
 import Button from '../button/button';
 import Input from '../input/input';
@@ -41,7 +42,7 @@ function WordsList(props) {
       event.preventDefault();
       props.onSubmit({ translatePause, repeatCount, wordsPause, repeatPause, isUseExamples });
     },
-    [props, translatePause, repeatCount, wordsPause, repeatPause, isUseExamples],
+    [props, translatePause, repeatCount, wordsPause, repeatPause, isUseExamples]
   );
 
   const inputs = [

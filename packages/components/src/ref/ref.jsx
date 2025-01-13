@@ -1,10 +1,11 @@
-import { Link } from 'react-router-dom';
+'use client';
+import Link from 'next/link';
 import './ref.scss';
 
 function Ref(props) {
   return (
     <Link
-      to={`/${props.path}/${props.id || ''}`}
+      href={`/${props.path}/${props.id || ''}`}
       className={`ref ${props.className}`}
       onClick={props.onClick}
     >

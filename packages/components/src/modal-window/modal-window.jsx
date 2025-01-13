@@ -1,3 +1,4 @@
+'use client';
 import ReactDOM from 'react-dom';
 import './modal-window.scss';
 import classNames from 'classnames';
@@ -23,7 +24,7 @@ function ModalWindow(props) {
         {props.children}
       </div>
     </dialog>,
-    portal,
+    portal
   );
 }
 
