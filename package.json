@@ -16,6 +16,7 @@
     "dev": "npm run dev -w @english/application",
     "build": "npm run build -w @english/application",
     "lint": "npx eslint .",
+    "start": "npm run start -w @english/application",
     "prettier:fix": "npx prettier --write ."
   },
   "devDependencies": {
