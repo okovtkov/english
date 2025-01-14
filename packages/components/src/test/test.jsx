@@ -1,20 +1,27 @@
+'use client';
+import './test.scss';
 import { useCallback, useEffect, useState } from 'react';
 import Word from '../word/word';
 import Panel from '../panel/panel';
 import IconEye from '../svg-icon/icon-eye';
 import Switcher from '../switcher/switcher';
-import './test.scss';
 import IconSound from '../svg-icon/icon-sound';
-import { api } from '@english/api';
-import { useParams } from 'react-router-dom';
 import Loading from '../loading/loading';
+import { api } from '@english/api';
+import { useMutation } from '@tanstack/react-query';
 
 function Test(props) {
-  const [count, setCount] = useState(0);
+  const [index, setIndex] = useState(0);
   const [mode, setMode] = useState('text');
-  const [card, setCard] = useState(props.wordsData ? props.wordsData[count] : null);
+  const [card, setCard] = useState(props.defaultWordsList ? props.defaultWordsList[index] : null);
   const [visible, setVisible] = useState(false);
-  const params = useParams();
+  const [wordsList, setWordsList] = useState(props.defaultWordsList);
+
+  const { mutate: updatePart } = useMutation({
+    mutationFn: (data) => {
+      api.words.update(data.information, data.id);
+    },
+  });
 
   const onClick = useCallback(() => {
     const cardData = { ...card };
@@ -26,27 +33,29 @@ function Test(props) {
       cardData.isFavourite = true;
     }
 
-    if (params.id === 'general' || params.id === 'favourite') {
-      part = props.data.find((item) => {
+    if (props.id === 'general' || props.id === 'favourite') {
+      part = props.wordsData.find((item) => {
         const card = item.words.words.find((item) => item.id === cardData.id);
         return card;
       });
     } else {
-      part = { ...props.data };
+      part = { ...props.wordsData };
     }
 
     const { owner, name, createdAt } = part.words;
-    const updateArray = part.words.words;
-    const index = updateArray.findIndex((item) => item.id === cardData.id);
-    updateArray.splice(index, 1, cardData);
-    api.words.update({ owner, name, words: updateArray, createdAt }, part.id);
+    const updatedArray = part.words.words;
+    const index = updatedArray.findIndex((item) => item.id === cardData.id);
+    updatedArray.splice(index, 1, cardData);
+    updatePart({ information: { owner, name, words: updatedArray, createdAt }, id: part.id });
     setCard(cardData);
 
-    if (params.id === 'general' || params.id === 'favourite') {
-      const index = props.wordsData.findIndex((item) => item.id === cardData.id);
-      props.wordsData.splice(index, 1, cardData);
+    if (props.id === 'general' || props.id === 'favourite') {
+      const index = wordsList.findIndex((item) => item.id === cardData.id);
+      wordsList.splice(index, 1, cardData); // TODO: сделать грамотно
+    } else {
+      setWordsList(updatedArray);
     }
-  }, [card, params.id, props.data, props.wordsData]);
+  }, [card, props.id, props.wordsData, updatePart, wordsList]);
 
   const onChangeMode = useCallback((isChecked) => {
     setMode(isChecked ? 'sound' : 'text');
@@ -60,13 +69,13 @@ function Test(props) {
       const lang = props.visibleWord === 'rus' ? 'eng' : 'rus';
       api.audio.say(word, lang);
     },
-    [mode, props.visibleWord],
+    [mode, props.visibleWord]
   );
 
   useEffect(() => {
-    if (!props.wordsData) return;
-    setCard(props.wordsData[count]);
-  }, [count, props.data, props.wordsData]);
+    if (!wordsList.length) return;
+    setCard(wordsList[index]);
+  }, [index, wordsList]);
 
   if (!card) return <Loading />;
 
@@ -85,16 +94,16 @@ function Test(props) {
         <Word
           visible={visible}
           onChangeVisible={changeVisibleHandler}
-          word={props.wordsData[count]}
+          word={card}
           visibleWord={props.visibleWord}
           mode={mode}
           className="test__words"
         />
         <Panel
           onChangeVisible={setVisible}
-          count={count}
-          onChangeCount={setCount}
-          length={props.wordsData.length}
+          index={index}
+          onChangeIndex={setIndex}
+          length={wordsList.length}
           className="test__panel"
         />
         <footer className="test__footer">

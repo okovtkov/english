@@ -2,7 +2,9 @@
   "extends": [
     "react-app",
     "react-app/jest",
-    "prettier"
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:prettier/recommended"
   ],
   "plugins": ["prettier"],
   "rules": {
@@ -10,7 +12,9 @@
     "prefer-const": "error",
     "prettier/prettier": "error",
     "semi": ["warn", "always"],
-    "promise/no-nesting": 0
+    "promise/no-nesting": 0,
+    "react/react-in-jsx-scope": "off",
+    "react/prop-types": "off"
   },
   "ignorePatterns": [
     "node_modules/",

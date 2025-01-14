@@ -1,3 +1,4 @@
+'use client';
 import Button from '../button/button';
 import { useCallback } from 'react';
 import './panel.scss';
@@ -6,10 +7,10 @@ function Panel(props) {
   const onClick = useCallback(
     (type) => {
       props.onChangeVisible(false);
-      const counter = type === 'next' ? props.count + 1 : props.count - 1;
-      if (counter < props.length && counter >= 0) props.onChangeCount(counter);
+      const counter = type === 'next' ? props.index + 1 : props.index - 1;
+      if (counter < props.length && counter >= 0) props.onChangeIndex(counter);
     },
-    [props],
+    [props]
   );
 
   return (

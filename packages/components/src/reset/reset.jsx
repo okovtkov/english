@@ -1,6 +1,8 @@
+'use client';
 import classNames from 'classnames';
 import { useCallback, useState } from 'react';
 import { api } from '@english/api';
+import { useMutation } from '@tanstack/react-query';
 import Button from '../button/button';
 import Input from '../input/input';
 import './reset.scss';
@@ -8,6 +10,16 @@ import './reset.scss';
 function Reset(props) {
   const [email, setEmail] = useState('');
   const [error, setError] = useState('');
+
+  const { mutate: resetEmail } = useMutation({
+    mutationFn: () => api.auth.reset(email),
+    onSuccess: () => {
+      props.onChangeType('reset-complete');
+    },
+    onError: (err) => {
+      setError(err.code);
+    },
+  });
 
   const checkError = useCallback(() => {
     switch (error) {
@@ -27,12 +39,9 @@ function Reset(props) {
   const onSubmit = useCallback(
     (e) => {
       e.preventDefault();
-      api.auth
-        .reset(email)
-        .then(() => props.onChangeType('reset-complete'))
-        .catch((err) => setError(err.code));
+      resetEmail();
     },
-    [email, props],
+    [resetEmail]
   );
 
   return (

@@ -1,28 +1,20 @@
-import { useCallback, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+'use client';
+import { useState } from 'react';
 import Popup from '../popup/popup';
 import IconLogout from '../svg-icon/icon-logout';
 import './logout.scss';
 
-function Logout(props) {
+function Logout({ className, onLogout }) {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
-  const navigate = useNavigate();
-  const onAgree = useCallback(() => {
-    props.onChangeUser(null);
-    props.onChangeAuthorized(null);
-    props.onChangeChecked(false);
-    localStorage.removeItem('user');
-    navigate('/');
-  }, [navigate, props]);
 
   return (
     <>
-      <button onClick={() => setIsPopupOpen(true)} className={`logout ${props.className}`}>
+      <button onClick={() => setIsPopupOpen(true)} className={`logout ${className}`}>
         Выйти
         <IconLogout />
       </button>
       {isPopupOpen && (
-        <Popup onAgree={onAgree} onCancel={() => setIsPopupOpen(false)}>
+        <Popup onAgree={onLogout} onCancel={() => setIsPopupOpen(false)}>
           Вы уверены, что хотите выйти?
         </Popup>
       )}

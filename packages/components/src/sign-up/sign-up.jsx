@@ -1,3 +1,4 @@
+'use client';
 import classNames from 'classnames';
 import { api } from '@english/api';
 import { useCallback, useState } from 'react';
@@ -17,7 +18,7 @@ function SignUp(props) {
       if (password === secondPassword) {
         api.auth
           .signUp(email, password)
-          .then((resp) => {
+          .then(() => {
             props.onChangeType('successed');
             setError('');
           })
@@ -26,7 +27,7 @@ function SignUp(props) {
         setError('auth/passwords-do-not-match');
       }
     },
-    [email, password, props, secondPassword],
+    [email, password, props, secondPassword]
   );
 
   const checkError = useCallback(() => {

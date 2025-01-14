@@ -1,3 +1,4 @@
+'use client';
 import classNames from 'classnames';
 import Loading from '../loading/loading';
 import SmallCard from '../small-card/small-card';
@@ -28,7 +29,7 @@ function WordsList(props) {
         return index;
       }
     },
-    [forbiddenWords, props.data.length],
+    [forbiddenWords, props.data.length]
   );
 
   const sayExamples = useCallback(async (currentWord) => {
@@ -60,7 +61,7 @@ function WordsList(props) {
         setCurrentIndex(index + 1);
       }, delayBetweenWords);
     },
-    [isPlaying, translatePause, wordsPause, isUseExamples, sayExamples, repeatCount, repeatPause],
+    [isPlaying, translatePause, wordsPause, isUseExamples, sayExamples, repeatCount, repeatPause]
   );
 
   const playWordsList = useCallback(() => {
@@ -90,7 +91,7 @@ function WordsList(props) {
         setForbiddenWords(clone);
       }
     },
-    [forbiddenWords],
+    [forbiddenWords]
   );
 
   const onChangeSettings = useCallback((data) => {
@@ -127,7 +128,7 @@ function WordsList(props) {
         </Button>
       </div>
       <div className="words-list__container">
-        {props.data ? (
+        {props.data.length ? (
           props.data.map((item, i) => (
             <SmallCard
               key={`${item.english}+${i}`}

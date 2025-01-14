@@ -17,13 +17,13 @@ export const words = {
   get(id) {
     const q = query(wordCollection, where('owner', '==', id));
     return getDocs(q).then((resp) => {
-      const arr = [];
+      const partsList = [];
       resp.forEach((document) => {
         const { id } = document;
         const words = document.data();
-        arr.push({ id, words });
+        partsList.push({ id, words });
       });
-      return arr;
+      return partsList;
     });
   },
 

@@ -1,53 +1,9 @@
+@use './variables.scss' as vars;
+
 *,
 *::after,
 *::before {
   box-sizing: border-box;
-}
-
-@mixin light-color-vars {
-  --body: #ffeede;
-  --body-transparent: rgba(255, 221, 227, 0.7);
-  --card-primary: #ffe5cc;
-  --card-secondary: #ffecec;
-  --main: #d65f5f;
-
-  --bgc-primary: #e18787;
-  --bgc-secondary: #fff3e8;
-  --bgc-tertiary: #ffe6cf;
-
-  --text-primary: #000;
-  --text-secondary: brown;
-  --text-tertiary: gray;
-
-  --color-primary: #fff;
-  --color-secondary: #000;
-  --color-secondary-100: gray;
-  --color-secondary-200: lightgray;
-
-  --box-shadow-nav: rgba(0, 0, 0, 0.1);
-}
-
-@mixin dark-color-vars {
-  --body: rgb(123, 122, 122);
-  --body-transparent: rgba(123, 122, 122, 0.7);
-  --card-primary: rgb(79, 79, 79);
-  --card-secondary: rgb(72, 72, 72);
-  --main: rgb(39, 38, 38);
-
-  --bgc-primary: #393939;
-  --bgc-secondary: #b6b6b6;
-  --bgc-tertiary: #4c4c4c;
-
-  --text-primary: #e3e3e3;
-  --text-secondary: #efefef;
-  --text-tertiary: #fff;
-
-  --color-primary: #ededed;
-  --color-secondary: #dcdcdc;
-  --color-secondary-100: #a2a2a2;
-  --color-secondary-200: rgb(170, 170, 170);
-
-  --box-shadow-nav: rgba(179, 179, 179, 0.1);
 }
 
 body {
@@ -58,20 +14,20 @@ body {
 
 @media (prefers-color-scheme: dark) {
   body {
-    @include dark-color-vars;
+    @include vars.dark-color-vars;
   }
 }
 
 @media (prefers-color-scheme: light) {
   body {
-    @include light-color-vars;
+    @include vars.light-color-vars;
   }
 }
 
 body[data-theme="dark"] {
-  @include dark-color-vars;
+  @include vars.dark-color-vars;
 }
 
 body[data-theme="light"] {
-  @include light-color-vars;
+  @include vars.light-color-vars;
 }

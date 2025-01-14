@@ -1,3 +1,4 @@
+'use client';
 import Switcher from '../switcher/switcher';
 import IconSun from '../svg-icon/icon-sun/icon-sun';
 import IconMoon from '../svg-icon/icon-moon/icon-moon';
