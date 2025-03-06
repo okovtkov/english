@@ -1,4 +1,3 @@
-'use client';
 import { useState } from 'react';
 import SignIn from '../sign-in/sign-in';
 import SignUp from '../sign-up/sign-up';
@@ -14,13 +13,7 @@ function Auth(props) {
     <div className="auth">
       <div className="auth__wrapper">
         <ThemeSwitcher className="auth__theme-switcher" iconTheme="primary" />
-        {type === 'sign-in' && (
-          <SignIn
-            onChangeType={setType}
-            onChangeAuthorized={props.onChangeAuthorized}
-            onChangeUser={props.onChangeUser}
-          />
-        )}
+        {type === 'sign-in' && <SignIn onChangeType={setType} />}
         {type === 'sign-up' && <SignUp onChangeType={setType} />}
         {type === 'successed' && (
           <>

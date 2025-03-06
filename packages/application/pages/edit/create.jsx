@@ -1,15 +1,11 @@
-'use client';
 import { Form } from '@english/components';
 import { useCallback } from 'react';
 import { api } from '@english/api';
 import { useQueryClient, useMutation } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
-import { useMiddlewareEffect } from '../../../hooks/use-middleware-effect';
 import { useUserContext } from '../../layout';
 
 function Create() {
-  useMiddlewareEffect();
-
   const { user } = useUserContext();
   const dateNow = Date.now();
   const router = useRouter();

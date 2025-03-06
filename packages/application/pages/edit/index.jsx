@@ -1,8 +1,6 @@
-'use client';
 import { Settings } from '@english/components';
 import { useUserContext } from '../layout';
 import { useQuery } from '@tanstack/react-query';
-import { useMiddlewareEffect } from '../../hooks/use-middleware-effect';
 import { api } from '@english/api';
 
 function Edit() {
@@ -14,8 +12,6 @@ function Edit() {
     staleTime: 1000 * 60 * 60,
     cacheTime: 1000 * 60 * 60,
   });
-
-  useMiddlewareEffect();
 
   if (isLoading) return null;
 

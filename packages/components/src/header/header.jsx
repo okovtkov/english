@@ -1,4 +1,3 @@
-'use client';
 import classNames from 'classnames';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';

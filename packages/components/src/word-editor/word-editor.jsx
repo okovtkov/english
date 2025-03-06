@@ -1,4 +1,3 @@
-'use client';
 import CloseButton from '../close-button/close-button';
 import Input from '../input/input';
 import './word-editor.scss';

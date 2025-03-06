@@ -1,4 +1,3 @@
-'use client';
 import { useCallback, useMemo, useState } from 'react';
 import { api } from '@english/api';
 import { useQuery } from '@tanstack/react-query';

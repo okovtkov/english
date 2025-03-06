@@ -1,4 +1,3 @@
-'use client';
 import Link from 'next/link';
 import Ref from '../ref/ref';
 import './parts.scss';

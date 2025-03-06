@@ -1,4 +1,3 @@
-'use client';
 import classNames from 'classnames';
 import { useCallback, useEffect, useRef } from 'react';
 import { api } from '@english/api';

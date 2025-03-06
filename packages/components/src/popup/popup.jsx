@@ -1,4 +1,3 @@
-'use client';
 import ReactDOM from 'react-dom';
 import './popup.scss';
 

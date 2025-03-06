@@ -1,4 +1,3 @@
-'use client';
 import './test.scss';
 import { useCallback, useEffect, useState } from 'react';
 import Word from '../word/word';

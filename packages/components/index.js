@@ -27,3 +27,5 @@ export * from './src/svg-icon/index.js';
 export { default as SpeakerSettings } from './src/speaker-settings/speaker-settings.jsx';
 export { default as SmallCard } from './src/small-card/small-card.jsx';
 export { default as SignUp } from './src/sign-up/sign-up.jsx';
+export { default as QueryProvider } from './src/query-provider/query-provider.jsx';
+export { default as IndexBlock } from './src/blocks/index-block/index-block.jsx';

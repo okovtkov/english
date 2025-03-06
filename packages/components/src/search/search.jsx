@@ -1,4 +1,3 @@
-'use client';
 import classNames from 'classnames';
 import { useEffect, useMemo, useState } from 'react';
 import Input from '../input/input';

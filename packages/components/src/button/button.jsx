@@ -1,4 +1,3 @@
-'use client';
 import './button.scss';
 
 function Button(props) {

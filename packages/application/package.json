@@ -11,8 +11,13 @@
   "dependencies": {
     "@english/api": "0.0.0-stub",
     "@english/components": "0.0.0-stub",
+    "next": "^15.1.2",
+    "firebase-admin": "^13.1.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "next": "^15.1.2"
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "19.0.10",
+    "typescript": "5.7.3"
   }
 }
