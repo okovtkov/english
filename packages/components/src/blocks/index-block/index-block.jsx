@@ -3,8 +3,6 @@ import Loading from '../../loading/loading';
 import { api } from '@english/api';
 import { useQuery } from '@tanstack/react-query';
 import Header from '../../header/header';
-import { useCallback } from 'react';
-import { useRouter } from 'next/router';
 
 export default function IndexBlock({ uid }) {
   const { data: words, isLoading } = useQuery({
@@ -15,18 +13,11 @@ export default function IndexBlock({ uid }) {
     cacheTime: 1000 * 60 * 60,
   });
 
-  const router = useRouter();
-
-  const onLogout = useCallback(async () => {
-    api.auth.signOut();
-    router.push('/auth');
-  }, [router]);
-
   if (isLoading) return <Loading />;
 
   return (
     <>
-      <Header uid={uid} onLogout={onLogout} />
+      <Header uid={uid} />
       <Parts data={words} />
     </>
   );

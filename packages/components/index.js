@@ -29,3 +29,4 @@ export { default as SmallCard } from './src/small-card/small-card.jsx';
 export { default as SignUp } from './src/sign-up/sign-up.jsx';
 export { default as QueryProvider } from './src/query-provider/query-provider.jsx';
 export { default as IndexBlock } from './src/blocks/index-block/index-block.jsx';
+export { default as TestIdBlock } from './src/blocks/test-id-block/test-id-block.jsx';

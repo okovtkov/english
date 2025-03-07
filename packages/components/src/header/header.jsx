@@ -1,13 +1,21 @@
+import { useRouter } from 'next/router';
+import { useEffect, useState, useCallback } from 'react';
+import { api } from '@english/api';
 import classNames from 'classnames';
-import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Logout from '../logout/logout';
 import Search from '../search/search';
 import ThemeSwitcher from '../theme-switcher/theme-switcher';
 import './header.scss';
 
-function Header({ uid, onLogout }) {
+function Header({ uid }) {
   const [open, setOpen] = useState(false);
+
+  const router = useRouter();
+  const onLogout = useCallback(() => {
+    api.auth.signOut();
+    router.push('/auth');
+  }, [router]);
 
   useEffect(() => {
     document.body.style.overflow = open ? 'hidden' : 'auto';
