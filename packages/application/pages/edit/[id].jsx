@@ -1,40 +1,35 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { Form } from '@english/components';
+import { EditIdBlock } from '@english/components';
 import { api } from '@english/api';
-import { useQuery, useQueryClient, useMutation } from '@tanstack/react-query';
-import { useCallback } from 'react';
-import { useParams, useRouter } from 'next/navigation';
+import { HydrationBoundary, QueryClient, dehydrate } from '@tanstack/react-query';
+import { getUser } from '../../server';
 
-function EditPart() {
-  const { id } = useParams();
-  const router = useRouter();
+export async function getServerSideProps(ctx) {
+  const user = await getUser(ctx);
+  const queryClient = new QueryClient();
 
-  const { data: defaultWords, isLoading } = useQuery({
-    queryFn: () => api.words.getById(id),
-    queryKey: ['words', id],
+  await queryClient.prefetchQuery({
+    queryKey: ['words'],
+    queryFn: () => api.words.get(user.uid),
+    select: (data) => data.sort((a, b) => a.words.createdAt - b.words.createdAt),
     staleTime: 1000 * 60 * 60,
     cacheTime: 1000 * 60 * 60,
   });
-  const client = useQueryClient();
-  const { mutate: updatePart } = useMutation({
-    mutationFn: (words) => api.words.update(words.words, id),
-    onSuccess: () => {
-      client.invalidateQueries(['words', id]);
-      client.invalidateQueries(['words']);
-      router.push('/edit/');
-    },
-  });
 
-  const onSubmit = useCallback(
-    (words) => {
-      updatePart(words);
+  return {
+    props: {
+      uid: user.uid,
+      dehydratedState: dehydrate(queryClient),
     },
-    [id]
+  };
+}
+
+function EditPart({ dehydratedState, uid }) {
+  return (
+    <HydrationBoundary state={dehydratedState}>
+      <EditIdBlock uid={uid} />
+    </HydrationBoundary>
   );
-
-  if (isLoading) return null;
-
-  return <Form onSubmit={onSubmit} wordsData={defaultWords} buttonText="Сохранить" />;
 }
 
 export default EditPart;
