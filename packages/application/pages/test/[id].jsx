@@ -16,6 +16,9 @@ export async function getServerSideProps(ctx) {
     await queryClient.prefetchQuery({
       queryKey: ['words', ctx.params.id],
       queryFn: () => api.words.getById(ctx.params.id),
+      select: (data) => data.sort((a, b) => a.words.createdAt - b.words.createdAt),
+      staleTime: 1000 * 60 * 60,
+      cacheTime: 1000 * 60 * 60,
     });
   }
 

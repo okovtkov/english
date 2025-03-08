@@ -1,7 +1,9 @@
 import { useCallback, useMemo, useState } from 'react';
 import { api } from '@english/api';
 import { useQuery } from '@tanstack/react-query';
-import { Test, Switch, WordsList } from '@english/components';
+import Test from '../../test/test';
+import Switch from '../../switch/switch';
+import WordsList from '../../words-list/words-list';
 import Header from '../../header/header';
 
 export default function TestIdBlock({ uid, id }) {
