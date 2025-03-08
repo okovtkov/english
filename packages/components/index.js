@@ -31,3 +31,4 @@ export { default as QueryProvider } from './src/query-provider/query-provider.js
 export { default as IndexBlock } from './src/blocks/index-block/index-block.jsx';
 export { default as TestIdBlock } from './src/blocks/test-id-block/test-id-block.jsx';
 export { default as EditBlock } from './src/blocks/edit-block/edit-block.jsx';
+export { default as EditCreateBlock } from './src/blocks/edit-create-block/edit-create-block.jsx';

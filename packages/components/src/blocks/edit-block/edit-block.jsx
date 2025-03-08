@@ -3,7 +3,7 @@ import Header from '../../header/header';
 import { useQuery } from '@tanstack/react-query';
 import { api } from '@english/api';
 
-function EditBlock({ uid }) {
+export default function EditBlock({ uid }) {
   const { data: words = [], isLoading } = useQuery({
     queryFn: () => api.words.get(uid),
     queryKey: ['words'],
@@ -21,5 +21,3 @@ function EditBlock({ uid }) {
     </>
   );
 }
-
-export default EditBlock;
