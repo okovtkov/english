@@ -33,7 +33,7 @@ export async function refreshTokenIfNeeded(idToken, refreshToken) {
     await admin.auth().verifyIdToken(idToken, true);
     return idToken; // Токен еще валиден
   } catch (error) {
-    if (error.code === 'auth/id-token-expired') {
+    if (error.code === 'auth/id-token-expired' || error.code === 'auth/argument-error') {
       const newToken = await getRefreshedIdToken(refreshToken);
       return newToken;
     }
