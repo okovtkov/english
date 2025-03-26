@@ -1,11 +1,9 @@
 import admin from 'firebase-admin';
-import { readFileSync } from 'fs';
+import { serviceAccountKeys } from './serviceAccountKey.js';
 
 if (!admin.apps.length) {
-  const serviceAccount = JSON.parse(readFileSync('serviceAccountKey.json', 'utf-8'));
-
   admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount),
+    credential: admin.credential.cert(serviceAccountKeys),
   });
 }
 

@@ -26,3 +26,5 @@ yarn-error.log*
 packages/application/.next/
 
 .env
+
+packages/application/serviceAccountKey.json
