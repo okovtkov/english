@@ -50,7 +50,7 @@ function Test(props) {
 
     if (props.id === 'general' || props.id === 'favourite') {
       const index = wordsList.findIndex((item) => item.id === cardData.id);
-      wordsList.splice(index, 1, cardData); // TODO: сделать грамотно
+      wordsList.splice(index, 1, cardData);
     } else {
       setWordsList(updatedArray);
     }

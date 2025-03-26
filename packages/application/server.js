@@ -43,7 +43,7 @@ export async function refreshTokenIfNeeded(idToken, refreshToken) {
 
 async function getRefreshedIdToken(refreshToken) {
   const response = await fetch(
-    'https://securetoken.googleapis.com/v1/token?key=AIzaSyDHpXeyfCGqHyuqz8LlkHUPYAvl2DZZ5q4', // TODO в env
+    `https://securetoken.googleapis.com/v1/token?key=${process.env.TOKEN_FOR_REFRESH}`, // TODO в env
     {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
