@@ -1,4 +1,3 @@
-'use client';
 import IconSound from '../svg-icon/icon-sound';
 import { api } from '@english/api';
 import './small-card.scss';

@@ -1,4 +1,3 @@
-'use client';
 import './test.scss';
 import { useCallback, useEffect, useState } from 'react';
 import Word from '../word/word';
@@ -51,7 +50,7 @@ function Test(props) {
 
     if (props.id === 'general' || props.id === 'favourite') {
       const index = wordsList.findIndex((item) => item.id === cardData.id);
-      wordsList.splice(index, 1, cardData); // TODO: сделать грамотно
+      wordsList.splice(index, 1, cardData);
     } else {
       setWordsList(updatedArray);
     }

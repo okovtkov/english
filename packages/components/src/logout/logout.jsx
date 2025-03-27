@@ -1,4 +1,3 @@
-'use client';
 import { useState } from 'react';
 import Popup from '../popup/popup';
 import IconLogout from '../svg-icon/icon-logout';

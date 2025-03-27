@@ -1,23 +1,18 @@
-'use client';
 import { useCallback, useMemo, useState } from 'react';
 import { api } from '@english/api';
 import { useQuery } from '@tanstack/react-query';
-import { Test, Switch, WordsList } from '@english/components';
-import { useParams } from 'next/navigation';
-import { useMiddlewareEffect } from '../../../hooks/use-middleware-effect';
-import { useUserContext } from '../../layout';
+import Test from '../../test/test';
+import Switch from '../../switch/switch';
+import WordsList from '../../words-list/words-list';
+import Header from '../../header/header';
 
-function TestPage() {
-  useMiddlewareEffect();
-
-  const { id } = useParams();
-  const { user } = useUserContext();
+export default function TestIdBlock({ uid, id }) {
   const [type, setType] = useState('');
   const [visibleWord, setVisibleWord] = useState('');
 
   const generalOrFavouriteMode = id === 'general' || id === 'favourite';
   const { data: wordsData, isLoading } = useQuery({
-    queryFn: () => (generalOrFavouriteMode ? api.words.get(user.uid) : api.words.getById(id)),
+    queryFn: () => (generalOrFavouriteMode ? api.words.get(uid) : api.words.getById(id)),
     queryKey: generalOrFavouriteMode ? ['words'] : ['words', id],
     staleTime: 1000 * 60 * 60,
     cacheTime: 1000 * 60 * 60,
@@ -53,8 +48,6 @@ function TestPage() {
     setType('repeating');
   }, []);
 
-  if (!user) return null;
-
   if (!wordsList.length && generalOrFavouriteMode)
     return (
       <div className="test">
@@ -64,6 +57,7 @@ function TestPage() {
 
   return (
     <>
+      <Header uid={uid} />
       {!type && (
         <Switch
           firstValue="просмотреть"
@@ -96,5 +90,3 @@ function TestPage() {
     </>
   );
 }
-
-export default TestPage;

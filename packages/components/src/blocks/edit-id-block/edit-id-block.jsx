@@ -1,13 +1,11 @@
-'use client';
-/* eslint-disable react-hooks/exhaustive-deps */
-import { Form } from '@english/components';
+import Header from '../../header/header';
+import Form from '../../form/form';
 import { api } from '@english/api';
 import { useQuery, useQueryClient, useMutation } from '@tanstack/react-query';
 import { useCallback } from 'react';
-import { useMiddlewareEffect } from '../../../hooks/use-middleware-effect';
 import { useParams, useRouter } from 'next/navigation';
 
-function EditPart() {
+export default function EditIdBlock({ uid }) {
   const { id } = useParams();
   const router = useRouter();
 
@@ -27,18 +25,19 @@ function EditPart() {
     },
   });
 
-  useMiddlewareEffect();
-
   const onSubmit = useCallback(
     (words) => {
       updatePart(words);
     },
-    [id]
+    [updatePart]
   );
 
   if (isLoading) return null;
 
-  return <Form onSubmit={onSubmit} wordsData={defaultWords} buttonText="Сохранить" />;
+  return (
+    <>
+      <Header uid={uid} />
+      <Form onSubmit={onSubmit} wordsData={defaultWords} buttonText="Сохранить" />
+    </>
+  );
 }
-
-export default EditPart;

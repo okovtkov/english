@@ -1,28 +1,14 @@
-'use client';
-import { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, useContext, useState } from 'react';
 
 const ThemeStateContext = createContext();
 
-export const ThemeStateProvider = ({ children }) => {
-  const [theme, setTheme] = useState('light');
-
-  useEffect(() => {
-    const defaultTheme = getDefaultTheme();
-    setTheme(defaultTheme);
-  }, []);
-
-  function getDefaultTheme() {
-    const localTheme = localStorage.getItem('theme');
-    if (localTheme) return localTheme;
-    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)
-      return 'dark';
-    return 'light';
-  }
+export const ThemeStateProvider = ({ children, defaultTheme }) => {
+  const [theme, setTheme] = useState(defaultTheme);
 
   const updateTheme = (value) => {
     setTheme(value);
+    document.cookie = `theme=${value}; path=/`;
     document.body.dataset.theme = value;
-    localStorage.setItem('theme', value);
   };
 
   return (

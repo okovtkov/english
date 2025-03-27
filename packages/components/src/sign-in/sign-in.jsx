@@ -1,4 +1,3 @@
-'use client';
 import classNames from 'classnames';
 import { useCallback, useState } from 'react';
 import { api } from '@english/api';
@@ -18,19 +17,18 @@ function SignIn(props) {
       e.preventDefault();
       api.auth
         .signIn(email, password)
-        .then((resp) => {
-          props.onChangeUser(resp);
+        .then(() => {
           const user = { email, password };
           localStorage.setItem('user', JSON.stringify(user));
           router.push('/');
         })
         .catch((err) => {
           // eslint-disable-next-line no-console
-          console.error(err.code);
+          console.log(err);
           setError(err.code);
         });
     },
-    [email, password, props, router]
+    [email, password, router]
   );
 
   const checkError = useCallback(() => {

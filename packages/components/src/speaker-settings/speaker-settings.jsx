@@ -1,4 +1,3 @@
-'use client';
 import classNames from 'classnames';
 import Button from '../button/button';
 import Input from '../input/input';

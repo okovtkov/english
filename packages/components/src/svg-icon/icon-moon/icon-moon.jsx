@@ -1,4 +1,3 @@
-'use client';
 import classNames from 'classnames';
 import './icon-moon.scss';
 

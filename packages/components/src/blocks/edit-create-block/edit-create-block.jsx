@@ -1,16 +1,11 @@
-'use client';
-import { Form } from '@english/components';
 import { useCallback } from 'react';
 import { api } from '@english/api';
 import { useQueryClient, useMutation } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
-import { useMiddlewareEffect } from '../../../hooks/use-middleware-effect';
-import { useUserContext } from '../../layout';
+import Form from '../../form/form';
+import Header from '../../header/header';
 
-function Create() {
-  useMiddlewareEffect();
-
-  const { user } = useUserContext();
+export default function EditCreateBlock({ uid }) {
   const dateNow = Date.now();
   const router = useRouter();
   const startWords = {
@@ -60,15 +55,16 @@ function Create() {
     (words) => {
       const clone = { ...words };
       clone.words.createdAt = Date.now();
-      clone.words.owner = user.uid;
+      clone.words.owner = uid;
       createPart(clone.words);
     },
-    [createPart, user.uid]
+    [createPart, uid]
   );
 
-  if (!user) return null;
-
-  return <Form wordsData={startWords} buttonText="Создать" onSubmit={onSubmit} />;
+  return (
+    <>
+      <Header uid={uid} />
+      <Form wordsData={startWords} buttonText="Создать" onSubmit={onSubmit} />
+    </>
+  );
 }
-
-export default Create;
