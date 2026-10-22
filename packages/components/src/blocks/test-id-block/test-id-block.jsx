@@ -18,6 +18,12 @@ export default function TestIdBlock({ uid, id }) {
     cacheTime: 1000 * 60 * 60,
   });
 
+  const sectionName = useMemo(() => {
+    if (id === 'general') return 'Общее';
+    if (id === 'favourite') return 'Избранное';
+    return wordsData?.words?.name ?? '';
+  }, [id, wordsData]);
+
   const wordsList = useMemo(() => {
     if (isLoading) return [];
 
@@ -86,7 +92,7 @@ export default function TestIdBlock({ uid, id }) {
           visibleWord={visibleWord}
         />
       )}
-      {type === 'reading' && <WordsList data={wordsList} />}
+      {type === 'reading' && <WordsList data={wordsList} name={sectionName} />}
     </>
   );
 }

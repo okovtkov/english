@@ -123,6 +123,7 @@ function WordsList(props) {
         <Button className="words-list__play" onClick={() => setIsPlaying(!isPlaying)}>
           {isPlaying ? 'Пауза' : 'Слушать всё'}
         </Button>
+        {props.name && <h1 className="words-list__title">{props.name}</h1>}
         <Button className="words-list__params" onClick={() => setIsModalOpen(true)}>
           Параметры
         </Button>
