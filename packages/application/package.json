@@ -3,16 +3,16 @@
   "version": "0.0.0-stub",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "dev": "next dev --webpack",
+    "build": "next build --webpack",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
     "@english/api": "0.0.0-stub",
     "@english/components": "0.0.0-stub",
-    "next": "^15.1.2",
     "firebase-admin": "^13.1.0",
+    "next": "^16.4.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
